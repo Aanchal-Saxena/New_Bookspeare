@@ -7,23 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D09E2DFD2C0FB1E300620EFE /* BookclubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */; };
+		D09E2DFF2C0FB29A00620EFE /* DataModel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */; };
+		D09E2E072C0FB81500620EFE /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E062C0FB81500620EFE /* RegisteredViewController.swift */; };
+		D09E2E0A2C0FBA4700620EFE /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E092C0FBA4700620EFE /* Events.storyboard */; };
+		D09E2E182C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E0B2C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift */; };
+		D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E0C2C0FBA6F00620EFE /* QuizStartViewController.swift */; };
+		D09E2E1A2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E0D2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift */; };
+		D09E2E1B2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E0E2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib */; };
+		D09E2E1D2C0FBA6F00620EFE /* Games.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E102C0FBA6F00620EFE /* Games.storyboard */; };
+		D09E2E1E2C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E112C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib */; };
+		D09E2E202C0FBA6F00620EFE /* EventCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E132C0FBA6F00620EFE /* EventCardCollectionViewCell.swift */; };
+		D09E2E222C0FBA6F00620EFE /* QuizScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E152C0FBA6F00620EFE /* QuizScoreViewController.swift */; };
+		D09E2E232C0FBA6F00620EFE /* QuizQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E162C0FBA6F00620EFE /* QuizQuestionsViewController.swift */; };
+		D09E2E262C0FBB5000620EFE /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E252C0FBB5000620EFE /* EventsViewController.swift */; };
+		D09E2E2A2C0FBC8700620EFE /* EventsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E292C0FBC8700620EFE /* EventsSearchViewController.swift */; };
+		D09E2E2C2C0FBE1800620EFE /* DetailEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E2B2C0FBE1800620EFE /* DetailEventsViewController.swift */; };
+		D09E2E302C0FBEE100620EFE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */; };
+		D09E2E322C0FBF0100620EFE /* Swapped.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E312C0FBF0100620EFE /* Swapped.storyboard */; };
+		D09E2E3A2C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E332C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift */; };
+		D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E342C0FBF4900620EFE /* LocationManager.swift */; };
+		D09E2E3C2C0FBF4900620EFE /* SwapChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E352C0FBF4900620EFE /* SwapChatsViewController.swift */; };
+		D09E2E3D2C0FBF4900620EFE /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E362C0FBF4900620EFE /* CardCollectionViewCell.xib */; };
+		D09E2E3E2C0FBF4900620EFE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E372C0FBF4900620EFE /* MapViewController.swift */; };
+		D09E2E402C0FBF4900620EFE /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E392C0FBF4900620EFE /* CardCollectionViewCell.swift */; };
+		D09E2E422C0FC04F00620EFE /* SwappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E412C0FC04F00620EFE /* SwappedViewController.swift */; };
+		D09E2E522C0FC10F00620EFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */; };
+		D09E2E532C0FC10F00620EFE /* BcListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E442C0FC10E00620EFE /* BcListCollectionViewCell.swift */; };
+		D09E2E542C0FC10F00620EFE /* myCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E452C0FC10E00620EFE /* myCollectionViewCell.swift */; };
+		D09E2E552C0FC10F00620EFE /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */; };
+		D09E2E562C0FC10F00620EFE /* PCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E472C0FC10E00620EFE /* PCardCollectionViewCell.swift */; };
+		D09E2E582C0FC10F00620EFE /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E492C0FC10E00620EFE /* FriendsTableViewCell.xib */; };
+		D09E2E5B2C0FC10F00620EFE /* PCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E4C2C0FC10E00620EFE /* PCardCollectionViewCell.xib */; };
+		D09E2E5C2C0FC10F00620EFE /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E4D2C0FC10E00620EFE /* FriendsTableViewCell.swift */; };
+		D09E2E5D2C0FC10F00620EFE /* PViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E4E2C0FC10E00620EFE /* PViewController.swift */; };
+		D09E2E5F2C0FC10F00620EFE /* MyBcListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E502C0FC10E00620EFE /* MyBcListCollectionViewCell.swift */; };
+		D09E2E602C0FC10F00620EFE /* BcListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E512C0FC10F00620EFE /* BcListCollectionViewCell.xib */; };
+		D09E2E622C0FC1BC00620EFE /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */; };
+		D09E2E642C0FC25E00620EFE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E632C0FC25E00620EFE /* EditProfileViewController.swift */; };
+		D09E2E662C0FC2D200620EFE /* BookclubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E652C0FC2D200620EFE /* BookclubListViewController.swift */; };
+		D09E2E682C0FC36600620EFE /* UserFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */; };
+		D09E2E6A2C0FC49300620EFE /* ClubsCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E692C0FC49300620EFE /* ClubsCreateViewController.swift */; };
+		D09E2E6C2C0FC4FF00620EFE /* UserGenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E6B2C0FC4FF00620EFE /* UserGenreViewController.swift */; };
+		D09E2E6E2C0FC54D00620EFE /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E6D2C0FC54D00620EFE /* UserLoginViewController.swift */; };
+		D09E2E702C0FC66B00620EFE /* DateOfBirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E6F2C0FC66B00620EFE /* DateOfBirthViewController.swift */; };
 		D0DCE46D2C0F494600B6660E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE46C2C0F494600B6660E /* AppDelegate.swift */; };
 		D0DCE46F2C0F494600B6660E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE46E2C0F494600B6660E /* SceneDelegate.swift */; };
 		D0DCE4712C0F494600B6660E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE4702C0F494600B6660E /* ViewController.swift */; };
-		D0DCE4742C0F494600B6660E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE4732C0F494600B6660E /* Base */; };
 		D0DCE4762C0F494800B6660E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE4752C0F494800B6660E /* Assets.xcassets */; };
 		D0DCE4792C0F494800B6660E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE4782C0F494800B6660E /* Base */; };
+		D0DCE5222C0FA12100B6660E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5212C0FA12100B6660E /* GoogleService-Info.plist */; };
+		D0DCE5262C0FA29600B6660E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0DCE5252C0FA29600B6660E /* FirebaseAuth */; };
+		D0DCE5282C0FA29600B6660E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D0DCE5272C0FA29600B6660E /* FirebaseFirestore */; };
+		D0DCE52A2C0FA2C600B6660E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0DCE5292C0FA2C600B6660E /* FirebaseFirestoreSwift */; };
+		D0DCE52C2C0FA2C600B6660E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D0DCE52B2C0FA2C600B6660E /* FirebaseStorage */; };
+		D0DCE53D2C0FA36B00B6660E /* BookclubChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE5302C0FA36A00B6660E /* BookclubChatCollectionViewCell.swift */; };
+		D0DCE53F2C0FA36B00B6660E /* BookclubCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5322C0FA36A00B6660E /* BookclubCardCollectionViewCell.xib */; };
+		D0DCE5452C0FA36B00B6660E /* BookclubButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE5382C0FA36A00B6660E /* BookclubButtonCollectionViewCell.swift */; };
+		D0DCE5472C0FA36B00B6660E /* BookclubCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE53A2C0FA36A00B6660E /* BookclubCardCollectionViewCell.swift */; };
+		D0DCE5482C0FA36B00B6660E /* BookclubChatCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE53B2C0FA36A00B6660E /* BookclubChatCollectionViewCell.xib */; };
+		D0DCE5532C0FAAB200B6660E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5522C0FAAB200B6660E /* Main.storyboard */; };
+		D0DCE5572C0FAB6C00B6660E /* Bookclubs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */; };
+		D0DCE5612C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */; };
+		D0FF07272C0FC9CE00A68E29 /* FirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */; };
+		D0FF07282C0FC9CE00A68E29 /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */; };
+		D0FF072F2C0FCAF000A68E29 /* ThirdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF072E2C0FCAF000A68E29 /* ThirdCell.xib */; };
+		D0FF07302C0FCAF000A68E29 /* ThirdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF072D2C0FCAF000A68E29 /* ThirdCell.swift */; };
+		D0FF07332C0FCB0500A68E29 /* SecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF07322C0FCB0500A68E29 /* SecondCell.xib */; };
+		D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF07312C0FCB0500A68E29 /* SecondCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookclubViewController.swift; sourceTree = "<group>"; };
+		D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel1.swift; sourceTree = "<group>"; };
+		D09E2E062C0FB81500620EFE /* RegisteredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
+		D09E2E092C0FBA4700620EFE /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
+		D09E2E0B2C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E0C2C0FBA6F00620EFE /* QuizStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizStartViewController.swift; sourceTree = "<group>"; };
+		D09E2E0D2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E0E2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		D09E2E102C0FBA6F00620EFE /* Games.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Games.storyboard; sourceTree = "<group>"; };
+		D09E2E112C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchEventCollectionViewCell.xib; sourceTree = "<group>"; };
+		D09E2E132C0FBA6F00620EFE /* EventCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E152C0FBA6F00620EFE /* QuizScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizScoreViewController.swift; sourceTree = "<group>"; };
+		D09E2E162C0FBA6F00620EFE /* QuizQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionsViewController.swift; sourceTree = "<group>"; };
+		D09E2E252C0FBB5000620EFE /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		D09E2E292C0FBC8700620EFE /* EventsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSearchViewController.swift; sourceTree = "<group>"; };
+		D09E2E2B2C0FBE1800620EFE /* DetailEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventsViewController.swift; sourceTree = "<group>"; };
+		D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		D09E2E312C0FBF0100620EFE /* Swapped.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Swapped.storyboard; sourceTree = "<group>"; };
+		D09E2E332C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E342C0FBF4900620EFE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D09E2E352C0FBF4900620EFE /* SwapChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapChatsViewController.swift; sourceTree = "<group>"; };
+		D09E2E362C0FBF4900620EFE /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
+		D09E2E372C0FBF4900620EFE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D09E2E392C0FBF4900620EFE /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E412C0FC04F00620EFE /* SwappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwappedViewController.swift; sourceTree = "<group>"; };
+		D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D09E2E442C0FC10E00620EFE /* BcListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BcListCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E452C0FC10E00620EFE /* myCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		D09E2E472C0FC10E00620EFE /* PCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E492C0FC10E00620EFE /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
+		D09E2E4C2C0FC10E00620EFE /* PCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		D09E2E4D2C0FC10E00620EFE /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		D09E2E4E2C0FC10E00620EFE /* PViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PViewController.swift; sourceTree = "<group>"; };
+		D09E2E502C0FC10E00620EFE /* MyBcListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBcListCollectionViewCell.swift; sourceTree = "<group>"; };
+		D09E2E512C0FC10F00620EFE /* BcListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BcListCollectionViewCell.xib; sourceTree = "<group>"; };
+		D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		D09E2E632C0FC25E00620EFE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D09E2E652C0FC2D200620EFE /* BookclubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookclubListViewController.swift; sourceTree = "<group>"; };
+		D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsTableViewController.swift; sourceTree = "<group>"; };
+		D09E2E692C0FC49300620EFE /* ClubsCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsCreateViewController.swift; sourceTree = "<group>"; };
+		D09E2E6B2C0FC4FF00620EFE /* UserGenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGenreViewController.swift; sourceTree = "<group>"; };
+		D09E2E6D2C0FC54D00620EFE /* UserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		D09E2E6F2C0FC66B00620EFE /* DateOfBirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthViewController.swift; sourceTree = "<group>"; };
 		D0DCE4692C0F494600B6660E /* New_Bookspeare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = New_Bookspeare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DCE46C2C0F494600B6660E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DCE46E2C0F494600B6660E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D0DCE4702C0F494600B6660E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D0DCE4732C0F494600B6660E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DCE4752C0F494800B6660E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DCE4782C0F494800B6660E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0DCE47A2C0F494800B6660E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0DCE5212C0FA12100B6660E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D0DCE5302C0FA36A00B6660E /* BookclubChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookclubChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0DCE5322C0FA36A00B6660E /* BookclubCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookclubCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		D0DCE5382C0FA36A00B6660E /* BookclubButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookclubButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0DCE53A2C0FA36A00B6660E /* BookclubCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookclubCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0DCE53B2C0FA36A00B6660E /* BookclubChatCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookclubChatCollectionViewCell.xib; sourceTree = "<group>"; };
+		D0DCE5522C0FAAB200B6660E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bookclubs.storyboard; sourceTree = "<group>"; };
+		D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBookclubCollectionReusableView.swift; sourceTree = "<group>"; };
+		D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
+		D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCell.xib; sourceTree = "<group>"; };
+		D0FF072D2C0FCAF000A68E29 /* ThirdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCell.swift; sourceTree = "<group>"; };
+		D0FF072E2C0FCAF000A68E29 /* ThirdCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdCell.xib; sourceTree = "<group>"; };
+		D0FF07312C0FCB0500A68E29 /* SecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCell.swift; sourceTree = "<group>"; };
+		D0FF07322C0FCB0500A68E29 /* SecondCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +151,80 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0DCE5262C0FA29600B6660E /* FirebaseAuth in Frameworks */,
+				D0DCE52C2C0FA2C600B6660E /* FirebaseStorage in Frameworks */,
+				D0DCE5282C0FA29600B6660E /* FirebaseFirestore in Frameworks */,
+				D0DCE52A2C0FA2C600B6660E /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D09E2E082C0FBA2400620EFE /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				D09E2E0D2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift */,
+				D09E2E132C0FBA6F00620EFE /* EventCardCollectionViewCell.swift */,
+				D09E2E0E2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib */,
+				D09E2E102C0FBA6F00620EFE /* Games.storyboard */,
+				D09E2E162C0FBA6F00620EFE /* QuizQuestionsViewController.swift */,
+				D09E2E152C0FBA6F00620EFE /* QuizScoreViewController.swift */,
+				D09E2E0C2C0FBA6F00620EFE /* QuizStartViewController.swift */,
+				D09E2E0B2C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift */,
+				D09E2E112C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib */,
+				D09E2E092C0FBA4700620EFE /* Events.storyboard */,
+				D09E2E252C0FBB5000620EFE /* EventsViewController.swift */,
+				D09E2E292C0FBC8700620EFE /* EventsSearchViewController.swift */,
+				D09E2E2B2C0FBE1800620EFE /* DetailEventsViewController.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		D09E2E2D2C0FBEB100620EFE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D09E2E442C0FC10E00620EFE /* BcListCollectionViewCell.swift */,
+				D09E2E512C0FC10F00620EFE /* BcListCollectionViewCell.xib */,
+				D09E2E4D2C0FC10E00620EFE /* FriendsTableViewCell.swift */,
+				D09E2E492C0FC10E00620EFE /* FriendsTableViewCell.xib */,
+				D09E2E502C0FC10E00620EFE /* MyBcListCollectionViewCell.swift */,
+				D09E2E452C0FC10E00620EFE /* myCollectionViewCell.swift */,
+				D09E2E472C0FC10E00620EFE /* PCardCollectionViewCell.swift */,
+				D09E2E4C2C0FC10E00620EFE /* PCardCollectionViewCell.xib */,
+				D09E2E4E2C0FC10E00620EFE /* PViewController.swift */,
+				D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */,
+				D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */,
+				D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */,
+				D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */,
+				D09E2E632C0FC25E00620EFE /* EditProfileViewController.swift */,
+				D09E2E652C0FC2D200620EFE /* BookclubListViewController.swift */,
+				D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D09E2E2E2C0FBEBE00620EFE /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				D09E2E332C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift */,
+				D09E2E392C0FBF4900620EFE /* CardCollectionViewCell.swift */,
+				D09E2E362C0FBF4900620EFE /* CardCollectionViewCell.xib */,
+				D09E2E342C0FBF4900620EFE /* LocationManager.swift */,
+				D09E2E372C0FBF4900620EFE /* MapViewController.swift */,
+				D09E2E352C0FBF4900620EFE /* SwapChatsViewController.swift */,
+				D09E2E312C0FBF0100620EFE /* Swapped.storyboard */,
+				D09E2E412C0FC04F00620EFE /* SwappedViewController.swift */,
+			);
+			path = Swap;
+			sourceTree = "<group>";
+		};
 		D0DCE4602C0F494600B6660E = {
 			isa = PBXGroup;
 			children = (
 				D0DCE46B2C0F494600B6660E /* New_Bookspeare */,
 				D0DCE46A2C0F494600B6660E /* Products */,
+				D0DCE5242C0FA29600B6660E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +239,54 @@
 		D0DCE46B2C0F494600B6660E /* New_Bookspeare */ = {
 			isa = PBXGroup;
 			children = (
+				D09E2E2E2C0FBEBE00620EFE /* Swap */,
+				D09E2E2D2C0FBEB100620EFE /* Profile */,
+				D09E2E082C0FBA2400620EFE /* Events */,
+				D0DCE52E2C0FA33F00B6660E /* Bookclubs */,
+				D0DCE5212C0FA12100B6660E /* GoogleService-Info.plist */,
 				D0DCE46C2C0F494600B6660E /* AppDelegate.swift */,
 				D0DCE46E2C0F494600B6660E /* SceneDelegate.swift */,
 				D0DCE4702C0F494600B6660E /* ViewController.swift */,
-				D0DCE4722C0F494600B6660E /* Main.storyboard */,
 				D0DCE4752C0F494800B6660E /* Assets.xcassets */,
 				D0DCE4772C0F494800B6660E /* LaunchScreen.storyboard */,
 				D0DCE47A2C0F494800B6660E /* Info.plist */,
+				D0DCE5522C0FAAB200B6660E /* Main.storyboard */,
+				D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */,
 			);
 			path = New_Bookspeare;
+			sourceTree = "<group>";
+		};
+		D0DCE5242C0FA29600B6660E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0DCE52E2C0FA33F00B6660E /* Bookclubs */ = {
+			isa = PBXGroup;
+			children = (
+				D0DCE5382C0FA36A00B6660E /* BookclubButtonCollectionViewCell.swift */,
+				D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */,
+				D0DCE53A2C0FA36A00B6660E /* BookclubCardCollectionViewCell.swift */,
+				D0DCE5322C0FA36A00B6660E /* BookclubCardCollectionViewCell.xib */,
+				D0DCE5302C0FA36A00B6660E /* BookclubChatCollectionViewCell.swift */,
+				D0DCE53B2C0FA36A00B6660E /* BookclubChatCollectionViewCell.xib */,
+				D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */,
+				D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */,
+				D09E2E062C0FB81500620EFE /* RegisteredViewController.swift */,
+				D09E2E692C0FC49300620EFE /* ClubsCreateViewController.swift */,
+				D09E2E6B2C0FC4FF00620EFE /* UserGenreViewController.swift */,
+				D09E2E6D2C0FC54D00620EFE /* UserLoginViewController.swift */,
+				D09E2E6F2C0FC66B00620EFE /* DateOfBirthViewController.swift */,
+				D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */,
+				D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */,
+				D0FF072D2C0FCAF000A68E29 /* ThirdCell.swift */,
+				D0FF072E2C0FCAF000A68E29 /* ThirdCell.xib */,
+				D0FF07312C0FCB0500A68E29 /* SecondCell.swift */,
+				D0FF07322C0FCB0500A68E29 /* SecondCell.xib */,
+			);
+			path = Bookclubs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +305,12 @@
 			dependencies = (
 			);
 			name = New_Bookspeare;
+			packageProductDependencies = (
+				D0DCE5252C0FA29600B6660E /* FirebaseAuth */,
+				D0DCE5272C0FA29600B6660E /* FirebaseFirestore */,
+				D0DCE5292C0FA2C600B6660E /* FirebaseFirestoreSwift */,
+				D0DCE52B2C0FA2C600B6660E /* FirebaseStorage */,
+			);
 			productName = New_Bookspeare;
 			productReference = D0DCE4692C0F494600B6660E /* New_Bookspeare.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +339,9 @@
 				Base,
 			);
 			mainGroup = D0DCE4602C0F494600B6660E;
+			packageReferences = (
+				D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D0DCE46A2C0F494600B6660E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +356,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D09E2E602C0FC10F00620EFE /* BcListCollectionViewCell.xib in Resources */,
+				D0FF07272C0FC9CE00A68E29 /* FirstCell.xib in Resources */,
+				D09E2E1E2C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib in Resources */,
+				D0FF072F2C0FCAF000A68E29 /* ThirdCell.xib in Resources */,
+				D09E2E1D2C0FBA6F00620EFE /* Games.storyboard in Resources */,
+				D0DCE5532C0FAAB200B6660E /* Main.storyboard in Resources */,
+				D0DCE5222C0FA12100B6660E /* GoogleService-Info.plist in Resources */,
+				D0FF07332C0FCB0500A68E29 /* SecondCell.xib in Resources */,
+				D0DCE5572C0FAB6C00B6660E /* Bookclubs.storyboard in Resources */,
+				D09E2E0A2C0FBA4700620EFE /* Events.storyboard in Resources */,
+				D0DCE53F2C0FA36B00B6660E /* BookclubCardCollectionViewCell.xib in Resources */,
+				D09E2E1B2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib in Resources */,
 				D0DCE4762C0F494800B6660E /* Assets.xcassets in Resources */,
+				D09E2E5B2C0FC10F00620EFE /* PCardCollectionViewCell.xib in Resources */,
+				D09E2E3D2C0FBF4900620EFE /* CardCollectionViewCell.xib in Resources */,
 				D0DCE4792C0F494800B6660E /* Base in Resources */,
-				D0DCE4742C0F494600B6660E /* Base in Resources */,
+				D09E2E302C0FBEE100620EFE /* Profile.storyboard in Resources */,
+				D09E2E322C0FBF0100620EFE /* Swapped.storyboard in Resources */,
+				D0DCE5482C0FA36B00B6660E /* BookclubChatCollectionViewCell.xib in Resources */,
+				D09E2E582C0FC10F00620EFE /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +387,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DCE4712C0F494600B6660E /* ViewController.swift in Sources */,
+				D09E2E6C2C0FC4FF00620EFE /* UserGenreViewController.swift in Sources */,
+				D09E2E522C0FC10F00620EFE /* SettingsViewController.swift in Sources */,
+				D09E2E2A2C0FBC8700620EFE /* EventsSearchViewController.swift in Sources */,
+				D09E2E6E2C0FC54D00620EFE /* UserLoginViewController.swift in Sources */,
+				D09E2E072C0FB81500620EFE /* RegisteredViewController.swift in Sources */,
+				D09E2E5D2C0FC10F00620EFE /* PViewController.swift in Sources */,
+				D09E2E642C0FC25E00620EFE /* EditProfileViewController.swift in Sources */,
+				D09E2E232C0FBA6F00620EFE /* QuizQuestionsViewController.swift in Sources */,
+				D09E2E2C2C0FBE1800620EFE /* DetailEventsViewController.swift in Sources */,
+				D09E2E262C0FBB5000620EFE /* EventsViewController.swift in Sources */,
+				D09E2E5C2C0FC10F00620EFE /* FriendsTableViewCell.swift in Sources */,
+				D0DCE53D2C0FA36B00B6660E /* BookclubChatCollectionViewCell.swift in Sources */,
+				D09E2DFF2C0FB29A00620EFE /* DataModel1.swift in Sources */,
+				D0FF07282C0FC9CE00A68E29 /* FirstCell.swift in Sources */,
+				D09E2DFD2C0FB1E300620EFE /* BookclubViewController.swift in Sources */,
+				D09E2E3E2C0FBF4900620EFE /* MapViewController.swift in Sources */,
 				D0DCE46D2C0F494600B6660E /* AppDelegate.swift in Sources */,
+				D09E2E422C0FC04F00620EFE /* SwappedViewController.swift in Sources */,
+				D0DCE5472C0FA36B00B6660E /* BookclubCardCollectionViewCell.swift in Sources */,
+				D09E2E222C0FBA6F00620EFE /* QuizScoreViewController.swift in Sources */,
+				D09E2E182C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift in Sources */,
+				D09E2E5F2C0FC10F00620EFE /* MyBcListCollectionViewCell.swift in Sources */,
+				D09E2E202C0FBA6F00620EFE /* EventCardCollectionViewCell.swift in Sources */,
+				D09E2E702C0FC66B00620EFE /* DateOfBirthViewController.swift in Sources */,
+				D0DCE5612C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift in Sources */,
+				D0DCE5452C0FA36B00B6660E /* BookclubButtonCollectionViewCell.swift in Sources */,
+				D09E2E682C0FC36600620EFE /* UserFriendsTableViewController.swift in Sources */,
+				D09E2E1A2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift in Sources */,
+				D09E2E402C0FBF4900620EFE /* CardCollectionViewCell.swift in Sources */,
+				D09E2E622C0FC1BC00620EFE /* MyProfileViewController.swift in Sources */,
+				D09E2E662C0FC2D200620EFE /* BookclubListViewController.swift in Sources */,
+				D09E2E542C0FC10F00620EFE /* myCollectionViewCell.swift in Sources */,
+				D09E2E3A2C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift in Sources */,
+				D09E2E562C0FC10F00620EFE /* PCardCollectionViewCell.swift in Sources */,
+				D09E2E3C2C0FBF4900620EFE /* SwapChatsViewController.swift in Sources */,
+				D09E2E552C0FC10F00620EFE /* SettingTableViewCell.swift in Sources */,
+				D09E2E6A2C0FC49300620EFE /* ClubsCreateViewController.swift in Sources */,
+				D0FF07302C0FCAF000A68E29 /* ThirdCell.swift in Sources */,
+				D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */,
+				D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */,
+				D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */,
+				D09E2E532C0FC10F00620EFE /* BcListCollectionViewCell.swift in Sources */,
 				D0DCE46F2C0F494600B6660E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +436,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D0DCE4722C0F494600B6660E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D0DCE4732C0F494600B6660E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D0DCE4772C0F494800B6660E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -361,6 +642,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0DCE5252C0FA29600B6660E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D0DCE5272C0FA29600B6660E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		D0DCE5292C0FA2C600B6660E /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		D0DCE52B2C0FA2C600B6660E /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D0DCE4612C0F494600B6660E /* Project object */;
 }
