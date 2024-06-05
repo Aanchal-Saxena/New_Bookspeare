@@ -44,7 +44,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="eventButtonCell" id="Sgc-Xl-aHl" customClass="EventButtonCollectionViewCell" customModule="Swap" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="eventButtonCell" id="Sgc-Xl-aHl" customClass="EventButtonCollectionViewCell" customModule="New_Bookspeare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="187" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Z8I-YO-QBi">
@@ -92,7 +92,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cardCell" id="gJR-vZ-JAV" customClass="CardCollectionViewCell" customModule="Swap" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cardCell" id="gJR-vZ-JAV" customClass="CardCollectionViewCell" customModule="New_Bookspeare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="15" width="174" height="214"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iP0-jI-TCa">
@@ -171,7 +171,7 @@
                                             <outlet property="myImage" destination="gee-36-EwH" id="swy-zB-lXL"/>
                                             <outlet property="participantsLabel" destination="yiV-1n-gd6" id="2uU-wB-hED"/>
                                             <outlet property="typeLabel" destination="PKy-x8-XcW" id="nhO-cz-3Ao"/>
-                                            <segue destination="HyX-b0-Ewm" kind="show" id="oTq-em-33d"/>
+                                            <segue destination="HyX-b0-Ewm" kind="show" identifier="showDetailSegue" id="oTq-em-33d"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -394,7 +394,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCollectionViewCell" id="Ytw-Xq-auC" customClass="SearchEventCollectionViewCell" customModule="Swap" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCollectionViewCell" id="Ytw-Xq-auC" customClass="SearchEventCollectionViewCell" customModule="New_Bookspeare" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="361" height="207"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oTH-DU-Ldy">
