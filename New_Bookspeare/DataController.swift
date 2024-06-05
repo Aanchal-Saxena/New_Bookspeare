@@ -60,6 +60,17 @@ class DataController{
         groupchats.append(gc14)
         groupchats.append(gc15)
         groupchats.append(gc16)
+        
+        
+        
+        
+        
+//        BookclubFilter(bookclubFilterButton: "Fiction"),
+//        BookclubFilter(bookclubFilterButton: "Non Fiction"),
+//        BookclubFilter(bookclubFilterButton: "Fantasy"),
+//        BookclubFilter(bookclubFilterButton: "Romance"),
+//        BookclubFilter(bookclubFilterButton: "YA"),
+//        BookclubFilter(bookclubFilterButton: "Literature")
             
 //        let note = Note(id: UUID(), title: "Note1", createDate: Date(), content: "hello world", tags: [], images: [])
 //        let note1 = Note(id: UUID(), title: "Note2", createDate: Date(), content: "hello world", tags: [], images: [])
