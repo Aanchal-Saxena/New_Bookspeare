@@ -9,6 +9,13 @@ import UIKit
 
 class EventsViewController: UIViewController {
     
+    required init?(coder: NSCoder)
+    {
+        super.init(coder: coder)
+        self.tabBarItem.title = "Events"
+        self.tabBarItem.image = UIImage(systemName: "calendar.badge.clock")
+    }
+    
     
     @IBOutlet var buttonCollectionView: UICollectionView!
     

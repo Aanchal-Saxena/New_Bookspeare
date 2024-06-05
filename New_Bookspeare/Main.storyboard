@@ -18,12 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
-                        <segue destination="YKf-bJ-Arn" kind="relationship" relationship="viewControllers" id="5ZQ-7y-mEA"/>
-                        <segue destination="Zf2-wt-SRV" kind="relationship" relationship="viewControllers" id="l3t-r7-IoU"/>
-                        <segue destination="3Is-Ll-bGH" kind="relationship" relationship="viewControllers" id="Hfw-S7-0QY"/>
                         <segue destination="WGd-fy-WlJ" kind="relationship" relationship="viewControllers" id="ebI-ta-yHE"/>
+                        <segue destination="Zf2-wt-SRV" kind="relationship" relationship="viewControllers" id="l3t-r7-IoU"/>
+                        <segue destination="YKf-bJ-Arn" kind="relationship" relationship="viewControllers" id="5ZQ-7y-mEA"/>
+                        <segue destination="3Is-Ll-bGH" kind="relationship" relationship="viewControllers" id="Hfw-S7-0QY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKp-rH-Obe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -766,7 +767,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

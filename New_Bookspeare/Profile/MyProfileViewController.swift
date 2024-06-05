@@ -9,6 +9,13 @@ import UIKit
 
 class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    required init?(coder: NSCoder)
+    {
+        super.init(coder: coder)
+        self.tabBarItem.title = "Profile"
+        self.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
+    }
+    
     
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var editButton: UIButton!

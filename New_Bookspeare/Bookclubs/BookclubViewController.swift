@@ -9,6 +9,13 @@ import UIKit
 
 class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
+    required init?(coder: NSCoder)
+    {
+        super.init(coder: coder)
+        self.tabBarItem.title = "Bookclubs"
+        self.tabBarItem.image = UIImage(systemName: "person.3.fill")
+    }
+    
     
     
     
@@ -272,11 +279,11 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             exploreView1.isHidden = true
             yourClubsView.isHidden = false
             
-            let firstNib = UINib(nibName: "FirstBookclubCollectionViewCell", bundle: nil)
+            let firstNib = UINib(nibName: "FirstCell", bundle: nil)
             exploreCollectionView.register(firstNib, forCellWithReuseIdentifier: "First")
-            let secondNib = UINib(nibName: "SecondBookclubCollectionViewCell", bundle: nil)
+            let secondNib = UINib(nibName: "SecondCell", bundle: nil)
             exploreCollectionView.register(secondNib, forCellWithReuseIdentifier: "Second")
-            let thirdNib = UINib(nibName: "ThirdBookclubCollectionViewCell", bundle: nil)
+            let thirdNib = UINib(nibName: "ThirdCell", bundle: nil)
             exploreCollectionView.register(thirdNib, forCellWithReuseIdentifier: "Third")
             let cardNib = UINib(nibName: "BookclubCardCollectionViewCell", bundle: nil)
             cardCollectionView.register(cardNib, forCellWithReuseIdentifier: "cardCell")
