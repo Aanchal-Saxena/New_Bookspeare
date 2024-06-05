@@ -29,19 +29,7 @@ class EventsSearchViewController: UIViewController , UICollectionViewDataSource,
         Event(title: "Recommendations", images: "seven"),
         Event(title: "Book Event 2", images: "eight")
         ]
-    
-    typealias CardData = (title: String, imageName: String)
-    
-    let cardData: [CardData] = [
-        ("Event 1", "nine"),
-        ("My Meetup", "two"),
-        ("Debatees", "three"),
-        ("A Discovery Of Witches Discussion", "four"),
-        ("The 5 AM Club Games", "five"),
-        ("Recommendations", "six"),
-        ("Do Epic Shit Motivation Session", "seven"),
-        ("Harry Potter Potterheads Competition", "eight")
-    ]
+   
     
     var filteredData: [Event] = []
     

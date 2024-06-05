@@ -69,6 +69,7 @@
 		D0DCE5532C0FAAB200B6660E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5522C0FAAB200B6660E /* Main.storyboard */; };
 		D0DCE5572C0FAB6C00B6660E /* Bookclubs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */; };
 		D0DCE5612C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */; };
+		D0EC23CF2C10392700E14309 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC23CE2C10392700E14309 /* DataController.swift */; };
 		D0FF07272C0FC9CE00A68E29 /* FirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */; };
 		D0FF07282C0FC9CE00A68E29 /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */; };
 		D0FF072F2C0FCAF000A68E29 /* ThirdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF072E2C0FCAF000A68E29 /* ThirdCell.xib */; };
@@ -138,6 +139,7 @@
 		D0DCE5522C0FAAB200B6660E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bookclubs.storyboard; sourceTree = "<group>"; };
 		D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBookclubCollectionReusableView.swift; sourceTree = "<group>"; };
+		D0EC23CE2C10392700E14309 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
 		D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCell.xib; sourceTree = "<group>"; };
 		D0FF072D2C0FCAF000A68E29 /* ThirdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCell.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				D0DCE47A2C0F494800B6660E /* Info.plist */,
 				D0DCE5522C0FAAB200B6660E /* Main.storyboard */,
 				D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */,
+				D0EC23CE2C10392700E14309 /* DataController.swift */,
 			);
 			path = New_Bookspeare;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				D09E2E6A2C0FC49300620EFE /* ClubsCreateViewController.swift in Sources */,
 				D0FF07302C0FCAF000A68E29 /* ThirdCell.swift in Sources */,
 				D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */,
+				D0EC23CF2C10392700E14309 /* DataController.swift in Sources */,
 				D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */,
 				D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */,
 				D09E2E532C0FC10F00620EFE /* BcListCollectionViewCell.swift in Sources */,
