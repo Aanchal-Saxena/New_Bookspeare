@@ -42,8 +42,6 @@ class DataController{
             let gc14 = GroupChat(name: "Cultivators", profile: "nine")
             let gc15 = GroupChat(name: "Wizards", profile: "two")
             let gc16 = GroupChat(name: "Rinakentverse", profile: "three")
-            
-        
         groupchats.append(gc1)
         groupchats.append(gc2)
         groupchats.append(gc3)
@@ -65,12 +63,55 @@ class DataController{
         
         
         
-//        BookclubFilter(bookclubFilterButton: "Fiction"),
-//        BookclubFilter(bookclubFilterButton: "Non Fiction"),
-//        BookclubFilter(bookclubFilterButton: "Fantasy"),
-//        BookclubFilter(bookclubFilterButton: "Romance"),
-//        BookclubFilter(bookclubFilterButton: "YA"),
-//        BookclubFilter(bookclubFilterButton: "Literature")
+        
+        
+        // Existing filter instances
+        let filter1 = BookclubFilter(bookclubFilterButton: "Fiction")
+        let filter2 = BookclubFilter(bookclubFilterButton: "Non Fiction")
+
+        // Create instances for the remaining categories
+        let filter3 = BookclubFilter(bookclubFilterButton: "Fantasy")
+        let filter4 = BookclubFilter(bookclubFilterButton: "Romance")
+        let filter5 = BookclubFilter(bookclubFilterButton: "YA")
+        let filter6 = BookclubFilter(bookclubFilterButton: "Literature")
+
+        // Append all filters to bookclubFilterButton
+        bookclubFilterButton.append(contentsOf: [filter1, filter2, filter3, filter4, filter5, filter6])
+        
+        
+        
+        // Existing club instances
+        let bc1 = BookClub(name: "Detectives club", image: "1", genre: "Fiction")
+
+        // Create instances for the remaining clubs
+        let bc2 = BookClub(name: "Homies", image: "eight", genre: "Fiction")
+        let bc3 = BookClub(name: "Potterheads", image: "five", genre: "Fiction")
+        let bc4 = BookClub(name: "Camp Half Blood", image: "one", genre: "Fiction")
+
+        // Append all clubs to bookclubs array
+        bookclubs.append(contentsOf: [bc1, bc2, bc3, bc4])
+        
+        
+        
+        
+        
+        // Existing swap instances
+        let swap1 = Swap(bookTitle: "Card 1", image: "one")
+
+        // Create instances for the remaining swaps
+        let swap2 = Swap(bookTitle: "Card 2", image: "two")
+        let swap3 = Swap(bookTitle: "Card 3", image: "three")
+        let swap4 = Swap(bookTitle: "Card 2", image: "four")
+        let swap5 = Swap(bookTitle: "Card 3", image: "five")
+        let swap6 = Swap(bookTitle: "Card 3", image: "six")
+        let swap7 = Swap(bookTitle: "Card 3", image: "seven")
+        let swap8 = Swap(bookTitle: "Card 3", image: "harry")
+
+        // Append all swaps to swap array
+        swap.append(contentsOf: [swap1, swap2, swap3, swap4, swap5, swap6, swap7, swap8])
+
+
+
             
 //        let note = Note(id: UUID(), title: "Note1", createDate: Date(), content: "hello world", tags: [], images: [])
 //        let note1 = Note(id: UUID(), title: "Note2", createDate: Date(), content: "hello world", tags: [], images: [])
