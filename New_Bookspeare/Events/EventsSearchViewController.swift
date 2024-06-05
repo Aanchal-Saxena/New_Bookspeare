@@ -19,16 +19,7 @@ class EventsSearchViewController: UIViewController , UICollectionViewDataSource,
     @IBOutlet var searchCards: UICollectionView!
 
 
-    var eventData : [Event] = [
-        Event(title: "Book Event 1", images: "nine"),
-        Event(title: "My Meetup", images: "two"),
-        Event(title: "Debatees", images: "three"),
-        Event(title: "Potterheads Competition", images: "four"),
-        Event(title: "Do Epic Shit Motivation Session", images: "five"),
-        Event(title: "The 5 AM Club Games", images: "six"),
-        Event(title: "Recommendations", images: "seven"),
-        Event(title: "Book Event 2", images: "eight")
-        ]
+    
    
     
     var filteredData: [Event] = []
@@ -42,7 +33,7 @@ class EventsSearchViewController: UIViewController , UICollectionViewDataSource,
         
         searchCards.register(UINib(nibName: "SearchEventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchCollectionViewCell")
         
-        filteredData = eventData
+        filteredData = DataController.shared.getEvents()
         
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 10
@@ -60,7 +51,7 @@ class EventsSearchViewController: UIViewController , UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchEventCollectionViewCell
         
-        let card = eventData[indexPath.row]
+        let card = DataController.shared.getEvent(with: indexPath.row)
         cell.searchLabel.text = card.title
     
         cell.searchImage.image = UIImage(named: card.images)
@@ -94,9 +85,10 @@ class EventsSearchViewController: UIViewController , UICollectionViewDataSource,
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            filteredData = eventData
+            filteredData = DataController.shared.getEvents()
         } else {
-            filteredData = eventData.filter { $0.title.range(of: searchText, options: .caseInsensitive) != nil }
+            let ev = DataController.shared.getEvents()
+            filteredData = ev.filter { $0.title.range(of: searchText, options: .caseInsensitive) != nil }
         }
         
         searchCards.reloadData()

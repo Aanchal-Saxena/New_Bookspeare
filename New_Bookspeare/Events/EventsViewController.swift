@@ -21,14 +21,7 @@ class EventsViewController: UIViewController {
     
     @IBOutlet var cardCollectionView: UICollectionView!
 
-    var eventData : [Event] = [
-        Event(title: "Book Event", images: "1"),
-        Event(title: "Book Event", images: "eight"),
-        Event(title: "Book Event", images: "five"),
-        Event(title: "Book Event", images: "one"),
-        ]
-    
-    
+        
     
     var filterButton: [EventFilter] =
     [
@@ -48,9 +41,9 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonCollectionView.dataSource = self
-           buttonCollectionView.delegate = self
-           cardCollectionView.dataSource = self
-           cardCollectionView.delegate = self
+        buttonCollectionView.delegate = self
+        cardCollectionView.dataSource = self
+        cardCollectionView.delegate = self
            
 //           // Register cells with NIB files if they are created with XIB
 //           let buttonNib = UINib(nibName: "ButtonCollectionViewCell", bundle: nil)
@@ -67,7 +60,7 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         if collectionView == buttonCollectionView {
             return filterButton.count
         } else {
-            return eventData.count
+            return DataController.shared.getEvents().count
         }
     }
     
@@ -83,12 +76,15 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCardCell", for: indexPath) as! EventCardCollectionViewCell
-            cell.eventTitle.text = eventData[indexPath.row].title
+            
+            let event = DataController.shared.getEvent(with: indexPath.row)
+            cell.eventTitle.text = event.title
                        cell.participantsLabel.text = "20+ Registered" // Set a default value or fetch from your data source
                        cell.typeLabel.text = "Virtual" // Set a default value or fetch from your data source
-            if let imageName = eventData[indexPath.row].images as String? {
-                           cell.myImage.image = UIImage(named: imageName)
-                       }
+            if !event.images.isEmpty {
+                // Fetch image from resources or URL based on imageName
+                cell.myImage.image = UIImage(named: event.images)
+            }
             
             cell.tapAction = { [weak self] in
                            self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
