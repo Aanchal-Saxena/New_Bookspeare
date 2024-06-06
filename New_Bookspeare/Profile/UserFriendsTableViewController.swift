@@ -49,15 +49,20 @@ class UserFriendsTableViewController: UITableViewController {
             cell.update(with: user)
             return cell
         }
-
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let user = users[indexPath.row]
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let userProfileVC = storyboard.instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController {
-                userProfileVC.user = user
-                navigationController?.pushViewController(userProfileVC, animated: true)
-            }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = users[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        print("Attempting to instantiate UserProfileViewController")
+        if let userProfileVC = storyboard.instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController {
+            print("Successfully instantiated UserProfileViewController")
+            userProfileVC.user = user
+            navigationController?.pushViewController(userProfileVC, animated: true)
+        } else {
+            print("Failed to instantiate UserProfileViewController")
         }
+    }
+
 
         override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {

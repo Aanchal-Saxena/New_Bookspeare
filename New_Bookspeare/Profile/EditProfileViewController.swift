@@ -69,6 +69,9 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
             
         }
         
+        
+        
+        
         // Enable interaction
                editImageChanged.isUserInteractionEnabled = true
                changeProfileButton.isUserInteractionEnabled = true
@@ -80,7 +83,13 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
                let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
                changeProfileButton.addGestureRecognizer(labelTapGesture)
            }
-
+    
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        print("Save button pressed")
+           
+    }
+    
            @objc func handleTap(_ sender: UITapGestureRecognizer) {
                if sender.view == editImageChanged{
                    print("Photo Library")

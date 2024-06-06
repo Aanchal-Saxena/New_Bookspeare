@@ -26,6 +26,11 @@ struct Address: Codable {
     var state: String
 }
 
+struct BookShelf {
+    var imageName: String
+    var text: String
+}
+
 // User model for user data
 struct Users: Codable {
 //    var userId: Int
@@ -153,4 +158,5 @@ struct QuizQuestion
     var incorrectAnswers: [String]
     var category: String
 }
+
 
