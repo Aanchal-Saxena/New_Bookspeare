@@ -72,7 +72,8 @@ class ClubsCreateViewController: UIViewController {
         let description = descriptionTextField.text ?? ""
         let genre = genreTextField.text ?? ""
         //let image = UIImage(named: "one")
-        bookclub = BookClub(name: name, image: "one", genre: genre)
+        bookclub = BookClub(name: name, image: "one", genre: genre,description: description, members: 50)
+        DataController.shared.appendbookclub(club: bookclub!)
     }
 
     

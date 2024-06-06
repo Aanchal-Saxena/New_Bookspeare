@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2nY-Z3-lDO">
+
+
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
@@ -30,7 +33,7 @@
             <objects>
                 <viewController id="D0O-Um-9ah" customClass="BookclubViewController" customModule="New_Bookspeare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Vl-zq-dwz">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bookclubs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbS-Lr-Dra">
@@ -267,11 +270,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iy1-tM-6TH">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iy1-tM-6TH">
                                 <rect key="frame" x="0.0" y="271" width="430" height="535"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AM5-hs-ARe">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AM5-hs-ARe">
                                         <rect key="frame" x="0.0" y="0.0" width="434" height="535"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -323,16 +326,16 @@
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="391" height="65"/>
+                                                <connections>
+                                                    <outlet property="bookclubDescription" destination="KhV-dg-4Lg" id="CsC-0r-cGm"/>
+                                                    <outlet property="bookclubName" destination="Z6y-UU-Wh6" id="8fU-U9-V38"/>
+                                                    <outlet property="myImage" destination="SI1-kc-Bwh" id="aag-gY-Au8"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="AM5-hs-ARe"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Xx-dY-p7C"/>
@@ -340,7 +343,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="JmJ-cm-cPs"/>
-                                <exclude reference="iy1-tM-6TH"/>
                             </mask>
                         </variation>
                     </view>
@@ -360,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewI-d5-QSE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3512" y="1605"/>
+            <point key="canvasLocation" x="5703.0534351145034" y="1673.943661971831"/>
         </scene>
         <!--Registered View Controller-->
         <scene sceneID="HHN-xG-4Dd">
@@ -729,9 +731,6 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="D0O-Um-9ah" kind="show" id="0vH-Of-YaY"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must be above 12 years old to register" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czP-Kh-kUt">
                                 <rect key="frame" x="20" y="130" width="273" height="34.666666666666657"/>
@@ -1120,7 +1119,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zL5-9Q-fPI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="uSI-9N-sdY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
+
             <point key="canvasLocation" x="4274" y="1605"/>
+
+           
+        </scene>
+        <!--Item-->
+        <scene sceneID="OLt-mu-HTJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2sW-OS-YU0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="person.3.sequence.fill" catalog="system" id="bpN-F8-dj5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hea-7H-Vjd">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D0O-Um-9ah" kind="relationship" relationship="rootViewController" id="cAN-FK-DEa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PG4-xA-pbm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4776.3358778625952" y="1673.943661971831"/>
+
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1131,9 +1153,13 @@
         <image name="Logo" width="184" height="202"/>
         <image name="checkmark.square.fill" catalog="system" width="128" height="114"/>
         <image name="eight" width="444" height="292"/>
+        <image name="person.3.sequence.fill" catalog="system" width="128" height="63"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <namedColor name="AccentColor">
+
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
+            
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
