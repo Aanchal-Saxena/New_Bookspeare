@@ -26,7 +26,7 @@ class FriendsTableViewCell: UITableViewCell {
            // Configure the view for the selected state
        }
        
-       func update(with user: Users) {
+       func update(with user: User) {
            if let image = UIImage(named: user.image) {
                userImageView.image = image
            } else {

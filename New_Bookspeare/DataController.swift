@@ -18,7 +18,8 @@ class DataController{
     private var events: [Event] = []
     private var eventFilter: [EventFilter] = []
     var bookclubFilterButton: [BookclubFilter] = []
-    
+    var user: [User] = []
+    var check = false
     
     static let shared = DataController()//singleton
     
@@ -29,8 +30,158 @@ class DataController{
         loadDummyEvents()
         loadDummySlider()
         loadDummyFilterbutton()
+        loadDummyUserData()
+        
         
     }
+    
+    func loadDummyUserData()
+    {
+        var user1 = User(
+            firstName: "Aanchal",
+            lastName: "Saxena",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user2 = User(
+            firstName: "John",
+            lastName: "Doe",
+            email: "john@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "two",
+            userGenres: [.NonFiction, .Mystery],
+            bio: "Hello, I'm John"
+        )
+
+        let user3 = User(
+            firstName: "Jane",
+            lastName: "Doe",
+            email: "jane@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "three",
+            userGenres: [.Romance, .Fiction],
+            bio: "Hey there, I'm Jane"
+        )
+
+        let user4 = User(
+            firstName: "Alice",
+            lastName: "Smith",
+            email: "alice@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "four",
+            userGenres: [.Fantasy, .Romance],
+            bio: "Hello, I'm Alice"
+        )
+
+        let user5 = User(
+            firstName: "Bob",
+            lastName: "Smith",
+            email: "bob@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "five",
+            userGenres: [.ScienceFiction, .Mystery],
+            bio: "Hi, I'm Bob"
+        )
+
+        let user6 = User(
+            firstName: "Charlie",
+            lastName: "Brown",
+            email: "charlie@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "six",
+            userGenres: [.Fantasy, .NonFiction],
+            bio: "Hello, I'm Charlie"
+        )
+
+        let user7 = User(
+            firstName: "David",
+            lastName: "Williams",
+            email: "david@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "seven",
+            userGenres: [.Romance, .ScienceFiction],
+            bio: "Hi, I'm David"
+        )
+
+        let user8 = User(
+            firstName: "Ella",
+            lastName: "Johnson",
+            email: "ella@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "eight",
+            userGenres: [.Mystery, .Fiction],
+            bio: "Hey, I'm Ella"
+        )
+
+        let user9 = User(
+            firstName: "Frank",
+            lastName: "Miller",
+            email: "frank@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "nine",
+            userGenres: [.Fantasy, .ScienceFiction],
+            bio: "Hi, I'm Frank"
+        )
+
+        let user10 = User(
+            firstName: "Grace",
+            lastName: "Davis",
+            email: "grace@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "ten",
+            userGenres: [.Romance, .NonFiction],
+            bio: "Hello, I'm Grace"
+        )
+
+        let user11 = User(
+            firstName: "Henry",
+            lastName: "Wilson",
+            email: "henry@example.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "eleven",
+            userGenres: [.Fantasy, .Mystery],
+            bio: "Hey there, I'm Henry"
+        )
+
+        let user12 = User(
+            firstName: "Isabella",
+            lastName: "Martinez",
+            email: "isabella@example.com",
+            pronouns: "She/her", bookclubs: bookclubs,
+            image: "twelve",
+            userGenres: [.Fiction, .ScienceFiction],
+            bio: "Hi, I'm Isabella"
+        )
+
+        let user13 = User(
+            firstName: "Jack",
+            lastName: "Taylor",
+            email: "jack@example.com",
+            pronouns: "they/them", bookclubs: bookclubs,
+            image: "thirteen",
+            userGenres: [.NonFiction, .Mystery],
+            bio: "Hello, I'm Jack"
+        )
+        user.append(contentsOf: [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13])
+    }
+    
+    
+    
     func loadDummyGroupChat(){
         let gc1 = GroupChat(name: "Potterheads", profile: "1")
         let gc2 = GroupChat(name: "Riodenverse", profile: "eight")
@@ -141,6 +292,8 @@ class DataController{
 
     }
     
+    func getUser() -> [User] { user }
+    func getUser(with index: Int) -> User { user[index]}
     func getSlider() -> [SwapSlider] { swapSlider }
     func getEvents() -> [Event] { events }
     func getEvent(with index: Int) -> Event { events[index] }
@@ -153,10 +306,25 @@ class DataController{
     func getSwapBooks()-> [Swap] {swap}
     func getSwapBook(with index: Int) -> Swap {swap[index]}
     func getSlider(with index: Int) -> SwapSlider {swapSlider[index]}
+    func addUser(user1: User, at index: Int) {user.insert(user1, at: index)}
+    func removeUser(at index: Int) -> User {
+            return user.remove(at: index)
+        }
+    func updateUser(_ users: User, at index: Int) {
+            user[index] = users
+        }
+
+        func updateUser(withEmail email: String, updatedUser: User) {
+            if let index = user.firstIndex(where: { $0.email == email }) {
+                user[index] = updatedUser
+            }
+           
+        }
     
     func appendbookclub(club: BookClub){
         bookclubs.append(club)    }
-
+  
+   
     
 
 }

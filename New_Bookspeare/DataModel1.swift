@@ -29,15 +29,18 @@ struct Address: Codable {
 }
 
 // User model for user data
-struct Users: Codable {
+struct User: Codable {
 //    var userId: Int
     var firstName: String
     var lastName: String
     var email: String
+    var pronouns: String
 //    var followers: [Follower]
 //    var following: [Follower]
-//    var bookclubs: [BookClub]
+    var bookclubs: [BookClub]
     var image: String
+    var userGenres: [Genre]
+    var bio: String
 //    var address: Address
 //    var registeredEvents: [String]
 //    var membershipRequests: [String]
@@ -156,3 +159,19 @@ struct QuizQuestion
     var category: String
 }
 
+enum Genre: String, Codable
+{
+    case Horror
+    case Mystery
+    case Fiction
+    case Finance
+    case Fantasy
+    case Business
+    case Romance
+    case Psychology
+    case YoungAdult
+    case SelfHelp
+    case HistoricalFiction
+    case NonFiction
+    case ScienceFiction
+}
