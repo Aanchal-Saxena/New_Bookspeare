@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tD9-DE-qGT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BRT-3S-aFO">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -318,7 +318,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-x8-7aj">
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-x8-7aj">
                                 <rect key="frame" x="16" y="96" width="222.33333333333334" height="33.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Book Quiz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze0-zH-6V3">
@@ -335,10 +335,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LAY-rS-FbY">
-                                <rect key="frame" x="16" y="150" width="361" height="4"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </progressView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Question" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJo-Bc-e45">
                                 <rect key="frame" x="16" y="186" width="361" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -477,10 +473,7 @@
                         <viewLayoutGuide key="safeArea" id="r1X-Kl-9JE"/>
                         <color key="backgroundColor" red="1" green="0.98823529480000005" blue="0.98039215800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="LAY-rS-FbY" firstAttribute="top" secondItem="i5d-x8-7aj" secondAttribute="bottom" constant="20" id="Ibo-Tk-SnH"/>
-                            <constraint firstItem="LAY-rS-FbY" firstAttribute="trailing" secondItem="i5d-x8-7aj" secondAttribute="trailing" id="Iju-sc-b08"/>
                             <constraint firstItem="r1X-Kl-9JE" firstAttribute="bottom" secondItem="OTR-gr-6yL" secondAttribute="bottom" constant="18" id="RkG-ov-sGJ"/>
-                            <constraint firstItem="LAY-rS-FbY" firstAttribute="leading" secondItem="i5d-x8-7aj" secondAttribute="leading" id="bFx-Pg-gDL"/>
                         </constraints>
                     </view>
                     <connections>
@@ -489,6 +482,7 @@
                         <outlet property="incorrectOption3" destination="qwe-az-n6z" id="wIv-fn-aiu"/>
                         <outlet property="incorrectOption4" destination="oQb-Pd-yGz" id="jfs-uB-oUR"/>
                         <outlet property="nextButton" destination="OTR-gr-6yL" id="bqa-ai-gTs"/>
+                        <outlet property="quesNumberLabel" destination="UPa-gk-tPk" id="WPl-79-3Qp"/>
                         <outlet property="quesTextField" destination="OJo-Bc-e45" id="jdb-9P-FvX"/>
                     </connections>
                 </viewController>
@@ -511,10 +505,10 @@
             </objects>
             <point key="canvasLocation" x="4103" y="70"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Quiz Form View Controller-->
         <scene sceneID="Ibf-q3-Rln">
             <objects>
-                <viewController id="BRT-3S-aFO" sceneMemberID="viewController">
+                <viewController id="BRT-3S-aFO" customClass="CreateQuizFormViewController" customModule="New_Bookspeare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2B0-oF-T6k">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -550,8 +544,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="nameTextField:" destination="CgN-Yo-qFK" eventType="editingDidEnd" id="u0v-tt-6z6"/>
-                                    <action selector="textEditingEnded:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="bLH-ej-Kw0"/>
+                                    <action selector="editingDidend:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="w1f-7C-kb1"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exw-33-Dbe">
@@ -567,7 +560,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="textEditingEnded:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="4I1-g1-t05"/>
+                                    <action selector="editingDidend:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="9xA-UF-hpJ"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of questions " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlF-wj-RFo">
@@ -583,7 +576,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Create " cornerStyle="capsule"/>
                                 <connections>
-                                    <segue destination="CgN-Yo-qFK" kind="unwind" identifier="saveUnwind" unwindAction="unwindToCommunityWithUnwindSegue:" id="fvQ-X2-Nlj"/>
+                                    <action selector="createButtonTapped:" destination="BRT-3S-aFO" eventType="touchUpInside" id="9Ic-oU-RhL"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-zO-wTg">
@@ -592,7 +585,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="textEditingEnded:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="FEG-jf-0Kx"/>
+                                    <action selector="editingDidend:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="H1h-IR-HRb"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -600,15 +593,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="bookclubImage" destination="5rs-py-b8g" id="r93-vL-nXy"/>
-                        <outlet property="createButton" destination="xwO-ju-eC9" id="IjB-Xn-L1R"/>
-                        <outlet property="descriptionTextField" destination="0cA-Z5-hjb" id="At2-ko-bg3"/>
-                        <outlet property="genreTextField" destination="vW5-zO-wTg" id="V8D-OU-A0n"/>
-                        <outlet property="nameTextField" destination="dZB-Yv-ssk" id="Tdj-7R-NO1"/>
+                        <outlet property="numberOfQuesTextField" destination="vW5-zO-wTg" id="7nf-GG-Fg9"/>
+                        <outlet property="quizImage" destination="5rs-py-b8g" id="a7u-w4-yVQ"/>
+                        <outlet property="quizNameTextField" destination="dZB-Yv-ssk" id="i1B-bS-N8Y"/>
+                        <outlet property="quizdescriptionTextfield" destination="0cA-Z5-hjb" id="CNq-xe-AXS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pcy-gz-I6B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="CgN-Yo-qFK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2494" y="4"/>
         </scene>

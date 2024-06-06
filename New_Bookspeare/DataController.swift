@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class DataController{
     
@@ -19,9 +20,31 @@ class DataController{
     private var eventFilter: [EventFilter] = []
     var bookclubFilterButton: [BookclubFilter] = []
     var user: [User] = []
-    var check = false
+    var quiz: [Quiz] = []
     
     static let shared = DataController()//singleton
+    private let database = Database.database().reference()
+    
+    public func validateNewUser(with email:String, completion: @escaping((Bool) -> Void))
+    {
+        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        database.child(safeEmail).observeSingleEvent(of: .value, with: {snapshot in
+            guard snapshot.value as? String != nil else {
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        })
+    }
+    
+    public func insertUser(with user: CurrentUser)
+    {
+        database.child(user.safeEmail).setValue([
+            "username": user.username
+        ])
+    }
     
     private init(){
         loadDummyGroupChat()
@@ -34,6 +57,7 @@ class DataController{
         
         
     }
+    
     
     func loadDummyUserData()
     {
@@ -292,6 +316,7 @@ class DataController{
 
     }
     
+    func getQuiz() -> [Quiz] { quiz }
     func getUser() -> [User] { user }
     func getUser(with index: Int) -> User { user[index]}
     func getSlider() -> [SwapSlider] { swapSlider }
