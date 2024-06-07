@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D08903A42C110A77006F97D9 /* CreateQuizQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08903A32C110A77006F97D9 /* CreateQuizQuestionViewController.swift */; };
 		D09E2DFD2C0FB1E300620EFE /* BookclubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */; };
 		D09E2DFF2C0FB29A00620EFE /* DataModel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */; };
 		D09E2E072C0FB81500620EFE /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E062C0FB81500620EFE /* RegisteredViewController.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D08903A32C110A77006F97D9 /* CreateQuizQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizQuestionViewController.swift; sourceTree = "<group>"; };
 		D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookclubViewController.swift; sourceTree = "<group>"; };
 		D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel1.swift; sourceTree = "<group>"; };
 		D09E2E062C0FB81500620EFE /* RegisteredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				D09E2E252C0FBB5000620EFE /* EventsViewController.swift */,
 				D09E2E292C0FBC8700620EFE /* EventsSearchViewController.swift */,
 				D09E2E2B2C0FBE1800620EFE /* DetailEventsViewController.swift */,
+				D08903A32C110A77006F97D9 /* CreateQuizQuestionViewController.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				D09E2E262C0FBB5000620EFE /* EventsViewController.swift in Sources */,
 				D09E2E5C2C0FC10F00620EFE /* FriendsTableViewCell.swift in Sources */,
 				D0DCE53D2C0FA36B00B6660E /* BookclubChatCollectionViewCell.swift in Sources */,
+				D08903A42C110A77006F97D9 /* CreateQuizQuestionViewController.swift in Sources */,
 				D09E2DFF2C0FB29A00620EFE /* DataModel1.swift in Sources */,
 				D0FF07282C0FC9CE00A68E29 /* FirstCell.swift in Sources */,
 				D09E2DFD2C0FB1E300620EFE /* BookclubViewController.swift in Sources */,

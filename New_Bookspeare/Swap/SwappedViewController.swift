@@ -18,16 +18,6 @@ class SwappedViewController: UIViewController {
     @IBOutlet var sliderCollection: UICollectionView!
     @IBOutlet var pageControl: UIPageControl!
 
-    var swap: [Swap] = [
-        Swap(bookTitle: "Card 1", image: "one"),
-        Swap(bookTitle: "Card 2", image: "two"),
-        Swap(bookTitle: "Card 3", image: "three"),
-        Swap(bookTitle: "Card 2", image: "four"),
-        Swap(bookTitle: "Card 3", image: "five"),
-        Swap(bookTitle: "Card 3", image: "six"),
-        Swap(bookTitle: "Card 3", image: "seven"),
-        Swap(bookTitle: "Card 3", image: "harry")
-    ]
     
     
        
@@ -35,13 +25,7 @@ class SwappedViewController: UIViewController {
     var currentcellIndex = 0
     
     
-    var slider: [SwapSlider] =
-    [
-        SwapSlider(image: "swap"),
-        SwapSlider(image: "go"),
-        SwapSlider(image: "exchange")
-    ]
-    var imageCollection = ["swap", "go", "exchange"]
+    
     var timer: Timer?
     
     override func viewDidLoad() {
@@ -72,11 +56,11 @@ class SwappedViewController: UIViewController {
 //        sliderCollection.layer.shadowOffset = CGSize(width: 0, height: 0.5)
 //        sliderCollection.layer.shadowRadius = 4
         sliderCollection.layer.shadowPath = UIBezierPath(roundedRect: sliderCollection.bounds, cornerRadius: 4).cgPath
-        pageControl.numberOfPages = slider.count
+        pageControl.numberOfPages = DataController.shared.getSlider().count
     }
             
     @objc func slideToNext() {
-        if currentcellIndex < imageCollection.count - 1 {
+        if currentcellIndex < DataController.shared.getSlider().count - 1 {
             currentcellIndex += 1
         } else {
             currentcellIndex = 0
@@ -85,7 +69,15 @@ class SwappedViewController: UIViewController {
         
         UIView.transition(with: sliderCollection, duration: 0.5, options: .transitionCrossDissolve, animations: {
             if let visibleCell = self.sliderCollection.visibleCells.first as? AutoSliderCollectionViewCell {
-                visibleCell.myImage.image = UIImage(named: self.imageCollection[self.currentcellIndex])
+                
+                let sliders = DataController.shared.getSlider()
+                    let currentIndex = self.currentcellIndex
+                    if currentIndex < sliders.count {
+                        let slider = sliders[currentIndex]
+                        visibleCell.myImage.image = UIImage(named: slider.image)
+                    } else {
+                        print("Current index is out of bounds")
+                    }
             }
         }, completion: nil)
         
@@ -98,21 +90,24 @@ extension SwappedViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == sliderCollection {
-            return slider.count
+            return DataController.shared.getSlider().count
         } else {
-            return swap.count
+            return DataController.shared.getSwapBooks().count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == sliderCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AutoSliderCollectionViewCell
-            cell.myImage.image = UIImage(named: slider[indexPath.row].image)
+            let slider = DataController.shared.getSlider(with: indexPath.row)
+            let img = slider.image
+            cell.myImage.image = UIImage(named: img)
             return cell
         } else {
             let cell = cardCollectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCollectionViewCell
-            let imageName = swap[indexPath.row].image
-            cell.cardLabels?.text = swap[indexPath.row].bookTitle
+            let sw = DataController.shared.getSwapBook(with: indexPath.row)
+            let imageName = sw.image
+            cell.cardLabels?.text = sw.bookTitle
             cell.cardImages?.image = UIImage(named: imageName)
             // Apply corner radius to the image view
                    cell.cardImages.layer.cornerRadius = 10
