@@ -91,7 +91,7 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
                         else {
                             //let toast = Toast.text("Welcome Back!!")
                             //toast.show()
-                            self.performSegue(withIdentifier: "showDob", sender: self)
+                            self.performSegue(withIdentifier: "showGenres", sender: self)
                         }
                     }
                    
@@ -160,7 +160,7 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
     //                                toast.show()
                                     print("User signed In successfully")
                                     // Perform any additional actions after sign-up
-                                    self.performSegue(withIdentifier: "showDob", sender: nil)
+                                    self.performSegue(withIdentifier: "showGenres", sender: nil)
                                 }
                             }
                 }
