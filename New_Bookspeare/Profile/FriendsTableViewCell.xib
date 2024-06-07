@@ -12,7 +12,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="KGk-i7-Jjw" customClass="FriendsTableViewCell" customModule="New_Bookspeare" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="339" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="FriendsTableViewCell" customModule="New_Bookspeare" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="339" height="88"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -20,10 +20,18 @@
                         <rect key="frame" x="7" y="3" width="75" height="82"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEz-8Q-7pr">
+                        <rect key="frame" x="90" y="9" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="firstNameLabel" destination="fEz-8Q-7pr" id="vNi-Uy-zgO"/>
                 <outlet property="userImageView" destination="R0N-1H-BcJ" id="wqs-hP-xSV"/>
             </connections>
             <point key="canvasLocation" x="118.32061068702289" y="35.91549295774648"/>

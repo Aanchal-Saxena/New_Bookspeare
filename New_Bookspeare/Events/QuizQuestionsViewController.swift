@@ -16,44 +16,21 @@ class QuizQuestionsViewController: UIViewController {
     
     
     var isSelected = false
-    
-    
-    
-
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var quizProgressBar: UIProgressView!
     @IBOutlet weak var quizName: UILabel!
     @IBOutlet weak var answerBoxView: UIView!
-    
     @IBOutlet weak var answerBoxView2: UIView!
-    
     @IBOutlet weak var answerCheck1: UIImageView!
-    
     @IBOutlet weak var answerCheck2: UIImageView!
-    
-    
     @IBOutlet weak var answerCheck3: UIImageView!
-    
-    
     @IBOutlet weak var answerCheck4: UIImageView!
-    
     @IBOutlet weak var answerBoxView4: UIView!
-    
     @IBOutlet weak var answerBoxView3: UIView!
-    
-    
     @IBOutlet weak var option1: UILabel!
-    
     @IBOutlet weak var option2: UILabel!
-    
-    
     @IBOutlet weak var option3: UILabel!
-    
-    
     @IBOutlet weak var scoreLabel: UILabel!
-    
-    
-    
     @IBOutlet weak var option4: UILabel!
     
     

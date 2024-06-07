@@ -1116,7 +1116,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zL5-9Q-fPI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="uSI-9N-sdY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6509.160305343511" y="1702.8169014084508"/>
+            <point key="canvasLocation" x="6563" y="1674"/>
         </scene>
         <!--Item-->
         <scene sceneID="OLt-mu-HTJ">
@@ -1149,7 +1149,7 @@
         <image name="person.3.sequence.fill" catalog="system" width="128" height="63"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <namedColor name="AccentColor">
-            <color red="0.94099998474121094" green="0.58799999952316284" blue="0.54100000858306885" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
