@@ -38,27 +38,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
     @IBOutlet var chatCollectionView: UICollectionView!
     
-    var groupchat : [GroupChat] =
-    [
-        GroupChat(name: "Potterheads", profile: "1"),
-        GroupChat(name: "Riodenverse", profile: "eight"),
-        GroupChat(name: "Mxtxers", profile: "five"),
-        GroupChat(name: "Homies", profile: "one"),
-        GroupChat(name: "Dead Poet Society", profile: "four"),
-        GroupChat(name: "Cultivators", profile: "nine"),
-        GroupChat(name: "Wizards", profile: "two"),
-        GroupChat(name: "Rinakentverse", profile: "three"),
-        GroupChat(name: "Potterheads", profile: "1"),
-        GroupChat(name: "Riodenverse", profile: "eight"),
-        GroupChat(name: "Mxtxers", profile: "five"),
-        GroupChat(name: "Homies", profile: "one"),
-        GroupChat(name: "Dead Poet Society", profile: "four"),
-        GroupChat(name: "Cultivators", profile: "nine"),
-        GroupChat(name: "Wizards", profile: "two"),
-        GroupChat(name: "Rinakentverse", profile: "three"),
-        
-        
-    ]
+    
     
     
 //    
@@ -85,28 +65,31 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         }
     }
     
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == exploreCollectionView
         {
             switch section {
             case 0:
-                return bookclubs.count
+                return DataController.shared.getBookclubs().count
             case 1:
-                return bookclubs.count
+                return DataController.shared.getBookclubs().count
             case 2:
-                return bookclubs.count
+                return DataController.shared.getBookclubs().count
             default:
                 return 0
             }
         }
         else if collectionView == chatCollectionView
         {
-            return groupchat.count
+            return DataController.shared.getGroupchat().count
         }
         else
         {
-            return filterButton.count
+            return DataController.shared.getFilterButton().count
         }
         
     }
@@ -119,12 +102,21 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             switch indexPath.section {
             case 0:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "First", for: indexPath) as! FirstCell
-                cell.bookclubName.text = bookclubs[indexPath.row].name
-                cell.bookclubMembers.text = "200"
-                cell.bookclubDescription.text = "Community for book lovers" // Set a default value or fetch from your data source
-                if let imageName = bookclubs[indexPath.row].image as String? {
-                    cell.imageView.image = UIImage(named: imageName)
+                
+                
+                let bc = DataController.shared.getBookclub(with: indexPath.row)
+                cell.bookclubName.text = bc.name
+                // Convert integer to string for bookclubMembers
+                cell.bookclubMembers.text = "\(bc.members)"
+                cell.bookclubDescription.text = bc.description // Set a default value or fetch from your data source
+
+                // Assuming bc.image is a string representing the image name
+                if !bc.image.isEmpty {
+                    // Fetch image from resources or URL based on imageName
+                    cell.imageView.image = UIImage(named: bc.image)
                 }
+
+
                 cell.layer.cornerRadius = 10
                 
                 //            cell.tapAction = { [weak self] in
@@ -134,12 +126,16 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 
             case 1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Second", for: indexPath) as! SecondCell
-                cell.bookclubName.text = bookclubs[indexPath.row].name
-                cell.bookclubMembers.text = "200"
-                cell.bookclubDescription.text = "Community for book lovers" // Set a default value or fetch from your data source
-                if let imageName = bookclubs[indexPath.row].image as String? {
-                    cell.imageView.image = UIImage(named: imageName)
+                let bc = DataController.shared.getBookclub(with: indexPath.row)
+                cell.bookclubName.text = bc.name
+                // Convert integer to string for bookclubMembers
+                cell.bookclubMembers.text = "\(bc.members)"
+                cell.bookclubDescription.text = bc.description
+                if !bc.image.isEmpty {
+                    // Fetch image from resources or URL based on imageName
+                    cell.imageView.image = UIImage(named: bc.image)
                 }
+                
                 cell.layer.cornerRadius = 10
                 
                 //            cell.tapAction = { [weak self] in
@@ -148,11 +144,14 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 return cell
             case 2:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Third", for: indexPath) as! ThirdCell
-                cell.bookclubName.text = bookclubs[indexPath.row].name
-                cell.bookclubMembers.text = "200"
-                cell.bookclubDescription.text = "Community for book lovers" // Set a default value or fetch from your data source
-                if let imageName = bookclubs[indexPath.row].image as String? {
-                    cell.imageView.image = UIImage(named: imageName)
+                let bc = DataController.shared.getBookclub(with: indexPath.row)
+                cell.bookclubName.text = bc.name
+                // Convert integer to string for bookclubMembers
+                cell.bookclubMembers.text = "\(bc.members)"
+                cell.bookclubDescription.text = bc.description
+                if !bc.image.isEmpty {
+                    // Fetch image from resources or URL based on imageName
+                    cell.imageView.image = UIImage(named: bc.image)
                 }
                 cell.layer.cornerRadius = 10
                 
@@ -177,28 +176,31 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         else if collectionView == chatCollectionView
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatCell", for: indexPath) as! BookclubChatCollectionViewCell
-                       cell.bookclubName.text = groupchat[indexPath.row].name
-           
-                                       cell.bookclubDescription.text = "Misty: Hii Guys.." // Set a default value or fetch from your data source
-                       if let imageName = groupchat[indexPath.row].profile as String? {
-                                           cell.myImage.image = UIImage(named: imageName)
-                                       }
-           
+            
+            
+            let gc = DataController.shared.getGroupchat(with: indexPath.row)
+            cell.bookclubName.text = gc.name
+            cell.bookclubName.text = gc.name
+            cell.bookclubDescription.text = "Misty: Hii Guys.." // Set a default value or fetch from your data source
+            if !gc.profile.isEmpty {
+                // Fetch image from resources or URL based on imageName
+                cell.myImage.image = UIImage(named: gc.profile)
+            }
                 //            cell.tapAction = { [weak self] in
                 //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
                 //                       }
-                                       return cell
+            return cell
         }
         else
         {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "buttonCell", for: indexPath) as! BookclubButtonCollectionViewCell
-                        cell.myButton.setTitle(filterButton[indexPath.row].bookclubFilterButton, for: .normal)
-                                cell.myButton.titleLabel?.numberOfLines = 1
-                                cell.myButton.titleLabel?.lineBreakMode = .byTruncatingTail
-                                cell.myButton.titleLabel?.textAlignment = .center
-                                cell.myButton.contentVerticalAlignment = .center
-                                cell.myButton.sizeToFit()
-                                return cell
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "buttonCell", for: indexPath) as! BookclubButtonCollectionViewCell
+            cell.myButton.setTitle(DataController.shared.getFilterBc(with: indexPath.row).bookclubFilterButton, for: .normal)
+            cell.myButton.titleLabel?.numberOfLines = 1
+            cell.myButton.titleLabel?.lineBreakMode = .byTruncatingTail
+            cell.myButton.titleLabel?.textAlignment = .center
+            cell.myButton.contentVerticalAlignment = .center
+            cell.myButton.sizeToFit()
+            return cell
                 
         }
     }
@@ -225,22 +227,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         }
         
     }
-    //
-    
-    var filterButton: [BookclubFilter] =
-    [
-        BookclubFilter(bookclubFilterButton: "Fiction"),
-        BookclubFilter(bookclubFilterButton: "Non Fiction"),
-        BookclubFilter(bookclubFilterButton: "Fantasy"),
-        BookclubFilter(bookclubFilterButton: "Romance"),
-        BookclubFilter(bookclubFilterButton: "YA"),
-        BookclubFilter(bookclubFilterButton: "Literature")
-        
-    ]
-    
-    
-    
-    
+ 
     
     @IBSegueAction func createClub(_ coder: NSCoder) -> ClubsCreateViewController? {
         return ClubsCreateViewController(coder: coder, bookclub: nil)
@@ -253,26 +240,16 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         guard unwindSegue.identifier == "saveUnwind",
               let sourceViewController = unwindSegue.source as? ClubsCreateViewController,
               let bookclub = sourceViewController.bookclub else { return }
-        bookclubs.append(bookclub)
+        DataController.shared.appendbookclub(club: bookclub)
         exploreCollectionView.reloadData()
     }
     
     
-    var bookclubs : [BookClub] = [
-        BookClub(name: "Detectives club", image: "1", genre: "Fiction"),
-        BookClub(name: "Homies", image: "eight", genre: "Fiction"),
-        BookClub(name: "Potterheads", image: "five", genre: "Fiction"),
-        BookClub(name: "Camp Half Blood", image: "one", genre: "Fiction")
-        
-    ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
          buttonCollectionView.dataSource = self
-//        cardCollectionView.dataSource = self
-//        exploreCollectionView.dataSource = self
-//        cardCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         chatCollectionView.dataSource = self
        chatCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
 

@@ -28,13 +28,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var bookclubSegmentedControl: UIView!
 
 
-    var bookclubs : [BookClub] = [
-        BookClub(name: "Detectives club", image: "1", genre: "Fiction"),
-        BookClub(name: "Homies", image: "eight", genre: "Fiction"),
-        BookClub(name: "Potterheads", image: "five", genre: "Fiction"),
-        BookClub(name: "Camp Half Blood", image: "one", genre: "Fiction")
-    
-    ]
     
    
     
@@ -73,13 +66,14 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bookclubs.count
+        return DataController.shared.getBookclubs().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PcardCell", for: indexPath) as! PCardCollectionViewCell
-        let imageName = bookclubs[indexPath.row].image
-        cell.cardLabel?.text = bookclubs[indexPath.row].name
+        let bc = DataController.shared.getBookclub(with: indexPath.row)
+        let imageName = bc.image
+        cell.cardLabel?.text = bc.name
         cell.cardName?.image = UIImage(named: imageName)
         
         // Apply corner radius to the image view

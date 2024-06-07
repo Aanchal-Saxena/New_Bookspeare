@@ -11,9 +11,6 @@ class BookclubListViewController: UIViewController , UICollectionViewDelegate, U
     
     @IBOutlet weak var collectionView: UICollectionView!
 
-    let cardData = [("Card 1", "one"), ("Card 2", "two"), ("Card 3", "three"), ("Card 2", "four"), ("Card 3", "five"),("Card 3", "six"),("Card 3", "seven"),("Card 3", "harry"),("Card 3", "8"),("Card 3", "9"),("Card 3", "10"),("Card 3", "sorcerstone"),("Card 3", "chamber"),("Card 3", "Azkaban"),("Card 3", "goblet"),("Card 3", "order"),("Card 3", "prince")]
-       
-       let cardTitles = ["S.G Prince ", "Percy Jackson", "Sherlock Holmes", "A Discovery Of Witches", "The 5 AM Club","Shadow Born","Do Epic Shit","Harry Potter and the Deathly Hallows ","It Ends With Us","It Starts With Us","A Christmas Carol","Harry Potter and the Sorcerer's Stone","Harry Potter and the Chamber of Secrets","Harry Potter and the Prisoner of Azkaban ","Harry Potter and the Goblet of Fire","Harry Potter and the Order of Phoenix","Harry Potter and the Half-Blood Prince"]
        
        override func viewDidLoad() {
            super.viewDidLoad()
@@ -40,13 +37,17 @@ class BookclubListViewController: UIViewController , UICollectionViewDelegate, U
        
        // UICollectionViewDataSource methods
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return cardData.count
+           return DataController.shared.getBookclubs().count
        }
        
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "card", for: indexPath) as! BcListCollectionViewCell
-           let (_, imageName) = cardData[indexPath.item]
-           cell.cardLabel?.text = cardTitles[indexPath.item]
+           
+           
+           let bc = DataController.shared.getBookclub(with: indexPath.row)
+           let imageName = bc.image
+        
+           cell.cardLabel?.text = bc.name
            cell.cardImage?.image = UIImage(named: imageName)
            
            // Apply corner radius to the image view

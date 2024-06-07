@@ -17,6 +17,8 @@ struct BookClub: Codable {
     var name: String
     var image: String
     var genre: String
+    var description: String
+    var members: Int
 }
 
 struct Address: Codable {
