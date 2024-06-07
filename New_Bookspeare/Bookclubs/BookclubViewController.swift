@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
@@ -244,17 +245,30 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         exploreCollectionView.reloadData()
     }
     
-    
+    private func validateAuth()
+    {
+        if FirebaseAuth.Auth.auth().currentUser != nil
+        {
+            let vc = RegisteredViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: false)
+        }
+
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         buttonCollectionView.dataSource = self
+        //validateAuth()
+        
+        
+        
+        buttonCollectionView.dataSource = self
         chatCollectionView.dataSource = self
-       chatCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-
-            exploreView1.isHidden = true
-            yourClubsView.isHidden = false
+        chatCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        exploreView1.isHidden = true
+        yourClubsView.isHidden = false
             
             let firstNib = UINib(nibName: "FirstCell", bundle: nil)
             exploreCollectionView.register(firstNib, forCellWithReuseIdentifier: "First")

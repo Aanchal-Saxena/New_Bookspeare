@@ -26,6 +26,7 @@ class CreateQuizQuestionViewController: UIViewController {
     @IBOutlet weak var incorrectOption4: UITextField!
     
     
+    @IBOutlet weak var quesNumberLabel: UILabel!
     
     @IBOutlet weak var nextButton: UIButton!
     
@@ -35,6 +36,7 @@ class CreateQuizQuestionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        quesNumberLabel.text = "1 out of \(numberOfQuestions)"
 
         // Do any additional setup after loading the view.
     }
@@ -97,6 +99,7 @@ class CreateQuizQuestionViewController: UIViewController {
                             // Update the button title if this is the last question
                         updateButtonTitle()
                         resetTextFields()
+                        updateQuestionNumberLabel()
         
     }
     func updateButtonTitle() {
@@ -114,5 +117,9 @@ class CreateQuizQuestionViewController: UIViewController {
         incorrectOption3.text = ""
         incorrectOption4.text = ""
         }
+    
+    func updateQuestionNumberLabel() {
+           quesNumberLabel.text = "\(currentQuestionIndex + 1) out of \(numberOfQuestions)"
+       }
     
 }

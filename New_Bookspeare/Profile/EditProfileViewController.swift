@@ -9,6 +9,8 @@ import UIKit
 
 class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    var user: User?
+    var userEmail: String?
     
     
     @IBOutlet weak var view1: UIView!
@@ -20,6 +22,17 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var changeProfileButton: UIButton!
+    
+    
+    @IBOutlet weak var pronounsTextField: UITextField!
+    
+    @IBOutlet weak var dobTextField: UITextField!
+    
+    
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +50,15 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         
         func viewDidLoad() {
             super.viewDidLoad()
+            
+            if let user = user {
+                    nameTextField.text = user.firstName
+                    pronounsTextField.text = user.pronouns
+                    bioTextField.text = user.bio
+                    userEmail = user.email
+                    }
+            user?.email = "misty@gmail.com"
+            
             editImageChanged.contentMode = .scaleAspectFit
             makeCircular(imageView: editImageChanged)
             viewCell(profileCellView: view1)
@@ -96,46 +118,99 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
                    let imagePicker = UIImagePickerController()
                    imagePicker.delegate = self
                    let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
+    @IBAction func editingDidEnd(_ sender: UITextField) {
+        
+        guard var user = user else { return }
+            
+            // Update user properties based on the text field that triggered the action
+            switch sender {
+            case nameTextField:
+                user.firstName = sender.text ?? ""
+            case pronounsTextField:
+                user.pronouns = sender.text ?? ""
+            case bioTextField:
+                user.bio = sender.text ?? ""
+            default:
+                break
+            }
+            user.email = "misty@gmail.com" // Update user's email
+            userEmail = user.email
+      
+            // Update the user in DataController
+            DataController.shared.updateUser(withEmail: "misty@gmail.com", updatedUser: user)
+            
+            // Reassign the updated user to the user property
+            self.user = user
+        print("User email on save: \(user.email)")
+        
+    }
+    
+    
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        guard let user = user else { return }
+                
+                // Update the user in DataController
+        DataController.shared.updateUser(withEmail: "misty@gmail.com", updatedUser: user)
+        print(user)
+        userEmail = user.email
+        
+        print("User email on save: 1 \(user.email)")
+            
+            // Perform unwind segue
+        performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
+    }
+    
+    
+    
+    
+    
+  @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        if sender.view == editImageChanged{
+            print("Photo Library")
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
                    
-                   let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                   if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                       let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
-                           self.present(imagePicker, animated: true, completion: nil)
-                       })
-                       alertController.addAction(cameraAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+            })
+            alertController.addAction(cameraAction)
                    }
                    
-                   if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                       let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
-                           self.present(imagePicker, animated: true, completion: nil)})
-                       alertController.addAction(photoLibraryAction)
-                   }
+            if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
+                self.present(imagePicker, animated: true, completion: nil)})
+                alertController.addAction(photoLibraryAction)
+            }
                    
                    
-                   alertController.addAction(cancelAction)
-                   alertController.popoverPresentationController?.sourceView = editImageChanged
-                   present(alertController, animated: true, completion: nil)
+            alertController.addAction(cancelAction)
+            alertController.popoverPresentationController?.sourceView = editImageChanged
+            present(alertController, animated: true, completion: nil)
  
                }
-               else if sender.view == changeProfileButton {
-                   print("Camera")
+        else if sender.view == changeProfileButton {
+            print("Camera")
                    
-                   let imagePicker = UIImagePickerController()
-                   imagePicker.delegate = self
-                   let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
                    
-                   let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                   if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                       let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
-                           self.present(imagePicker, animated: true, completion: nil)
-                       })
-                       alertController.addAction(cameraAction)
-                   }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+            })
+            alertController.addAction(cameraAction)
+                }
                    
-                   if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                       let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
-                           self.present(imagePicker, animated: true, completion: nil)})
-                       alertController.addAction(photoLibraryAction)
+            if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)})
+            alertController.addAction(photoLibraryAction)
                    }
                    
                    

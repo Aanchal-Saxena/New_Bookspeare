@@ -9,7 +9,7 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
     
-    var user: Users?
+    var user: User?
     
     
     @IBOutlet weak var profileImageView: UIImageView!

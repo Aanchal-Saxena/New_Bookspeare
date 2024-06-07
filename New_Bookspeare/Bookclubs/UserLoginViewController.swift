@@ -31,7 +31,7 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
     //        animationTime: 0.2
     //    );
         
-             let appleButton=ASAuthorizationAppleIDButton(type: .continue, style: .black)
+    let appleButton=ASAuthorizationAppleIDButton(type: .continue, style: .black)
         override func viewDidLoad() {
             emailInput.useUnderline()
             passInput.useUnderline()

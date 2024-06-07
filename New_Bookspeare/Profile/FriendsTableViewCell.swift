@@ -35,3 +35,4 @@ class FriendsTableViewCell: UITableViewCell {
             firstNameLabel.text = user.firstName
         }
     }
+
