@@ -63,6 +63,7 @@ class UserGenreViewController: UIViewController {
         sender.titleLabel?.textColor = .black
         selectedGenre.append(sender.titleLabel?.text ?? "")
         print(selectedGenre)
+        self.performSegue(withIdentifier: "showTabbar", sender: nil)
         
     }
     
@@ -73,6 +74,7 @@ class UserGenreViewController: UIViewController {
         button.layer.borderColor = UIColor.gray.cgColor
     }
     
+
     
     
     

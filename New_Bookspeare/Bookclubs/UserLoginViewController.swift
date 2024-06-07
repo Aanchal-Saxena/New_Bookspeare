@@ -91,7 +91,7 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
                         else {
                             //let toast = Toast.text("Welcome Back!!")
                             //toast.show()
-                            self.performSegue(withIdentifier: "showGenres", sender: self)
+                            self.performSegue(withIdentifier: "showDob", sender: self)
                         }
                     }
                    
@@ -156,11 +156,40 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
     //                                let toast = Toast.text("\(error.localizedDescription)", config: self.config)
     //                                toast.show()
                                 } else {
-    //                                let toast = Toast.text("Welcome Back", config: self.config)
-    //                                toast.show()
+                                    //                                let toast = Toast.text("Welcome Back", config: self.config)
+                                    //                                toast.show()
+                                    UserDefaults.standard.set(email, forKey: "email")
+                                    //guard let email = UserDefaults.standard.value(forKey: "email){
+                                    //return nil }
+//                                    let safeEmail = DataController.safeEmail(email: email)
+//                                    let filename = safeEmail + "_profil_picture.png"
+                                    //let path = "images/"+filename
+//                                    StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
+//                                        switch result {
+//                                        case .success(let url):
+//                                            self?.downloadImage(imageView: imageView, url: url)
+//                                        case .failure(let error):
+//                                            print("failed to get download url: \(error)")
+//                                        }
+//                                    })
+//                                    
+//                                    func downloadImage(imageView: UIImageView, url: URL)
+//                                    {
+//                                        URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
+//                                            guard let data = data, error == nil else {
+//                                                return
+//                                            }
+//                                            
+//                                            DispatchQueue.main.async {
+//                                                let image = UIImage(data: data)
+//                                                imageView.image = image
+//                                            }
+//                                            
+//                                        }).resume()
+//                                    }
                                     print("User signed In successfully")
                                     // Perform any additional actions after sign-up
-                                    self.performSegue(withIdentifier: "showGenres", sender: nil)
+                                    self.performSegue(withIdentifier: "showDob", sender: nil)
                                 }
                             }
                 }

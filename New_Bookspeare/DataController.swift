@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
 class DataController{
     
@@ -21,6 +22,7 @@ class DataController{
     var bookclubFilterButton: [BookclubFilter] = []
     var user: [User] = []
     var quiz: [Quiz] = []
+    var genres : [Genre] = [.Fantasy, .Fiction, .Mystery]
     
     static let shared = DataController()//singleton
     private let database = Database.database().reference()
@@ -39,11 +41,117 @@ class DataController{
         })
     }
     
-    public func insertUser(with user: CurrentUser)
+    static func safeEmail(email: String) -> String
+    {
+        var safeEmail: String
+        {
+            var safeEmail = email.replacingOccurrences(of: ".", with: "-")
+            safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+            return safeEmail
+        }
+        return safeEmail
+    }
+    
+    
+    
+    
+    public func updateUser(withEmail email: String, updatedUser: User, completion: @escaping (Bool) -> Void) {
+            let safeEmail = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            // Update user details in the "users" node
+            database.child("users").child(safeEmail).updateChildValues(updatedUser.toDictionary()) { error, _ in
+                if let error = error {
+                    print("Failed to update user: \(error.localizedDescription)")
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }
+        }
+    
+    public func insertUser(with user: User, completion: @escaping (Bool) -> Void)
     {
         database.child(user.safeEmail).setValue([
-            "username": user.username
-        ])
+            "username": user.username,
+            "password": user.password,
+            "email": user.email,
+        ], withCompletionBlock: { error, _ in
+            guard error == nil else {
+                print("failed to write to database")
+                completion(false)
+                return
+            }
+            self.database.child("users").observeSingleEvent(of: .value, with: { snapshot in
+                if var usersCollection = snapshot.value as? [[String: Any]]
+                    
+                {
+                    //append dictionary
+                    let newElement: [String: Any] = [
+                        "name": user.name,
+                        "pronouns": user.pronouns,
+                        "bio": user.bio,
+                        "image": user.image,
+                        "genres": user.userGenres,
+                        "genres": user.userGenres?.map { $0.rawValue } ?? [],
+                        "bookclubs": user.bookclubs?.map { $0.toDictionary() } ?? [],
+                        "friends": user.friends?.map { $0.toDictionary() } ?? []
+                    
+                    ]
+                    usersCollection.append(newElement)
+                    self.database.child("users").setValue(usersCollection, withCompletionBlock: {_,_ in 
+                        guard error == nil else {
+                            completion(false)
+                            return
+                        }
+                        completion(true)
+                    })
+                }
+                else
+                {
+                    //create array
+                    let newCollection: [[String: Any]] = [
+                    [
+                        "name": user.name,
+                        "pronouns": user.pronouns,
+                        "bio": user.bio,
+                        "image": user.image,
+                        "genres": user.userGenres,
+                        "genres": user.userGenres?.map { $0.rawValue } ?? [],
+                        "bookclubs": user.bookclubs?.map { $0.toDictionary() } ?? [],
+                        //"friends": user.friends.map { $0.toDictionary() } ?? []
+
+                    ]
+                    ]
+                    self.database.child("users").setValue(newCollection, withCompletionBlock: {_,_ in 
+                        guard error == nil else {
+                            completion(false)
+                            return
+                        }
+                        completion(true)
+                    })
+                }
+            })
+            completion(true)
+        }
+        
+        )
+    }
+    
+    public func getAllUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void)
+    {
+        database.child("users").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [[String: String]] else {
+                completion(.failure(DatabaseError.failedToFetch))
+                return
+            }
+            
+            completion(.success(value))
+            
+        })
+    }
+    
+    public enum DatabaseError: Error {
+        case failedToFetch
     }
     
     private init(){
@@ -53,157 +161,157 @@ class DataController{
         loadDummyEvents()
         loadDummySlider()
         loadDummyFilterbutton()
-        loadDummyUserData()
+        //loadDummyUserData()
         
         
     }
     
     
-    func loadDummyUserData()
-    {
-        var user1 = User(
-            firstName: "Aanchal",
-            lastName: "Saxena",
-            email: "misty@gmail.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "one",
-            userGenres: [.Fantasy, .Fiction],
-            bio: "Hi there :) I'm Misty"
-        )
-
-        let user2 = User(
-            firstName: "John",
-            lastName: "Doe",
-            email: "john@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "two",
-            userGenres: [.NonFiction, .Mystery],
-            bio: "Hello, I'm John"
-        )
-
-        let user3 = User(
-            firstName: "Jane",
-            lastName: "Doe",
-            email: "jane@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "three",
-            userGenres: [.Romance, .Fiction],
-            bio: "Hey there, I'm Jane"
-        )
-
-        let user4 = User(
-            firstName: "Alice",
-            lastName: "Smith",
-            email: "alice@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "four",
-            userGenres: [.Fantasy, .Romance],
-            bio: "Hello, I'm Alice"
-        )
-
-        let user5 = User(
-            firstName: "Bob",
-            lastName: "Smith",
-            email: "bob@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "five",
-            userGenres: [.ScienceFiction, .Mystery],
-            bio: "Hi, I'm Bob"
-        )
-
-        let user6 = User(
-            firstName: "Charlie",
-            lastName: "Brown",
-            email: "charlie@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "six",
-            userGenres: [.Fantasy, .NonFiction],
-            bio: "Hello, I'm Charlie"
-        )
-
-        let user7 = User(
-            firstName: "David",
-            lastName: "Williams",
-            email: "david@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "seven",
-            userGenres: [.Romance, .ScienceFiction],
-            bio: "Hi, I'm David"
-        )
-
-        let user8 = User(
-            firstName: "Ella",
-            lastName: "Johnson",
-            email: "ella@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "eight",
-            userGenres: [.Mystery, .Fiction],
-            bio: "Hey, I'm Ella"
-        )
-
-        let user9 = User(
-            firstName: "Frank",
-            lastName: "Miller",
-            email: "frank@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "nine",
-            userGenres: [.Fantasy, .ScienceFiction],
-            bio: "Hi, I'm Frank"
-        )
-
-        let user10 = User(
-            firstName: "Grace",
-            lastName: "Davis",
-            email: "grace@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "ten",
-            userGenres: [.Romance, .NonFiction],
-            bio: "Hello, I'm Grace"
-        )
-
-        let user11 = User(
-            firstName: "Henry",
-            lastName: "Wilson",
-            email: "henry@example.com",
-            pronouns: "they/them",
-            bookclubs: bookclubs,
-            image: "eleven",
-            userGenres: [.Fantasy, .Mystery],
-            bio: "Hey there, I'm Henry"
-        )
-
-        let user12 = User(
-            firstName: "Isabella",
-            lastName: "Martinez",
-            email: "isabella@example.com",
-            pronouns: "She/her", bookclubs: bookclubs,
-            image: "twelve",
-            userGenres: [.Fiction, .ScienceFiction],
-            bio: "Hi, I'm Isabella"
-        )
-
-        let user13 = User(
-            firstName: "Jack",
-            lastName: "Taylor",
-            email: "jack@example.com",
-            pronouns: "they/them", bookclubs: bookclubs,
-            image: "thirteen",
-            userGenres: [.NonFiction, .Mystery],
-            bio: "Hello, I'm Jack"
-        )
-        user.append(contentsOf: [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13])
-    }
-    
+//    func loadDummyUserData()
+//    {
+//        var user1 = User(
+//            firstName: "Aanchal",
+//            lastName: "Saxena",
+//            email: "misty@gmail.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "one",
+//            userGenres: [.Fantasy, .Fiction],
+//            bio: "Hi there :) I'm Misty"
+//        )
+//
+//        let user2 = User(
+//            firstName: "John",
+//            lastName: "Doe",
+//            email: "john@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "two",
+//            userGenres: [.NonFiction, .Mystery],
+//            bio: "Hello, I'm John"
+//        )
+//
+//        let user3 = User(
+//            firstName: "Jane",
+//            lastName: "Doe",
+//            email: "jane@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "three",
+//            userGenres: [.Romance, .Fiction],
+//            bio: "Hey there, I'm Jane"
+//        )
+//
+//        let user4 = User(
+//            firstName: "Alice",
+//            lastName: "Smith",
+//            email: "alice@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "four",
+//            userGenres: [.Fantasy, .Romance],
+//            bio: "Hello, I'm Alice"
+//        )
+//
+//        let user5 = User(
+//            firstName: "Bob",
+//            lastName: "Smith",
+//            email: "bob@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "five",
+//            userGenres: [.ScienceFiction, .Mystery],
+//            bio: "Hi, I'm Bob"
+//        )
+//
+//        let user6 = User(
+//            firstName: "Charlie",
+//            lastName: "Brown",
+//            email: "charlie@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "six",
+//            userGenres: [.Fantasy, .NonFiction],
+//            bio: "Hello, I'm Charlie"
+//        )
+//
+//        let user7 = User(
+//            firstName: "David",
+//            lastName: "Williams",
+//            email: "david@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "seven",
+//            userGenres: [.Romance, .ScienceFiction],
+//            bio: "Hi, I'm David"
+//        )
+//
+//        let user8 = User(
+//            firstName: "Ella",
+//            lastName: "Johnson",
+//            email: "ella@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "eight",
+//            userGenres: [.Mystery, .Fiction],
+//            bio: "Hey, I'm Ella"
+//        )
+//
+//        let user9 = User(
+//            firstName: "Frank",
+//            lastName: "Miller",
+//            email: "frank@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "nine",
+//            userGenres: [.Fantasy, .ScienceFiction],
+//            bio: "Hi, I'm Frank"
+//        )
+//
+//        let user10 = User(
+//            firstName: "Grace",
+//            lastName: "Davis",
+//            email: "grace@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "ten",
+//            userGenres: [.Romance, .NonFiction],
+//            bio: "Hello, I'm Grace"
+//        )
+//
+//        let user11 = User(
+//            firstName: "Henry",
+//            lastName: "Wilson",
+//            email: "henry@example.com",
+//            pronouns: "they/them",
+//            bookclubs: bookclubs,
+//            image: "eleven",
+//            userGenres: [.Fantasy, .Mystery],
+//            bio: "Hey there, I'm Henry"
+//        )
+//
+//        let user12 = User(
+//            firstName: "Isabella",
+//            lastName: "Martinez",
+//            email: "isabella@example.com",
+//            pronouns: "She/her", bookclubs: bookclubs,
+//            image: "twelve",
+//            userGenres: [.Fiction, .ScienceFiction],
+//            bio: "Hi, I'm Isabella"
+//        )
+//
+//        let user13 = User(
+//            firstName: "Jack",
+//            lastName: "Taylor",
+//            email: "jack@example.com",
+//            pronouns: "they/them", bookclubs: bookclubs,
+//            image: "thirteen",
+//            userGenres: [.NonFiction, .Mystery],
+//            bio: "Hello, I'm Jack"
+//        )
+//        user.append(contentsOf: [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13])
+//    }
+//    
     
     
     func loadDummyGroupChat(){
@@ -263,12 +371,12 @@ class DataController{
     func loadDummybookclub(){
         
         // Existing club instances
-        let bc1 = BookClub(name: "Detectives club", image: "1", genre: "Fiction", description: "A community for book lovers", members: 100)
+        let bc1 = BookClub(name: "Detectives club", image: "1", genre: DataController.shared.genres, description: "A community for book lovers", members: 100)
 
         // Create instances for the remaining clubs
-        let bc2 = BookClub(name: "Homies", image: "eight", genre: "Fiction", description: "A club for book friends", members: 50)
-        let bc3 = BookClub(name: "Potterheads", image: "five", genre: "Fiction", description: "A club for Harry Potter fans", members: 200)
-        let bc4 = BookClub(name: "Camp Half Blood", image: "one", genre: "Fiction", description: "A club for Percy Jackson fans", members: 150)
+        let bc2 = BookClub(name: "Homies", image: "eight", genre: DataController.shared.genres, description: "A club for book friends", members: 50)
+        let bc3 = BookClub(name: "Potterheads", image: "five", genre: DataController.shared.genres, description: "A club for Harry Potter fans", members: 200)
+        let bc4 = BookClub(name: "Camp Half Blood", image: "one", genre: DataController.shared.genres, description: "A club for Percy Jackson fans", members: 150)
 
         // Append all clubs to bookclubs array
         bookclubs.append(contentsOf: [bc1, bc2, bc3, bc4])
@@ -339,8 +447,8 @@ class DataController{
             user[index] = users
         }
 
-        func updateUser(withEmail email: String, updatedUser: User) {
-            if let index = user.firstIndex(where: { $0.email == email }) {
+    func updateUser(withEmail email: String, updatedUser: User) {
+        if let index = user.firstIndex(where: { $0.email == email }) {
                 user[index] = updatedUser
             }
            

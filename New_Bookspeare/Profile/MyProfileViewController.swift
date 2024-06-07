@@ -88,7 +88,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             var mail: String? = "misty@gmail.com"
             guard let userEmail = mail else { return }
                     if let user = DataController.shared.getUser().first(where: { $0.email == userEmail }) {
-                        nameLabel.text = "\(user.firstName) \(user.lastName)"
+                        nameLabel.text = "\(String(describing: user.name))"
                         bioLabel.text = user.bio
                         // profileImage.image = UIImage(named: user.image) // Uncomment if you want to update the profile image as well
                     }

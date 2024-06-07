@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D01D69232C125FFF0082EFFD /* CreateQuizFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D69222C125FFF0082EFFD /* CreateQuizFormViewController.swift */; };
+		D04437952C12D26D00B5F7C5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04437942C12D26D00B5F7C5 /* StorageManager.swift */; };
+		D04437972C13120600B5F7C5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04437962C13120600B5F7C5 /* MainTabBarController.swift */; };
+		D04437992C139CBF00B5F7C5 /* SearchFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04437982C139CBF00B5F7C5 /* SearchFriendsViewController.swift */; };
 		D05236E42C12464B001C2A8C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D05236E32C12464B001C2A8C /* FirebaseDatabase */; };
 		D08903A42C110A77006F97D9 /* CreateQuizQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08903A32C110A77006F97D9 /* CreateQuizQuestionViewController.swift */; };
 		D09E2DFD2C0FB1E300620EFE /* BookclubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */; };
@@ -84,6 +87,9 @@
 
 /* Begin PBXFileReference section */
 		D01D69222C125FFF0082EFFD /* CreateQuizFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizFormViewController.swift; sourceTree = "<group>"; };
+		D04437942C12D26D00B5F7C5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		D04437962C13120600B5F7C5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D04437982C139CBF00B5F7C5 /* SearchFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewController.swift; sourceTree = "<group>"; };
 		D05236DE2C123999001C2A8C /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
 		D08903A32C110A77006F97D9 /* CreateQuizQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizQuestionViewController.swift; sourceTree = "<group>"; };
 		D09E2DFC2C0FB1E300620EFE /* BookclubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookclubViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */,
 				D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */,
 				D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */,
+				D04437982C139CBF00B5F7C5 /* SearchFriendsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -265,8 +272,10 @@
 				D0DCE4772C0F494800B6660E /* LaunchScreen.storyboard */,
 				D0DCE47A2C0F494800B6660E /* Info.plist */,
 				D0DCE5522C0FAAB200B6660E /* Main.storyboard */,
+				D04437962C13120600B5F7C5 /* MainTabBarController.swift */,
 				D09E2DFE2C0FB29A00620EFE /* DataModel1.swift */,
 				D0EC23CE2C10392700E14309 /* DataController.swift */,
+				D04437942C12D26D00B5F7C5 /* StorageManager.swift */,
 			);
 			path = New_Bookspeare;
 			sourceTree = "<group>";
@@ -405,9 +414,11 @@
 			files = (
 				D0DCE4712C0F494600B6660E /* ViewController.swift in Sources */,
 				D01D69232C125FFF0082EFFD /* CreateQuizFormViewController.swift in Sources */,
+				D04437972C13120600B5F7C5 /* MainTabBarController.swift in Sources */,
 				D09E2E6C2C0FC4FF00620EFE /* UserGenreViewController.swift in Sources */,
 				D09E2E522C0FC10F00620EFE /* SettingsViewController.swift in Sources */,
 				D09E2E2A2C0FBC8700620EFE /* EventsSearchViewController.swift in Sources */,
+				D04437992C139CBF00B5F7C5 /* SearchFriendsViewController.swift in Sources */,
 				D09E2E6E2C0FC54D00620EFE /* UserLoginViewController.swift in Sources */,
 				D09E2E072C0FB81500620EFE /* RegisteredViewController.swift in Sources */,
 				D09E2E5D2C0FC10F00620EFE /* PViewController.swift in Sources */,
@@ -420,6 +431,7 @@
 				D08903A42C110A77006F97D9 /* CreateQuizQuestionViewController.swift in Sources */,
 				D09E2DFF2C0FB29A00620EFE /* DataModel1.swift in Sources */,
 				D0FF07282C0FC9CE00A68E29 /* FirstCell.swift in Sources */,
+				D04437952C12D26D00B5F7C5 /* StorageManager.swift in Sources */,
 				D09E2DFD2C0FB1E300620EFE /* BookclubViewController.swift in Sources */,
 				D09E2E3E2C0FBF4900620EFE /* MapViewController.swift in Sources */,
 				D0DCE46D2C0F494600B6660E /* AppDelegate.swift in Sources */,

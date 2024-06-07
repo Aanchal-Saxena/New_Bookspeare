@@ -44,6 +44,7 @@ class EventsViewController: UIViewController {
         buttonCollectionView.delegate = self
         cardCollectionView.dataSource = self
         cardCollectionView.delegate = self
+//        cardCollectionView.layer.masksToBounds = false
            
 //           // Register cells with NIB files if they are created with XIB
 //           let buttonNib = UINib(nibName: "ButtonCollectionViewCell", bundle: nil)

@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+
+
 
 class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var user: User?
     var userEmail: String?
+    
+    
+    
+    
+    
     
     
     @IBOutlet weak var view1: UIView!
@@ -33,11 +42,11 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+
         
         func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
@@ -46,18 +55,17 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
             editImageChanged.clipsToBounds = true
         }
         
-        _ = [("Enter Your Name")]
+        
         
         func viewDidLoad() {
             super.viewDidLoad()
-            
+            //fetchAndSetUserDetails()
             if let user = user {
-                    nameTextField.text = user.firstName
-                    pronounsTextField.text = user.pronouns
-                    bioTextField.text = user.bio
-                    userEmail = user.email
-                    }
-            user?.email = "misty@gmail.com"
+                nameTextField.text = user.name
+                pronounsTextField.text = user.pronouns
+                bioTextField.text = user.bio
+                userEmail = user.email
+            }
             
             editImageChanged.contentMode = .scaleAspectFit
             makeCircular(imageView: editImageChanged)
@@ -97,42 +105,47 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         
         
         // Enable interaction
-               editImageChanged.isUserInteractionEnabled = true
-               changeProfileButton.isUserInteractionEnabled = true
-               
-               // Add tap gesture recognizers
-               let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-               editImageChanged.addGestureRecognizer(imageTapGesture)
-               
-               let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-               changeProfileButton.addGestureRecognizer(labelTapGesture)
-           }
+        editImageChanged.isUserInteractionEnabled = true
+        changeProfileButton.isUserInteractionEnabled = true
+        
+        // Add tap gesture recognizers
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        editImageChanged.addGestureRecognizer(imageTapGesture)
+        
+        let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        changeProfileButton.addGestureRecognizer(labelTapGesture)
+    }
     
     
     @IBAction func editingDidEnd(_ sender: UITextField) {
         
         guard var user = user else { return }
+        
+        // Update user properties based on the text field that triggered the action
+        switch sender {
+        case nameTextField:
+            user.name = sender.text ?? ""
+        case pronounsTextField:
+            user.pronouns = sender.text ?? ""
+        case bioTextField:
+            user.bio = sender.text ?? ""
+        default:
+            break
+        }
+        let email = UserDefaults.standard.value(forKey: "email")
+        let safeEmail = DataController.safeEmail(email: email as! String)
+
+        
+        // Update the user in DataController
+        DataController.shared.updateUser(withEmail: safeEmail, updatedUser: user) { success in
+                    if success {
+                        print("User details updated successfully.")
+                    } else {
+                        print("Failed to update user details.")
+                    }
+                }
             
-            // Update user properties based on the text field that triggered the action
-            switch sender {
-            case nameTextField:
-                user.firstName = sender.text ?? ""
-            case pronounsTextField:
-                user.pronouns = sender.text ?? ""
-            case bioTextField:
-                user.bio = sender.text ?? ""
-            default:
-                break
-            }
-            user.email = "misty@gmail.com" // Update user's email
-            userEmail = user.email
-      
-            // Update the user in DataController
-            DataController.shared.updateUser(withEmail: "misty@gmail.com", updatedUser: user)
-            
-            // Reassign the updated user to the user property
-            self.user = user
-        print("User email on save: \(user.email)")
+        
         
     }
     
@@ -140,15 +153,8 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         guard let user = user else { return }
-                
-                // Update the user in DataController
-        DataController.shared.updateUser(withEmail: "misty@gmail.com", updatedUser: user)
-        print(user)
-        userEmail = user.email
         
-        print("User email on save: 1 \(user.email)")
-            
-            // Perform unwind segue
+        // Perform unwind segue
         performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
     }
     
@@ -156,79 +162,113 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     
     
-  @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
         if sender.view == editImageChanged{
             print("Photo Library")
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
-                   
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
-            self.present(imagePicker, animated: true, completion: nil)
-            })
-            alertController.addAction(cameraAction)
-                   }
-                   
+                let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
+                    self.present(imagePicker, animated: true, completion: nil)
+                })
+                alertController.addAction(cameraAction)
+            }
+            
             if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
-                self.present(imagePicker, animated: true, completion: nil)})
+                    self.present(imagePicker, animated: true, completion: nil)})
                 alertController.addAction(photoLibraryAction)
             }
-                   
-                   
+            
+            
             alertController.addAction(cancelAction)
             alertController.popoverPresentationController?.sourceView = editImageChanged
             present(alertController, animated: true, completion: nil)
- 
-               }
+            
+        }
         else if sender.view == changeProfileButton {
             print("Camera")
-                   
+            
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
-                   
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
-            self.present(imagePicker, animated: true, completion: nil)
-            })
-            alertController.addAction(cameraAction)
-                }
-                   
-            if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker, animated: true, completion: nil)})
-            alertController.addAction(photoLibraryAction)
-                   }
-                   
-                   
-                   alertController.addAction(cancelAction)
-                   alertController.popoverPresentationController?.sourceView = changeProfileButton
-                   present(alertController, animated: true, completion: nil)
-                   // Perform your action here
-               }
-           }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let pickedImage = info[.originalImage] as? UIImage {
-                editImageChanged.image = pickedImage
-                makeCircular(imageView: editImageChanged)
+                let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
+                    self.present(imagePicker, animated: true, completion: nil)
+                })
+                alertController.addAction(cameraAction)
             }
-            dismiss(animated: true, completion: nil)
+            
+            if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
+                    self.present(imagePicker, animated: true, completion: nil)})
+                alertController.addAction(photoLibraryAction)
+            }
+            
+            
+            alertController.addAction(cancelAction)
+            alertController.popoverPresentationController?.sourceView = changeProfileButton
+            present(alertController, animated: true, completion: nil)
+            // Perform your action here
         }
-
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            editImageChanged.image = pickedImage
+            makeCircular(imageView: editImageChanged)
         }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     
     func makeCircular(imageView: UIImageView) {
-            imageView.layer.cornerRadius = imageView.frame.size.width / 2
-            imageView.clipsToBounds = true
-            imageView.layer.borderWidth = 1.0
-            imageView.layer.borderColor = UIColor.gray.cgColor
-        }
-}
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.gray.cgColor
+    }
+    
+    
+    //    public func insertUser(with user: User)
+    //    {
+    //        database.child(user.safeEmail).setValue([
+    //            "username": user.username,
+    //            "firstName": user.firstName,
+    //            "lastName": user.lastName,
+    //            "email": user.email,
+    //            "pronouns": user.pronouns,
+    //            "bio": user.bio,
+    //            "image": user.image,
+    //            //"bookclubs": user.bookclubs.map { $0.toDictionary() },
+    //            //"userGenres": user.userGenres.map { $0.toDictionary() }
+    //        ])
+    //    }
+    
+    func fetchAndSetUserDetails() {
         
-      
+        let email = UserDefaults.standard.value(forKey: "email")
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        let userRef = Database.database().reference().child(safeEmail)
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let password = UserDefaults.standard.value(forKey: "password")
+        
+        let user = User(id: UUID(), password: password as! String, email: email as! String)
+            
+            self.user = user // Set the user object
+            
+            
+            
+            
+        }
+    }
+    
+

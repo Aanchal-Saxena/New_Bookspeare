@@ -24,12 +24,12 @@ class UserProfileViewController: UIViewController {
             super.viewDidLoad()
             
             if let user = user {
-                if let image = UIImage(named: user.image) {
+                if let image = UIImage(named: user.image!) {
                     profileImageView.image = image
                 } else {
                     profileImageView.image = UIImage(systemName: "person.circle")
                 }
-                nameLabel.text = "\(user.firstName) \(user.lastName)"
+                nameLabel.text = "\(user.name)"
                 bioLabel.text = user.email
             }
         }

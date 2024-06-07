@@ -9,31 +9,55 @@ import Foundation
 import UIKit
 
 // Follower model for user connections
-class Follower: Codable {
+class Friend: Codable {
     var name: String
-    var contact: String
+    var email: String
+    var id: UUID
+    var profile: String?
     
-    init(name: String, contact: String) {
+    init(name: String, email: String, id: UUID, profile: String? = nil) {
         self.name = name
-        self.contact = contact
+        self.email = email
+        self.id = id
+        self.profile = profile
     }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "name": name,
+            "email": email,
+            "id": id.uuidString,
+            "profile": profile ?? ""
+        ]
+    }
+          
 }
 
 // BookClub model for user book clubs
 class BookClub: Codable {
     var name: String
     var image: String
-    var genre: String
-    var description: String
-    var members: Int
+    var genre: [Genre]?
+    var description: String?
+    var members: Int?
     
-    init(name: String, image: String, genre: String, description: String, members: Int) {
+    init(name: String, image: String, genre: [Genre]? = nil, description: String? = nil, members: Int? = nil) {
         self.name = name
         self.image = image
         self.genre = genre
         self.description = description
         self.members = members
     }
+    
+    func toDictionary() -> [String: Any] {
+            return [
+                "name": name,
+                "image": image,
+                "genre": genre?.map { $0.rawValue } ?? [],
+                "description": description ?? "",
+                "members": members ?? 0
+            ]
+        }
 }
 
 class Address: Codable {
@@ -52,24 +76,57 @@ class Address: Codable {
 
 // User model for user data
 class User: Codable {
-    var firstName: String
-    var lastName: String
+    var id : UUID
+    var password: String
+    var username: String?
+    var name: String?
     var email: String
-    var pronouns: String
-    var bookclubs: [BookClub]
-    var image: String
-    var userGenres: [Genre]
-    var bio: String
+    var pronouns: String?
+    var bookclubs: [BookClub]?
+    var image: String?
+    var userGenres: [Genre]?
+    var bio: String?
+    var friends: [Friend]?
     
-    init(firstName: String, lastName: String, email: String, pronouns: String, bookclubs: [BookClub], image: String, userGenres: [Genre], bio: String) {
-        self.firstName = firstName
-        self.lastName = lastName
+    var safeEmail: String
+    {
+        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
+    
+    var profilePictureUrl: String{
+        //misty-Gmail-com_profile_picture.png
+        return "\(safeEmail)_profile_picture.png"
+    }
+    
+    init(id: UUID, password: String, username: String? = nil, name: String? = nil, email: String, pronouns: String? = nil, bookclubs: [BookClub]? = nil, image: String? = nil, userGenres: [Genre]? = nil, bio: String? = nil, friends: [Friend]? = nil) {
+        self.id = id
+        self.password = password
+        self.username = username
+        self.name = name
         self.email = email
         self.pronouns = pronouns
         self.bookclubs = bookclubs
         self.image = image
         self.userGenres = userGenres
         self.bio = bio
+        self.friends = friends
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id.uuidString,
+            "username": username ?? "",
+            "name": name ?? "",
+            "email": email,
+            "pronouns": pronouns ?? "",
+            "image": image ?? "",
+            "bio": bio ?? "",
+            "bookclubs": bookclubs?.map { $0.toDictionary() } ?? [],
+            "userGenres": userGenres?.map { $0.rawValue } ?? [],
+            "friends": friends?.map { $0.toDictionary() } ?? []
+        ]
     }
 }
 
@@ -230,6 +287,7 @@ enum Genre: String, Codable {
 }
 
 class CurrentUser {
+    
     var email: String
     var username: String
     var safeEmail: String
