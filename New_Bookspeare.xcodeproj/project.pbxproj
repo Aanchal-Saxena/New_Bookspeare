@@ -80,7 +80,6 @@
 		D0FF07332C0FCB0500A68E29 /* SecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF07322C0FCB0500A68E29 /* SecondCell.xib */; };
 		D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF07312C0FCB0500A68E29 /* SecondCell.swift */; };
 		E53381F02C10D6D40072DECA /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53381EF2C10D6D40072DECA /* UserProfileViewController.swift */; };
-		E5B9569E2C1214E000B0AF74 /* HookedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B9569D2C1214E000B0AF74 /* HookedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,7 +154,6 @@
 		D0FF07312C0FCB0500A68E29 /* SecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCell.swift; sourceTree = "<group>"; };
 		D0FF07322C0FCB0500A68E29 /* SecondCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCell.xib; sourceTree = "<group>"; };
 		E53381EF2C10D6D40072DECA /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		E5B9569D2C1214E000B0AF74 /* HookedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */,
-				E5B9569D2C1214E000B0AF74 /* HookedViewController.swift */,
 				D09E2E632C0FC25E00620EFE /* EditProfileViewController.swift */,
 				D09E2E4E2C0FC10E00620EFE /* PViewController.swift */,
 				D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */,
@@ -435,7 +432,6 @@
 				D09E2E702C0FC66B00620EFE /* DateOfBirthViewController.swift in Sources */,
 				D0DCE5612C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift in Sources */,
 				D0DCE5452C0FA36B00B6660E /* BookclubButtonCollectionViewCell.swift in Sources */,
-				E5B9569E2C1214E000B0AF74 /* HookedViewController.swift in Sources */,
 				E53381F02C10D6D40072DECA /* UserProfileViewController.swift in Sources */,
 				D09E2E682C0FC36600620EFE /* UserFriendsTableViewController.swift in Sources */,
 				D09E2E1A2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift in Sources */,

@@ -94,6 +94,8 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         
         
         
+        
+        
         // Enable interaction
                editImageChanged.isUserInteractionEnabled = true
                changeProfileButton.isUserInteractionEnabled = true
@@ -107,17 +109,6 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
            }
     
     
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        print("Save button pressed")
-           
-    }
-    
-           @objc func handleTap(_ sender: UITapGestureRecognizer) {
-               if sender.view == editImageChanged{
-                   print("Photo Library")
-                   let imagePicker = UIImagePickerController()
-                   imagePicker.delegate = self
-                   let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
     @IBAction func editingDidEnd(_ sender: UITextField) {
         
         guard var user = user else { return }

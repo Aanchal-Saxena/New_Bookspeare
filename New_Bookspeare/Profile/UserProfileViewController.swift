@@ -21,16 +21,16 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var bioLabel: UILabel!
     
     override func viewDidLoad() {
-           super.viewDidLoad()
-
-           if let user = user {
-               if let image = UIImage(named: user.image) {
-                   profileImageView.image = image
-               } else {
-                   profileImageView.image = UIImage(systemName: "person.circle")
-               }
-               nameLabel.text = "\(user.firstName) \(user.lastName)"
-               bioLabel.text = user.email
-           }
-       }
-   }
+            super.viewDidLoad()
+            
+            if let user = user {
+                if let image = UIImage(named: user.image) {
+                    profileImageView.image = image
+                } else {
+                    profileImageView.image = UIImage(systemName: "person.circle")
+                }
+                nameLabel.text = "\(user.firstName) \(user.lastName)"
+                bioLabel.text = user.email
+            }
+        }
+    }
