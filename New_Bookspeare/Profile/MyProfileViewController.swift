@@ -7,29 +7,41 @@
 
 import UIKit
 
-class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    var userEmail: String?
     
-    required init?(coder: NSCoder)
-    {
-        super.init(coder: coder)
-        self.tabBarItem.title = "Profile"
-        self.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
-    }
+    required init?(coder: NSCoder) {
+            super.init(coder: coder)
+            self.tabBarItem.title = "Profile"
+            self.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
+        }
     
+    
+  
     
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var editButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
     
     @IBOutlet weak var Label: UILabel!
 
     
    
+    @IBOutlet weak var bioLabel: UILabel!
     
+   
+    
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        updateUserData()
         title = "Profile"
         
         Label.text = "BookClubs"
@@ -60,6 +72,27 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+       // Implement the delegate method to receive the email from EditProfileViewController
+       func didSaveProfileChanges(withEmail email: String?) {
+           userEmail = email
+           print("\(email!)")
+           // Update UI or perform any other actions with the passed email
+       }
+    
+    @IBAction func unwindToMyProfileViewController(_ segue: UIStoryboardSegue) {
+            updateUserData()
+        }
+        
+        private func updateUserData() {
+            var mail: String? = "misty@gmail.com"
+            guard let userEmail = mail else { return }
+                    if let user = DataController.shared.getUser().first(where: { $0.email == userEmail }) {
+                        nameLabel.text = "\(user.firstName) \(user.lastName)"
+                        bioLabel.text = user.bio
+                        // profileImage.image = UIImage(named: user.image) // Uncomment if you want to update the profile image as well
+                    }
+        }
     
     // UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -106,6 +139,9 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+    
+    
+    
     
     
     

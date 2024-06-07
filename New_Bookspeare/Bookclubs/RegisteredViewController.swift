@@ -60,16 +60,46 @@ class RegisteredViewController: UIViewController {
                 guard let email=emailTextField.text else {return}
                 guard let password=passwordTextField.text else {return}
                 guard let username=nameTextField.text else {return}
-                Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-                            if let error = error {
-                                print("Error signing up: \(error.localizedDescription)")
-                            } else {
-                                print("User signed up successfully")
-                                // Perform any additional actions after sign-up
-                                self.performSegue(withIdentifier: "showLogin", sender: nil)
-                            }
-                        }
+        
+        DataController.shared.validateNewUser(with: email, completion: { [weak self] exists in
+            guard let strongSelf = self else
+            {
+                return
             }
+            guard !exists else
+            {
+                strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists")
+                return
+            }
+            
+            Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+                
+                if let error = error {
+                    print("Error signing up: \(error.localizedDescription)")
+                } else {
+                    DataController.shared.insertUser(with: CurrentUser(email: email, username: username))
+                    print("User signed up successfully")
+                    // Perform any additional actions after sign-up
+                    //strongSelf.navigationController?.dismiss(animated: true , completion: nil)
+                    strongSelf.performSegue(withIdentifier: "showLogin", sender: nil)
+//                    let vc = DateOfBirthViewController()
+//                    let nav = UINavigationController(rootViewController: vc)
+//                    nav.modalPresentationStyle = .fullScreen
+//                    strongSelf.present(nav, animated: false)
+                }
+            }
+        })
+            }
+    
+    
+    func alertUserLoginError(message: String)
+    {
+        let alert = UIAlertController(title: "Woops", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

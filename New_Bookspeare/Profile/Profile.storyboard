@@ -107,13 +107,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="                                     Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="796-BA-TjK">
-                                        <rect key="frame" x="-144" y="352" width="366" height="81"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-5V-qrS">
                                         <rect key="frame" x="-89" y="422" width="220" height="34.333333333333336"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -145,6 +138,13 @@
                                             <segue destination="1Tf-L5-HPf" kind="presentation" id="bL9-rn-btz"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="                                     Bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="796-BA-TjK">
+                                        <rect key="frame" x="15" y="363" width="366" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="shq-Va-8Ry"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -171,8 +171,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="Label" destination="KXX-mI-vCE" id="aWY-Qq-rZt"/>
+                        <outlet property="bioLabel" destination="796-BA-TjK" id="iD6-0q-x7f"/>
                         <outlet property="collectionView" destination="Df4-5G-RG1" id="m3t-0P-n5c"/>
                         <outlet property="editButton" destination="Qvd-ES-0A1" id="gKA-X5-eaa"/>
+                        <outlet property="nameLabel" destination="GW6-4X-RvE" id="Lhq-qK-wgt"/>
                         <outlet property="profileImage" destination="6Pj-R6-7XD" id="2xH-HK-RPP"/>
                         <outlet property="segmentedControl" destination="rQl-Xy-FEf" id="LTI-QR-rtN"/>
                     </connections>
@@ -224,10 +226,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AsX-Ai-jW8">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="95.666666666666671"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="TopLeft" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Jasmine Agrawal" borderStyle="roundedRect" placeholder="Enter Your Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cxs-RM-v9f">
+                                            <textField opaque="NO" contentMode="TopLeft" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cxs-RM-v9f">
                                                 <rect key="frame" x="18" y="42.333333333333371" width="357" height="38.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="editingDidEnd:" destination="Fil-Aj-1BI" eventType="editingDidEnd" id="D08-h1-FsY"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IO8-Ll-xbN">
                                                 <rect key="frame" x="18.000000000000004" y="14.999999999999998" width="47.333333333333343" height="20.333333333333329"/>
@@ -253,6 +258,9 @@
                                                 <rect key="frame" x="18" y="40" width="357" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="editingDidEnd:" destination="Fil-Aj-1BI" eventType="editingDidEnd" id="dIV-S7-Sej"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRONOUNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEL-kw-ysX">
                                                 <rect key="frame" x="17.999999999999993" y="14.999999999999998" width="93.333333333333314" height="20.333333333333329"/>
@@ -278,6 +286,9 @@
                                                 <rect key="frame" x="18" y="40" width="357" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="editingDidEnd:" destination="Fil-Aj-1BI" eventType="editingDidEnd" id="Fap-uJ-nDz"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnU-pn-lwr">
                                                 <rect key="frame" x="18" y="14.999999999999998" width="27.666666666666671" height="20.333333333333329"/>
@@ -303,6 +314,9 @@
                                                 <rect key="frame" x="18" y="40" width="357" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="editingDidEnd:" destination="Fil-Aj-1BI" eventType="editingDidEnd" id="Zap-sE-3GP"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE OF BIRTH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSG-V8-x5w">
                                                 <rect key="frame" x="18" y="14.999999999999998" width="120" height="20.333333333333329"/>
@@ -329,6 +343,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="editingDidEnd:" destination="Fil-Aj-1BI" eventType="editingDidEnd" id="Zwv-O3-8dy"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GENDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Os9-ug-rxH">
                                                 <rect key="frame" x="18" y="13" width="66.666666666666671" height="20.333333333333329"/>
@@ -379,15 +396,19 @@
                     <navigationItem key="navigationItem" id="Dfk-Y1-Ife">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="RhX-W1-nR6">
                             <connections>
-                                <action selector="saveButtonPressed:" destination="Fil-Aj-1BI" id="sHS-1O-NuS"/>
+                                <action selector="saveButtonTapped:" destination="Fil-Aj-1BI" id="9aZ-zf-OZh"/>
+                                <segue destination="m4f-ze-gIV" kind="unwind" identifier="unwindToMyProfileViewController" unwindAction="unwindToMyProfileViewController:" id="dIy-7O-dNA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextField" destination="pbG-u4-PwW" id="NSt-4A-wSG"/>
                         <outlet property="changeProfileButton" destination="fwd-cD-XyL" id="jr8-bh-Iw6"/>
+                        <outlet property="dobTextField" destination="Tgn-3S-6R6" id="FGn-ar-DX9"/>
                         <outlet property="editImageChanged" destination="GAB-XK-Nnm" id="EJp-lt-KQb"/>
                         <outlet property="nameTextField" destination="cxs-RM-v9f" id="lBN-6v-ksD"/>
+                        <outlet property="pronounsTextField" destination="54L-Sg-qIY" id="e6w-vH-eAS"/>
+                        <outlet property="saveBarButton" destination="RhX-W1-nR6" id="nKZ-nu-0t2"/>
                         <outlet property="view1" destination="AsX-Ai-jW8" id="YoA-J6-IB6"/>
                         <outlet property="view2" destination="OUp-ef-50i" id="KB4-cx-h8d"/>
                         <outlet property="view3" destination="HQS-Qw-NJl" id="znB-qf-6Jd"/>
@@ -396,6 +417,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bl7-xc-gRi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="m4f-ze-gIV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2242" y="-785"/>
         </scene>
@@ -470,7 +492,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mf8-EV-Q1j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-593" y="-785"/>
+            <point key="canvasLocation" x="-68" y="-785"/>
         </scene>
         <!--Friends-->
         <scene sceneID="pb1-o3-yEg">
@@ -528,7 +550,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmL-sD-hAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1480.1526717557251" y="-785.21126760563379"/>
+            <point key="canvasLocation" x="-966" y="-785"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="RVy-r7-tQP">
