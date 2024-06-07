@@ -23,7 +23,10 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
-    @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var bookshelfSegmentedcontrol: UIView!
+    
+    @IBOutlet weak var bookclubSegmentedControl: UIView!
+
 
     var bookclubs : [BookClub] = [
         BookClub(name: "Detectives club", image: "1", genre: "Fiction"),
@@ -39,7 +42,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         title = "Profile"
         
-        Label.text = "BookClubs"
+     
         
         // Edit button setup
         editButton.layer.cornerRadius = 22
@@ -128,10 +131,16 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
+            
         case 0:
-            Label.text = "6 Clubs"
+        bookclubSegmentedControl.isHidden = false
+        bookshelfSegmentedcontrol.isHidden = true
+            
+            
         case 1:
-            Label.text = "4 Reading Status Lists"
+        bookshelfSegmentedcontrol.isHidden = false
+        bookclubSegmentedControl.isHidden = true
+            
         default:
             break
         }

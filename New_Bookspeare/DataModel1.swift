@@ -29,6 +29,7 @@ struct Address: Codable {
 struct BookShelf {
     var imageName: String
     var text: String
+    var hooked: String
 }
 
 // User model for user data

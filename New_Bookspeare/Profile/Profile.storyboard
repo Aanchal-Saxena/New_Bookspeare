@@ -90,7 +90,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reading status lists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrR-3o-ywl">
-                                                <rect key="frame" x="0.0" y="0.0" width="148" height="21"/>
+                                                <rect key="frame" x="0.0" y="8" width="148" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -138,7 +138,7 @@
                                                 </cells>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqy-R0-QSn">
-                                                <rect key="frame" x="271" y="0.0" width="77" height="35"/>
+                                                <rect key="frame" x="278" y="8" width="77" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="See All"/>
@@ -246,7 +246,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="Label" destination="KXX-mI-vCE" id="aWY-Qq-rZt"/>
+                        <outlet property="bookclubSegmentedControl" destination="ZMI-tt-Ako" id="NyD-ar-6Uc"/>
+                        <outlet property="bookshelfSegmentedcontrol" destination="zfU-XC-AWG" id="k44-Uz-NdJ"/>
                         <outlet property="collectionView" destination="Df4-5G-RG1" id="m3t-0P-n5c"/>
                         <outlet property="editButton" destination="Qvd-ES-0A1" id="gKA-X5-eaa"/>
                         <outlet property="profileImage" destination="6Pj-R6-7XD" id="2xH-HK-RPP"/>
@@ -612,7 +613,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mf8-EV-Q1j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="-715"/>
+            <point key="canvasLocation" x="-495" y="-715"/>
         </scene>
         <!--Friends-->
         <scene sceneID="pb1-o3-yEg">
@@ -669,7 +670,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmL-sD-hAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-372" y="-690"/>
+            <point key="canvasLocation" x="422" y="-686"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="RVy-r7-tQP">
@@ -736,7 +737,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9F1-J8-gDO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-373" y="126"/>
+            <point key="canvasLocation" x="421" y="166"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="AbG-sk-mAo">
@@ -802,7 +803,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFp-nW-yQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541" y="133"/>
+            <point key="canvasLocation" x="1381" y="165"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NpC-BQ-Vd0">
