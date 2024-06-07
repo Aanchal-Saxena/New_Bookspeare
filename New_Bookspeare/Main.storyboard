@@ -281,6 +281,7 @@
                         <outlet property="privacyPolicyButton" destination="bWz-Xa-TWG" id="imW-Zr-22t"/>
                         <outlet property="signUpWithAplleButton" destination="ykD-eo-zWc" id="Gcj-ss-7PD"/>
                         <outlet property="signUpWithEmailButton" destination="hbo-Dk-EUe" id="iQJ-hS-yRy"/>
+                        <segue destination="B8P-1t-Eic" kind="show" identifier="showLogin" id="lTv-Ku-cit"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ma-vh-kvG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -403,6 +404,7 @@
                         <outlet property="emailInput" destination="e5E-XU-2Wo" id="6U3-YL-m3z"/>
                         <outlet property="loginBtn" destination="lDf-qm-k3M" id="TiM-UQ-Kzy"/>
                         <outlet property="passInput" destination="ohb-34-5Gx" id="not-mp-i5F"/>
+                        <segue destination="8OM-b5-MWi" kind="show" identifier="showGenres" id="bbd-cQ-O4H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmC-Js-z6D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
