@@ -8,31 +8,38 @@
 import Foundation
 import UIKit
 
-// Follower model for user connections
-class Follower: Codable {
+
+struct Friend: Codable {
     var name: String
-    var contact: String
+    var email: String
+    var id: UUID
+    var profile: String?
     
-    init(name: String, contact: String) {
-        self.name = name
-        self.contact = contact
+    func toDictionary() -> [String: Any] {
+        return [
+            "name": name,
+            "email": email,
+            "id": id.uuidString,
+            "profile": profile ?? ""
+        ]
     }
 }
 
-// BookClub model for user book clubs
-class BookClub: Codable {
+struct BookClub: Codable {
     var name: String
     var image: String
-    var genre: String
-    var description: String
-    var members: Int
+    var genre: [Genre]?
+    var description: String?
+    var members: Int?
     
-    init(name: String, image: String, genre: String, description: String, members: Int) {
-        self.name = name
-        self.image = image
-        self.genre = genre
-        self.description = description
-        self.members = members
+    func toDictionary() -> [String: Any] {
+        return [
+            "name": name,
+            "image": image,
+            "genre": genre?.map { $0.rawValue } ?? [],
+            "description": description ?? "",
+            "members": members ?? 1
+        ]
     }
 }
 
@@ -50,30 +57,44 @@ class Address: Codable {
     }
 }
 
-// User model for user data
-class User: Codable {
-    var firstName: String
-    var lastName: String
+struct User: Codable {
+    var id: UUID
+    var username: String?
+    var name: String?
     var email: String
-    var pronouns: String
-    var bookclubs: [BookClub]
-    var image: String
-    var userGenres: [Genre]
-    var bio: String
+    var pronouns: String?
+    var bookclubs: [BookClub]?
+    var image: String?
+    var userGenres: [Genre]?
+    var bio: String?
+    var friends: [Friend]?
     
-    init(firstName: String, lastName: String, email: String, pronouns: String, bookclubs: [BookClub], image: String, userGenres: [Genre], bio: String) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.pronouns = pronouns
-        self.bookclubs = bookclubs
-        self.image = image
-        self.userGenres = userGenres
-        self.bio = bio
+    var safeEmail: String {
+        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
+    
+    var profilePictureUrl: String {
+        return "\(safeEmail)_profile_picture.png"
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id.uuidString,
+            "username": username ?? "",
+            "name": name ?? "",
+            "email": email,
+            "pronouns": pronouns ?? "",
+            "image": image ?? "",
+            "bio": bio ?? "",
+            "bookclubs": bookclubs?.map { $0.toDictionary() } ?? [],
+            "userGenres": userGenres?.map { $0.rawValue } ?? [],
+            "friends": friends?.map { $0.toDictionary() } ?? []
+        ]
     }
 }
 
-// Event model for event details
 class Event: Codable {
     let title: String
     let images: String
@@ -100,7 +121,6 @@ class BookclubFilter: Codable {
     }
 }
 
-// GroupChat model for group chat details
 class GroupChat: Codable {
     let name: String
     let profile: String
@@ -111,7 +131,6 @@ class GroupChat: Codable {
     }
 }
 
-// DirectChat model for direct chat details
 class DirectChat: Codable {
     var users: [Int]
     var messages: [String]
@@ -172,8 +191,7 @@ class SwapSlider: Codable {
     }
 }
 
-class Quiz
-{
+class Quiz {
     var numberOfQuestion: Int
     var answers: [QuizAnswer]
     var ques: QuizQuestion
@@ -188,6 +206,7 @@ class Quiz
         self.quizImage = quizImage
     }
 }
+
 class QuizAnswer {
     var id = UUID()
     var text: String
@@ -232,22 +251,15 @@ enum Genre: String, Codable {
 class CurrentUser {
     var email: String
     var username: String
-    var safeEmail: String
-    {
+    
+    var safeEmail: String {
         var safeEmail = email.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
 
-    
     init(email: String, username: String) {
         self.email = email
         self.username = username
-        
     }
-    
 }
-    
-    
-    
-

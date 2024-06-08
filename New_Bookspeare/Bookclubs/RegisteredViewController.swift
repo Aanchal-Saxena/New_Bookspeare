@@ -51,7 +51,10 @@ class RegisteredViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    // Dismiss keyboard when touching outside of text fields
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true)
+        }
 
     @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
         privacyPolicyButton.isSelected.toggle()
@@ -77,7 +80,29 @@ class RegisteredViewController: UIViewController {
                 if let error = error {
                     print("Error signing up: \(error.localizedDescription)")
                 } else {
-                    DataController.shared.insertUser(with: CurrentUser(email: email, username: username))
+                    let user = User(id: UUID(), username: username, name: nil , email: email, pronouns: nil, bookclubs: [], image: nil, userGenres: [], bio: nil, friends: [])
+                    DataController.shared.insertUser(with: user)
+                            
+//                            guard let image = strongSelf.imageView.image,
+//                                  let data = image.pngData() else
+//                            {
+//                                return
+//                            }
+//                            let fileName = user.profilePictureUrl
+//                            StorageManager.shared.uploadProfilePicure(with: data, filename: fileName, completion: { result in
+//                                switch result {
+//                                case .success(let downloadUrl):
+//                                    UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+//                                    print(downloadUrl)
+//                                case .failure(let error):
+//                                    print("Storage manager error: \(error)")
+//                                }
+//                            })
+//                        
+                    
+                    UserDefaults.standard.set(email, forKey: "email")
+                    UserDefaults.standard.set(password, forKey: "password")
+                    UserDefaults.standard.set(username, forKey: "username")
                     print("User signed up successfully")
                     // Perform any additional actions after sign-up
                     //strongSelf.navigationController?.dismiss(animated: true , completion: nil)
@@ -86,10 +111,9 @@ class RegisteredViewController: UIViewController {
 //                    let nav = UINavigationController(rootViewController: vc)
 //                    nav.modalPresentationStyle = .fullScreen
 //                    strongSelf.present(nav, animated: false)
-                }
-            }
+                }}
         })
-            }
+    }
     
     
     func alertUserLoginError(message: String)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qhJ-WT-z3b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qhJ-WT-z3b">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -212,8 +212,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Change Profile Photo"/>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="eight" translatesAutoresizingMaskIntoConstraints="NO" id="GAB-XK-Nnm">
-                                <rect key="frame" x="131.66666666666666" y="99" width="129.99999999999997" height="130"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GAB-XK-Nnm">
+                                <rect key="frame" x="131.66666666666666" y="99.999999999999986" width="129.99999999999997" height="128.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="jHg-T7-Qyl"/>
                                     <constraint firstAttribute="width" constant="130" id="kTR-xT-QBr"/>
@@ -394,10 +394,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dfk-Y1-Ife">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RhX-W1-nR6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7Dc-O2-xSq">
                             <connections>
-                                <action selector="saveButtonTapped:" destination="Fil-Aj-1BI" id="9aZ-zf-OZh"/>
-                                <segue destination="m4f-ze-gIV" kind="unwind" identifier="unwindToMyProfileViewController" unwindAction="unwindToMyProfileViewController:" id="dIy-7O-dNA"/>
+                                <action selector="saveButtonTapped:" destination="Fil-Aj-1BI" id="hn5-J1-IrT"/>
+                                <segue destination="m4f-ze-gIV" kind="unwind" unwindAction="unwindToMyProfileViewController:" id="hxv-Gl-Mrf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -408,7 +408,6 @@
                         <outlet property="editImageChanged" destination="GAB-XK-Nnm" id="EJp-lt-KQb"/>
                         <outlet property="nameTextField" destination="cxs-RM-v9f" id="lBN-6v-ksD"/>
                         <outlet property="pronounsTextField" destination="54L-Sg-qIY" id="e6w-vH-eAS"/>
-                        <outlet property="saveBarButton" destination="RhX-W1-nR6" id="nKZ-nu-0t2"/>
                         <outlet property="view1" destination="AsX-Ai-jW8" id="YoA-J6-IB6"/>
                         <outlet property="view2" destination="OUp-ef-50i" id="KB4-cx-h8d"/>
                         <outlet property="view3" destination="HQS-Qw-NJl" id="znB-qf-6Jd"/>
@@ -703,9 +702,9 @@
     <resources>
         <image name="Image 1" width="224" height="225"/>
         <image name="background" width="559" height="240"/>
-        <image name="eight" width="444" height="292"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="one" width="333" height="500"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.fill.xmark" catalog="system" width="128" height="89"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="shield" catalog="system" width="128" height="121"/>

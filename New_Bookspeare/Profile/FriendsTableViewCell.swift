@@ -27,11 +27,11 @@ class FriendsTableViewCell: UITableViewCell {
        }
        
        func update(with user: User) {
-           if let image = UIImage(named: user.image) {
+           if let image = UIImage(named: user.image!) {
                userImageView.image = image
            } else {
                userImageView.image = UIImage(systemName: "person.circle")
            }
-           firstNameLabel.text = user.firstName
+           firstNameLabel.text = user.name
        }
    }
