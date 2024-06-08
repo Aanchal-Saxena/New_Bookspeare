@@ -159,11 +159,11 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
                                     //                                let toast = Toast.text("Welcome Back", config: self.config)
                                     //                                toast.show()
                                     UserDefaults.standard.set(email, forKey: "email")
-                                    //guard let email = UserDefaults.standard.value(forKey: "email){
-                                    //return nil }
+//                                    guard let email = UserDefaults.standard.value(forKey: "email){
+//                                    return nil }
 //                                    let safeEmail = DataController.safeEmail(email: email)
 //                                    let filename = safeEmail + "_profil_picture.png"
-                                    //let path = "images/"+filename
+//                                    let path = "images/"+filename
 //                                    StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
 //                                        switch result {
 //                                        case .success(let url):
