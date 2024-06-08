@@ -211,7 +211,158 @@ class DataController {
         user.append(contentsOf: [user1, user2])
     }
     
+
+    
+    func loadDummyUserData()
+    {
+        var user1 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user2 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+        let user3 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+        let user4 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user5 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user6 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+        let user7 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user8 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user9 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user10 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user11 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user12 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+
+        let user13 = User(
+            id: UUID(),
+            name: "Aanchal",
+            email: "misty@gmail.com",
+            pronouns: "they/them",
+            bookclubs: bookclubs,
+            image: "one",
+            userGenres: [.Fantasy, .Fiction],
+            bio: "Hi there :) I'm Misty"
+        )
+        user.append(contentsOf: [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13])
+    }
+    
+    
+    
+    func loadDummyGroupChat(){
+
     func loadDummyGroupChat() {
+
         let gc1 = GroupChat(name: "Potterheads", profile: "1")
         let gc2 = GroupChat(name: "Riodenverse", profile: "eight")
         

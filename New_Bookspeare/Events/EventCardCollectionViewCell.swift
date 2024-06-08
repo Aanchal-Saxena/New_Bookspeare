@@ -52,23 +52,23 @@ class EventCardCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
         //contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
     }
-//    
-//    func setupViews() {
-//        myImage.contentMode = .scaleToFill
-//            addSubview(myImage)
-//            
-//            eventTitle.font = UIFont.boldSystemFont(ofSize: 15)
-//            eventTitle.numberOfLines = 0
-//            addSubview(eventTitle)
-//            
-//            participantsLabel.font = UIFont.systemFont(ofSize: 13)
-//            participantsLabel.textColor = .gray
-//            addSubview(participantsLabel)
-//            
-//            typeLabel.font = UIFont.systemFont(ofSize: 14)
-//            typeLabel.textColor = .blue
-//            addSubview(typeLabel)
-//        }
+    
+    func setupViews() {
+        myImage.contentMode = .scaleToFill
+            addSubview(myImage)
+            
+            eventTitle.font = UIFont.boldSystemFont(ofSize: 15)
+            eventTitle.numberOfLines = 0
+            addSubview(eventTitle)
+            
+            participantsLabel.font = UIFont.systemFont(ofSize: 13)
+            participantsLabel.textColor = .gray
+            addSubview(participantsLabel)
+            
+            typeLabel.font = UIFont.systemFont(ofSize: 14)
+            typeLabel.textColor = .blue
+            addSubview(typeLabel)
+        }
     
     func setupConstraints() {
             myImage.translatesAutoresizingMaskIntoConstraints = false

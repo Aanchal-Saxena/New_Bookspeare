@@ -25,14 +25,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kYE-bX-v2B">
-                                <rect key="frame" x="16" y="97" width="361" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lFz-jF-v4K">
                                 <rect key="frame" x="16" y="142" width="361" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -81,8 +73,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your Bookclub Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4C-8a-23g">
+                                <rect key="frame" x="16" y="152" width="267" height="23"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duY-xk-dQD">
+                                <rect key="frame" x="305.66666666666669" y="145" width="70" height="30.666666666666629"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="See All">
+                                            <attributes>
+                                                <color key="NSColor" red="0.94117647410000005" green="0.58823531870000001" blue="0.5411764979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="15" name="Palatino-Roman"/>
+                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="Lsh-fp-6s1" kind="presentation" id="NdS-1D-wds"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eaF-SF-jgn">
-                                <rect key="frame" x="16" y="241" width="361" height="244"/>
+                                <rect key="frame" x="16" y="195" width="361" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V3v-hV-bhK">
@@ -93,7 +110,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cardCell" id="gJR-vZ-JAV" customClass="CardCollectionViewCell" customModule="New_Bookspeare" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="15" width="174" height="214"/>
+                                        <rect key="frame" x="0.0" y="18" width="174" height="214"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iP0-jI-TCa">
                                             <rect key="frame" x="0.0" y="0.0" width="174" height="214"/>
@@ -183,35 +200,26 @@
                                     <outlet property="delegate" destination="wfw-Ou-lti" id="w2o-4E-04s"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Bookclub Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4C-8a-23g">
-                                <rect key="frame" x="16" y="204" width="147" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vps-uQ-7pL">
+                                <rect key="frame" x="14" y="103" width="361" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vps-uQ-7pL" secondAttribute="height" multiplier="361:30" id="DOv-fD-5Ii"/>
+                                    <constraint firstAttribute="height" constant="30" id="JEA-AQ-oAn"/>
+                                    <constraint firstAttribute="height" constant="30" id="ZkJ-Fu-Ktm"/>
+                                    <constraint firstAttribute="width" constant="361" id="s9P-3R-3Fz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duY-xk-dQD">
-                                <rect key="frame" x="306" y="176" width="104" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="See All">
-                                            <attributes>
-                                                <color key="NSColor" red="0.94117647410000005" green="0.58823531870000001" blue="0.5411764979" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="15" name="Palatino-Roman"/>
-                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="Lsh-fp-6s1" kind="presentation" id="NdS-1D-wds"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z1m-Ab-Iu5"/>
                         <color key="backgroundColor" red="0.99607843159999998" green="0.98823529480000005" blue="0.98039215800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="g4C-8a-23g" firstAttribute="top" secondItem="Vps-uQ-7pL" secondAttribute="bottom" constant="19" id="1Sj-jA-cgj"/>
+                            <constraint firstItem="Vps-uQ-7pL" firstAttribute="leading" secondItem="Z1m-Ab-Iu5" secondAttribute="leading" constant="14" id="BgK-Hu-wkh"/>
+                            <constraint firstItem="Vps-uQ-7pL" firstAttribute="top" secondItem="Z1m-Ab-Iu5" secondAttribute="top" id="mgQ-Tg-ki9"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="lFz-jF-v4K"/>
