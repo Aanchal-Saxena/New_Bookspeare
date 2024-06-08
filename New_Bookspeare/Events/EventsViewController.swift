@@ -40,6 +40,7 @@ class EventsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.titleView?.isHidden = true
         buttonCollectionView.dataSource = self
         buttonCollectionView.delegate = self
         cardCollectionView.dataSource = self

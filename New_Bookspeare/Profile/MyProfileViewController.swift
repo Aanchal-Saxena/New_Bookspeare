@@ -39,11 +39,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        updateUserData()
-        title = "Profile"
-        
+        getImageUrl()
         Label.text = "BookClubs"
         
         // Edit button setup
@@ -73,26 +69,48 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.dataSource = self
     }
     
-       // Implement the delegate method to receive the email from EditProfileViewController
-       func didSaveProfileChanges(withEmail email: String?) {
-           userEmail = email
-           print("\(email!)")
-           // Update UI or perform any other actions with the passed email
-       }
     
     @IBAction func unwindToMyProfileViewController(_ segue: UIStoryboardSegue) {
-            updateUserData()
+    
         }
         
-        private func updateUserData() {
-            var mail: String? = "misty@gmail.com"
-            guard let userEmail = mail else { return }
-                    if let user = DataController.shared.getUser().first(where: { $0.email == userEmail }) {
-                        nameLabel.text = "\(String(describing: user.name))"
-                        bioLabel.text = user.bio
-                        // profileImage.image = UIImage(named: user.image) // Uncomment if you want to update the profile image as well
-                    }
+       
+    
+    func getImageUrl() {
+            guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+                print("No email found in UserDefaults.")
+                return
+            }
+            let safeEmail = DataController.safeEmail(email: email)
+            let filename = safeEmail + "_profil_picture.png"
+            let path = "images/\(filename)"
+            
+            StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let url):
+                    print("Image URL fetched: \(url)")
+                    self.downloadImage(imageView: self.profileImage, url: url)
+                case .failure(let error):
+                    print("Failed to get download url: \(error)")
+                }
+            })
         }
+    func downloadImage(imageView: UIImageView, url: URL)
+    {
+        URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
+            guard let data = data, error == nil else {
+                print("Failed to download image data from download image func: \(error!.localizedDescription)")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                imageView.image = image
+            }
+            
+        }).resume()
+    }
     
     // UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

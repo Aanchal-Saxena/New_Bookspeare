@@ -37,67 +37,21 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     @IBOutlet weak var dobTextField: UITextField!
     
     
-    @IBOutlet weak var saveBarButton: UIBarButtonItem!
-    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        editImageChanged.contentMode = .scaleAspectFit
+        makeCircular(imageView: editImageChanged)
+        viewCell(profileCellView: view1)
+        viewCell(profileCellView: view2)
+        viewCell(profileCellView: view3)
+        viewCell(profileCellView: view4)
+        viewCell(profileCellView: view5)
         
-
+        print("edit view did load")
         
-        func viewDidLayoutSubviews() {
-            super.viewDidLayoutSubviews()
-            // Ensure the profile image view is circular
-            editImageChanged.layer.cornerRadius = editImageChanged.frame.size.width / 2
-            editImageChanged.clipsToBounds = true
-        }
-        
-        
-        
-        func viewDidLoad() {
-            super.viewDidLoad()
-
-            
-            editImageChanged.contentMode = .scaleAspectFit
-            makeCircular(imageView: editImageChanged)
-            viewCell(profileCellView: view1)
-            viewCell(profileCellView: view2)
-            viewCell(profileCellView: view3)
-            viewCell(profileCellView: view4)
-            viewCell(profileCellView: view5)
-            
-            
-            
-            viewCell(profileCellView: view
-            )
-            
-            func viewCell(profileCellView: UIView)
-            {
-                profileCellView.layer.borderColor = UIColor.gray.cgColor
-                profileCellView.layer.borderWidth = 0.1
-                
-                // Set the corner radius
-                profileCellView.layer.cornerRadius = 5.0
-                profileCellView.clipsToBounds = true
-                
-                // Set the shadow
-                profileCellView.layer.shadowColor = UIColor.black.cgColor
-                profileCellView.layer.shadowOpacity = 0.1
-                profileCellView.layer.shadowOffset = CGSize(width: 2, height: 2)
-                profileCellView.layer.shadowRadius = 0.2
-                profileCellView.layer.masksToBounds = false
-            }
-            
-        }
-        
-        
-        
-        
-        
-        
-        // Enable interaction
         editImageChanged.isUserInteractionEnabled = true
         changeProfileButton.isUserInteractionEnabled = true
         
@@ -107,7 +61,40 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         changeProfileButton.addGestureRecognizer(labelTapGesture)
+        
     }
+
+        
+    func viewCell(profileCellView: UIView)
+    {
+        profileCellView.layer.borderColor = UIColor.gray.cgColor
+        profileCellView.layer.borderWidth = 0.1
+        
+        // Set the corner radius
+        profileCellView.layer.cornerRadius = 5.0
+        profileCellView.clipsToBounds = true
+        
+        // Set the shadow
+        profileCellView.layer.shadowColor = UIColor.black.cgColor
+        profileCellView.layer.shadowOpacity = 0.1
+        profileCellView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        profileCellView.layer.shadowRadius = 0.2
+        profileCellView.layer.masksToBounds = false
+    }
+        
+        
+        
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+       
+        print("save button tapped")
+    
+//        performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
+    }
+    
+        
+        
+        
     
     
     @IBAction func editingDidEnd(_ sender: UITextField) {
@@ -117,32 +104,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     
     
-    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        
-        guard let currentUser = Auth.auth().currentUser else {
-                print("No current user found.")
-                return
-            }
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
-            
-            let newName = nameTextField.text
-            let newBio = bioTextField.text
-            let newPronouns = pronounsTextField.text
-             
-            
-            // Call updateUser function to update the specified properties in the database
-        DataController.shared.updateUser(withEmail: safeEmail, name: newName, bio: newBio, pronouns: newPronouns) { success in
-                if success {
-                    print("User details updated successfully.")
-                    // Perform any additional actions if needed
-                } else {
-                    print("Failed to update user details.")
-                }
-            }
-       
-        performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
-    }
+    
     
     
     

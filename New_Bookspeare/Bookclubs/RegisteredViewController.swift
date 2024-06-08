@@ -51,7 +51,10 @@ class RegisteredViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    // Dismiss keyboard when touching outside of text fields
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true)
+        }
 
     @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
         privacyPolicyButton.isSelected.toggle()
@@ -77,7 +80,7 @@ class RegisteredViewController: UIViewController {
                 if let error = error {
                     print("Error signing up: \(error.localizedDescription)")
                 } else {
-                    let user = User(id: UUID(), username: username, name: nil , email: email, pronouns: nil, bookclubs: nil, image: nil, userGenres: nil, bio: nil)
+                    let user = User(id: UUID(), username: username, name: nil , email: email, pronouns: nil, bookclubs: [], image: nil, userGenres: [], bio: nil, friends: [])
                     DataController.shared.insertUser(with: user)
                             
 //                            guard let image = strongSelf.imageView.image,

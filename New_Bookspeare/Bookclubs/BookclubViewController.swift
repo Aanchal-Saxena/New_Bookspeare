@@ -230,20 +230,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     }
  
     
-    @IBSegueAction func createClub(_ coder: NSCoder) -> ClubsCreateViewController? {
-        return ClubsCreateViewController(coder: coder, bookclub: nil)
-    }
-    
-    
-    
-    @IBAction func unwindToCommunity(unwindSegue: UIStoryboardSegue)
-    {
-        guard unwindSegue.identifier == "saveUnwind",
-              let sourceViewController = unwindSegue.source as? ClubsCreateViewController,
-              let bookclub = sourceViewController.bookclub else { return }
-        DataController.shared.appendbookclub(club: bookclub)
-        exploreCollectionView.reloadData()
-    }
+   
     
     private func validateAuth()
     {

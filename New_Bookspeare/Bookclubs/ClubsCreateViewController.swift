@@ -9,7 +9,7 @@ import UIKit
 
 class ClubsCreateViewController: UIViewController {
     
-    var bookclub: BookClub?
+    var bookclubs: [BookClub] = []
     
     @IBOutlet weak var bookclubImage: UIImageView!
     
@@ -24,15 +24,7 @@ class ClubsCreateViewController: UIViewController {
     
     @IBOutlet weak var createButton: UIButton!
 
-    init?(coder: NSCoder, bookclub: BookClub?)
-    {
-        self.bookclub = bookclub
-        super.init(coder: coder)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,18 +56,36 @@ class ClubsCreateViewController: UIViewController {
         createButton.isEnabled = !nameText.isEmpty && !descriptionText.isEmpty
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "saveUnwind" else { return }
-        
-        
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard segue.identifier == "saveUnwind" else { return }
+//   
+    
+    
+    @IBAction func createButtonTapped(_ sender: UIButton) {
         let name = nameTextField.text ?? ""
         let description = descriptionTextField.text ?? ""
         let genre = genreTextField.text ?? ""
         let genreEnum = Genre(rawValue: genre) ?? .Fiction
         //let image = UIImage(named: "one")
-        bookclub = BookClub(name: name, image: "one", genre: [genreEnum] ,description: description, members: 50)
-        DataController.shared.appendbookclub(club: bookclub!)
-    }
+        let bookclub = BookClub(name: name, image: "one", genre: [genreEnum] ,description: description, members: 1)
+        
+        bookclubs.append(bookclub)
+        
+        guard let email = UserDefaults.standard.value(forKey: "email") else {
+                        return  }
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        DataController.shared.updateBookClubs(forEmail: safeEmail, bookClubs: bookclubs) { success in
+                    if success {
+                        print("Book club updated successfully")
+                        // Handle success (e.g., navigate back, show success message, etc.)
+                    } else {
+                        print("Failed to update book club")
+                        // Handle failure (e.g., show error message)
+                    }
+                }
 
+        
+    }
+    
     
 }

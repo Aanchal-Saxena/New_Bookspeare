@@ -98,3 +98,30 @@ class SearchFriendsViewController: UIViewController {
     */
 
 }
+//guard let currentUser = Auth.auth().currentUser else {
+//        print("No current user found.")
+//        return
+//    }
+//
+//print("save button tapped called")
+//
+//let email = UserDefaults.standard.value(forKey: "email")
+//print(email as Any)
+//let safeEmail = DataController.safeEmail(email: email as! String)
+//print(safeEmail)
+//    
+//    let newName = nameTextField.text
+//    let newBio = bioTextField.text
+//    let newPronouns = pronounsTextField.text
+//print(newName as Any, newBio as Any, newPronouns!)
+//    
+//    // Call updateUser function to update the specified properties in the database
+//DataController.shared.updateUser(withEmail: safeEmail, name: newName, bio: newBio, pronouns: newPronouns) { success in
+//        if success {
+//            print("updateUser calling")
+//            print("User details updated successfully.")
+//            // Perform any additional actions if needed
+//        } else {
+//            print("Failed to update user details.")
+//        }
+//    }

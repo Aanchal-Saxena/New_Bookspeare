@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2p-AK-a0W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f2p-AK-a0W">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
+
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -155,12 +159,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="LWC-kA-5Kj">
                         <rightBarButtonItems>
+
                             <barButtonItem image="plus" catalog="system" id="Yfg-be-OxK"/>
                             <barButtonItem image="location" catalog="system" id="K2t-i9-d0l">
                                 <connections>
                                     <segue destination="XjS-j2-1Wo" kind="presentation" id="h7b-DE-ImG"/>
                                 </connections>
                             </barButtonItem>
+
+                            <barButtonItem image="plus" catalog="system" id="f6W-26-9m7"/>
+                            <barButtonItem image="location" catalog="system" id="e8k-4z-vHb"/>
+
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
