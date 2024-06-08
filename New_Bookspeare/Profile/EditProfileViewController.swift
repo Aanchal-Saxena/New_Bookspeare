@@ -152,7 +152,28 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        guard let user = user else { return }
+        
+        let email = UserDefaults.standard.value(forKey: "email")
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        let userRef = Database.database().reference().child(safeEmail)
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let password = UserDefaults.standard.value(forKey: "password")
+        
+        let user = User(id: UUID(), password: password as! String, email: email as! String)
+            
+        self.user = user // Set the user object
+
+        
+        // Update the user in DataController
+        DataController.shared.updateUser(withEmail: safeEmail, updatedUser: user) { success in
+                    if success {
+                        print("User details updated successfully.")
+                    } else {
+                        print("Failed to update user details.")
+                    }
+                }
+
         
         // Perform unwind segue
         performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
@@ -252,23 +273,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     //        ])
     //    }
     
-    func fetchAndSetUserDetails() {
-        
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        let userRef = Database.database().reference().child(safeEmail)
-        
-        guard let userID = Auth.auth().currentUser?.uid else { return }
-        let password = UserDefaults.standard.value(forKey: "password")
-        
-        let user = User(id: UUID(), password: password as! String, email: email as! String)
-            
-            self.user = user // Set the user object
-            
-            
-            
-            
-        }
+    
     }
     
 

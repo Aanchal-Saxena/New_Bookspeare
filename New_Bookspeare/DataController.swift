@@ -69,73 +69,24 @@ class DataController{
             }
         }
     
-    public func insertUser(with user: User, completion: @escaping (Bool) -> Void)
+    public func insertUser(with user: User)
     {
         database.child(user.safeEmail).setValue([
-            "username": user.username,
+            "id": user.id.uuidString,
+            "username": user.username ?? "",
             "password": user.password,
             "email": user.email,
-        ], withCompletionBlock: { error, _ in
-            guard error == nil else {
-                print("failed to write to database")
-                completion(false)
-                return
-            }
-            self.database.child("users").observeSingleEvent(of: .value, with: { snapshot in
-                if var usersCollection = snapshot.value as? [[String: Any]]
-                    
-                {
-                    //append dictionary
-                    let newElement: [String: Any] = [
-                        "name": user.name,
-                        "pronouns": user.pronouns,
-                        "bio": user.bio,
-                        "image": user.image,
-                        "genres": user.userGenres,
-                        "genres": user.userGenres?.map { $0.rawValue } ?? [],
-                        "bookclubs": user.bookclubs?.map { $0.toDictionary() } ?? [],
-                        "friends": user.friends?.map { $0.toDictionary() } ?? []
-                    
-                    ]
-                    usersCollection.append(newElement)
-                    self.database.child("users").setValue(usersCollection, withCompletionBlock: {_,_ in 
-                        guard error == nil else {
-                            completion(false)
-                            return
-                        }
-                        completion(true)
-                    })
-                }
-                else
-                {
-                    //create array
-                    let newCollection: [[String: Any]] = [
-                    [
-                        "name": user.name,
-                        "pronouns": user.pronouns,
-                        "bio": user.bio,
-                        "image": user.image,
-                        "genres": user.userGenres,
-                        "genres": user.userGenres?.map { $0.rawValue } ?? [],
-                        "bookclubs": user.bookclubs?.map { $0.toDictionary() } ?? [],
-                        //"friends": user.friends.map { $0.toDictionary() } ?? []
-
-                    ]
-                    ]
-                    self.database.child("users").setValue(newCollection, withCompletionBlock: {_,_ in 
-                        guard error == nil else {
-                            completion(false)
-                            return
-                        }
-                        completion(true)
-                    })
-                }
-            })
-            completion(true)
-        }
-        
-        )
+            "name": user.name ?? "",
+            "pronouns": user.pronouns ?? "",
+            "bio": user.bio ?? "",
+            "image": user.image ?? "",
+            "genres": user.userGenres?.map { $0.rawValue } ?? [],
+            "bookclubs": user.bookclubs?.map { $0.toDictionary() } ?? [],
+            "friends": user.friends?.map { $0.toDictionary() } ?? []
+        ])
     }
+        
+    
     
     public func getAllUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void)
     {
@@ -155,12 +106,12 @@ class DataController{
     }
     
     private init(){
-        loadDummyGroupChat()
-        loadDummybookclub()
-        loadDummyswap()
-        loadDummyEvents()
-        loadDummySlider()
-        loadDummyFilterbutton()
+//        loadDummyGroupChat()
+//        loadDummybookclub()
+//        loadDummyswap()
+//        loadDummyEvents()
+//        loadDummySlider()
+//        loadDummyFilterbutton()
         //loadDummyUserData()
         
         

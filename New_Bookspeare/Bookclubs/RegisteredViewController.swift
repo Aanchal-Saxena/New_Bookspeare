@@ -78,10 +78,7 @@ class RegisteredViewController: UIViewController {
                     print("Error signing up: \(error.localizedDescription)")
                 } else {
                     let user = User(id: UUID(), password: password, username: username, name: nil , email: email, pronouns: nil, bookclubs: nil, image: nil, userGenres: nil, bio: nil)
-                    DataController.shared.insertUser(with: user, completion: {success in
-                        if success
-                        {
-                            print("user register details uploaded successfully")
+                    DataController.shared.insertUser(with: user)
                             
 //                            guard let image = strongSelf.imageView.image,
 //                                  let data = image.pngData() else
@@ -98,8 +95,8 @@ class RegisteredViewController: UIViewController {
 //                                    print("Storage manager error: \(error)")
 //                                }
 //                            })
-                        }
-                    })
+                        
+                    
                     UserDefaults.standard.set(email, forKey: "email")
                     UserDefaults.standard.set(password, forKey: "password")
                     UserDefaults.standard.set(username, forKey: "username")
@@ -111,10 +108,9 @@ class RegisteredViewController: UIViewController {
 //                    let nav = UINavigationController(rootViewController: vc)
 //                    nav.modalPresentationStyle = .fullScreen
 //                    strongSelf.present(nav, animated: false)
-                }
-            }
+                }}
         })
-            }
+    }
     
     
     func alertUserLoginError(message: String)
