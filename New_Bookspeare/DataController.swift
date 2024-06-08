@@ -10,6 +10,12 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseDatabaseInternal
 
+
+extension Notification.Name {
+    static let bookclubsUpdated = Notification.Name("bookclubsUpdated")
+}
+
+
 class DataController {
     
     private var bookclubs: [BookClub] = []
@@ -24,6 +30,7 @@ class DataController {
     var user: [User] = []
     var quiz: [Quiz] = []
     var genres: [Genre] = [.Fantasy, .Fiction, .Mystery]
+    var bookClubsForSection1: [BookClub] = []
     
     static let shared = DataController() // singleton
     private let database = Database.database().reference()
@@ -42,6 +49,10 @@ class DataController {
     
     static func profilePictureUrl(safeEmail: String) -> String {
         return "\(safeEmail)_profile_picture.png"
+    }
+    
+    static func bookclubPictureUrl(safeEmail: String) -> String {
+        return "\(safeEmail)_bookclub_picture.png"
     }
     
     static func safeEmail(email: String) -> String {
@@ -226,9 +237,20 @@ class DataController {
     }
     
     func loadDummyBookclub() {
-        let bc1 = BookClub(name: "Detectives club", image: "1", genre: genres, description: "A community for book lovers", members: 100)
-        
-        bookclubs.append(bc1)
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+                    return
+                }
+                
+                fetchBookClubs(forEmail: email) { [weak self] result in
+                    switch result {
+                    case .success(let bookClubs):
+                        self?.bookClubsForSection1 = bookClubs
+                        self?.bookclubs = bookClubs  // Ensure the main bookclubs array is also updated
+                        NotificationCenter.default.post(name: .bookclubsUpdated, object: nil) // Notify that bookclubs have been updated
+                    case .failure(let error):
+                        print("Failed to fetch book clubs: \(error)")
+                    }
+        }
     }
     
     func loadDummySwap() {

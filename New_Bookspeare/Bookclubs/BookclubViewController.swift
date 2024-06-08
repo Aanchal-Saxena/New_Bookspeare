@@ -5,10 +5,13 @@
 //  Created by Sahil Raj on 05/06/24.
 //
 
+
+
 import UIKit
 import FirebaseAuth
 
 class BookclubViewController: UIViewController , UICollectionViewDataSource {
+    
     
     required init?(coder: NSCoder)
     {
@@ -16,7 +19,6 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         self.tabBarItem.title = "Bookclubs"
         self.tabBarItem.image = UIImage(systemName: "person.3.fill")
     }
-    
     
     
     
@@ -95,6 +97,17 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         
     }
     
+    private func configure(cell: FirstCell, with bookclub: BookClub) {
+            cell.bookclubName.text = bookclub.name
+        cell.bookclubMembers.text = "\(String(describing: bookclub.members))"
+            cell.bookclubDescription.text = bookclub.description
+            if !bookclub.image.isEmpty {
+                cell.imageView.image = UIImage(named: bookclub.image)
+            }
+            cell.layer.cornerRadius = 10
+    }
+
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == exploreCollectionView
@@ -109,16 +122,15 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 cell.bookclubName.text = bc.name
                 // Convert integer to string for bookclubMembers
                 cell.bookclubMembers.text = "\(bc.members)"
-                cell.bookclubDescription.text = bc.description // Set a default value or fetch from your data source
-
-                // Assuming bc.image is a string representing the image name
+                cell.bookclubDescription.text = bc.description
                 if !bc.image.isEmpty {
                     // Fetch image from resources or URL based on imageName
                     cell.imageView.image = UIImage(named: bc.image)
                 }
-
-
+                
                 cell.layer.cornerRadius = 10
+
+              
                 
                 //            cell.tapAction = { [weak self] in
                 //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
@@ -247,6 +259,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        exploreCollectionView.reloadData()
         //validateAuth()
         
         
@@ -282,7 +295,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             
             switch indexPath.section{
             case 0:
-                headerView.headerLabel.text = "Section 1"
+                headerView.headerLabel.text = "Your Clubs"
                 headerView.headerLabel.font = UIFont.boldSystemFont(ofSize: 20)
                 headerView.button.setTitle("See All", for: .normal)
                 headerView.button.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
@@ -392,7 +405,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
        }
     
     
+    @IBAction func unwindToBookclubsViewController(_ segue: UIStoryboardSegue) {
     
+        }
     
     
 }

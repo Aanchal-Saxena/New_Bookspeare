@@ -7,9 +7,12 @@
 
 import UIKit
 
-class ClubsCreateViewController: UIViewController {
+
+
+class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    var bookclubs: [BookClub] = []
+    var bookclubs = DataController.shared.getBookclubs()
+    var bookclub: BookClub?
     
     @IBOutlet weak var bookclubImage: UIImageView!
     
@@ -29,6 +32,13 @@ class ClubsCreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        bookclubImage.isUserInteractionEnabled = true
+        
+        // Add tap gesture recognizers
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        bookclubImage.addGestureRecognizer(imageTapGesture)
+        
         nameTextField.useUnderline()
         descriptionTextField.useUnderline()
         genreTextField.useUnderline()
@@ -38,6 +48,8 @@ class ClubsCreateViewController: UIViewController {
         createButton.layer.borderColor = UIColor.black.cgColor
         createButton.isEnabled = false
         updateCreateButtonState()
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(bookclubsUpdated), name: .bookclubsUpdated, object: nil)
         
         
     }
@@ -59,6 +71,69 @@ class ClubsCreateViewController: UIViewController {
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        guard segue.identifier == "saveUnwind" else { return }
 //   
+    
+    
+    
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        if sender.view == bookclubImage{
+            print("Photo Library")
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            let alertController = UIAlertController(title: "Choose Image source", message: nil, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in imagePicker.sourceType = .camera
+                    self.present(imagePicker, animated: true, completion: nil)
+                })
+                alertController.addAction(cameraAction)
+            }
+            
+            if  UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let photoLibraryAction =  UIAlertAction(title: "Photo Library", style: .default, handler: {action in imagePicker.sourceType = .photoLibrary
+                    self.present(imagePicker, animated: true, completion: nil)})
+                alertController.addAction(photoLibraryAction)
+            }
+            
+            
+            alertController.addAction(cancelAction)
+            alertController.popoverPresentationController?.sourceView = bookclubImage
+            present(alertController, animated: true, completion: nil)
+            
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            bookclubImage.image = pickedImage
+
+            guard let image = bookclubImage.image,
+                  let data = image.pngData() else
+            {
+                return
+            }
+            
+            let email = UserDefaults.standard.value(forKey: "email")
+            let safeEmail = DataController.safeEmail(email: email as! String)
+            let fileName = DataController.bookclubPictureUrl(safeEmail: safeEmail)
+            StorageManager.shared.uploadProfilePicure(with: data, filename: fileName, completion: { result in
+                switch result {
+                case .success(let downloadUrl):
+                    UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                    print(downloadUrl)
+                case .failure(let error):
+                    print("Storage manager error: \(error)")
+                }
+            })
+
+                  
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     @IBAction func createButtonTapped(_ sender: UIButton) {
