@@ -77,7 +77,7 @@ class RegisteredViewController: UIViewController {
                 if let error = error {
                     print("Error signing up: \(error.localizedDescription)")
                 } else {
-                    let user = User(id: UUID(), password: password, username: username, name: nil , email: email, pronouns: nil, bookclubs: nil, image: nil, userGenres: nil, bio: nil)
+                    let user = User(id: UUID(), username: username, name: nil , email: email, pronouns: nil, bookclubs: nil, image: nil, userGenres: nil, bio: nil)
                     DataController.shared.insertUser(with: user)
                             
 //                            guard let image = strongSelf.imageView.image,
@@ -95,7 +95,7 @@ class RegisteredViewController: UIViewController {
 //                                    print("Storage manager error: \(error)")
 //                                }
 //                            })
-                        
+//                        
                     
                     UserDefaults.standard.set(email, forKey: "email")
                     UserDefaults.standard.set(password, forKey: "password")

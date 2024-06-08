@@ -13,8 +13,7 @@ import FirebaseAuth
 
 class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    var user: User?
-    var userEmail: String?
+    
     
     
     
@@ -59,13 +58,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         
         func viewDidLoad() {
             super.viewDidLoad()
-            //fetchAndSetUserDetails()
-            if let user = user {
-                nameTextField.text = user.name
-                pronounsTextField.text = user.pronouns
-                bioTextField.text = user.bio
-                userEmail = user.email
-            }
+
             
             editImageChanged.contentMode = .scaleAspectFit
             makeCircular(imageView: editImageChanged)
@@ -118,34 +111,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     
     @IBAction func editingDidEnd(_ sender: UITextField) {
-        
-        guard var user = user else { return }
-        
-        // Update user properties based on the text field that triggered the action
-        switch sender {
-        case nameTextField:
-            user.name = sender.text ?? ""
-        case pronounsTextField:
-            user.pronouns = sender.text ?? ""
-        case bioTextField:
-            user.bio = sender.text ?? ""
-        default:
-            break
-        }
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
 
-        
-        // Update the user in DataController
-        DataController.shared.updateUser(withEmail: safeEmail, updatedUser: user) { success in
-                    if success {
-                        print("User details updated successfully.")
-                    } else {
-                        print("Failed to update user details.")
-                    }
-                }
-            
-        
         
     }
     
@@ -153,29 +119,28 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         
+        guard let currentUser = Auth.auth().currentUser else {
+                print("No current user found.")
+                return
+            }
         let email = UserDefaults.standard.value(forKey: "email")
         let safeEmail = DataController.safeEmail(email: email as! String)
-        let userRef = Database.database().reference().child(safeEmail)
-        
-        guard let userID = Auth.auth().currentUser?.uid else { return }
-        let password = UserDefaults.standard.value(forKey: "password")
-        
-        let user = User(id: UUID(), password: password as! String, email: email as! String)
             
-        self.user = user // Set the user object
-
-        
-        // Update the user in DataController
-        DataController.shared.updateUser(withEmail: safeEmail, updatedUser: user) { success in
-                    if success {
-                        print("User details updated successfully.")
-                    } else {
-                        print("Failed to update user details.")
-                    }
+            let newName = nameTextField.text
+            let newBio = bioTextField.text
+            let newPronouns = pronounsTextField.text
+             
+            
+            // Call updateUser function to update the specified properties in the database
+        DataController.shared.updateUser(withEmail: safeEmail, name: newName, bio: newBio, pronouns: newPronouns) { success in
+                if success {
+                    print("User details updated successfully.")
+                    // Perform any additional actions if needed
+                } else {
+                    print("Failed to update user details.")
                 }
-
-        
-        // Perform unwind segue
+            }
+       
         performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
     }
     
@@ -242,6 +207,28 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         if let pickedImage = info[.originalImage] as? UIImage {
             editImageChanged.image = pickedImage
             makeCircular(imageView: editImageChanged)
+            
+            
+            guard let image = editImageChanged.image,
+                  let data = image.pngData() else
+            {
+                return
+            }
+            
+            let email = UserDefaults.standard.value(forKey: "email")
+            let safeEmail = DataController.safeEmail(email: email as! String)
+            let fileName = DataController.profilePictureUrl(safeEmail: safeEmail)
+            StorageManager.shared.uploadProfilePicure(with: data, filename: fileName, completion: { result in
+                switch result {
+                case .success(let downloadUrl):
+                    UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                    print(downloadUrl)
+                case .failure(let error):
+                    print("Storage manager error: \(error)")
+                }
+            })
+
+                  
         }
         dismiss(animated: true, completion: nil)
     }
@@ -256,24 +243,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.gray.cgColor
     }
-    
-    
-    //    public func insertUser(with user: User)
-    //    {
-    //        database.child(user.safeEmail).setValue([
-    //            "username": user.username,
-    //            "firstName": user.firstName,
-    //            "lastName": user.lastName,
-    //            "email": user.email,
-    //            "pronouns": user.pronouns,
-    //            "bio": user.bio,
-    //            "image": user.image,
-    //            //"bookclubs": user.bookclubs.map { $0.toDictionary() },
-    //            //"userGenres": user.userGenres.map { $0.toDictionary() }
-    //        ])
-    //    }
-    
-    
+ 
     }
     
 

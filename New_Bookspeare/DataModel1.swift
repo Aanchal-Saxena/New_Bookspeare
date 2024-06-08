@@ -77,7 +77,6 @@ class Address: Codable {
 // User model for user data
 class User: Codable {
     var id : UUID
-    var password: String
     var username: String?
     var name: String?
     var email: String
@@ -100,9 +99,8 @@ class User: Codable {
         return "\(safeEmail)_profile_picture.png"
     }
     
-    init(id: UUID, password: String, username: String? = nil, name: String? = nil, email: String, pronouns: String? = nil, bookclubs: [BookClub]? = nil, image: String? = nil, userGenres: [Genre]? = nil, bio: String? = nil, friends: [Friend]? = nil) {
+    init(id: UUID, username: String? = nil, name: String? = nil, email: String, pronouns: String? = nil, bookclubs: [BookClub]? = nil, image: String? = nil, userGenres: [Genre]? = nil, bio: String? = nil, friends: [Friend]? = nil) {
         self.id = id
-        self.password = password
         self.username = username
         self.name = name
         self.email = email

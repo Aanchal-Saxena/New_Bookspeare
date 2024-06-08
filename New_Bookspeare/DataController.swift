@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseDatabaseInternal
 
 class DataController{
     
@@ -41,6 +42,11 @@ class DataController{
         })
     }
     
+    static func profilePictureUrl(safeEmail: String) -> String{
+        //misty-Gmail-com_profile_picture.png
+        return "\(safeEmail)_profile_picture.png"
+    }
+    
     static func safeEmail(email: String) -> String
     {
         var safeEmail: String
@@ -55,35 +61,63 @@ class DataController{
     
     
     
-    public func updateUser(withEmail email: String, updatedUser: User, completion: @escaping (Bool) -> Void) {
-            let safeEmail = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            // Update user details in the "users" node
-            database.child("users").child(safeEmail).updateChildValues(updatedUser.toDictionary()) { error, _ in
-                if let error = error {
-                    print("Failed to update user: \(error.localizedDescription)")
-                    completion(false)
-                } else {
-                    completion(true)
-                }
+    public func updateUser(withEmail safeEmail: String, name: String?, bio: String?, pronouns: String?, completion: @escaping (Bool) -> Void) {
+        print("update function called")
+        
+        var updates: [String: Any] = [:]
+        
+        // Add the properties to be updated to the updates dictionary
+        if let name = name {
+            updates["name"] = name
+        }
+        if let bio = bio {
+            updates["bio"] = bio
+        }
+        if let pronouns = pronouns {
+            updates["pronouns"] = pronouns
+        }
+        
+        // Update user details in the "users" node
+        database.child("users").child(safeEmail).updateChildValues(updates) { error, _ in
+            if let error = error {
+                print("Failed to update user: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                completion(true)
             }
         }
-    
+    }
     public func insertUser(with user: User)
     {
-        database.child(user.safeEmail).setValue([
-            "id": user.id.uuidString,
-            "username": user.username ?? "",
-            "password": user.password,
-            "email": user.email,
-            "name": user.name ?? "",
-            "pronouns": user.pronouns ?? "",
-            "bio": user.bio ?? "",
-            "image": user.image ?? "",
-            "genres": user.userGenres?.map { $0.rawValue } ?? [],
-            "bookclubs": user.bookclubs?.map { $0.toDictionary() } ?? [],
-            "friends": user.friends?.map { $0.toDictionary() } ?? []
-        ])
+        var userDict: [String: Any] = [:]
+            
+            userDict["id"] = user.id.uuidString
+            userDict["username"] = user.username ?? ""
+            userDict["email"] = user.email
+            userDict["name"] = user.name ?? ""
+            userDict["pronouns"] = user.pronouns ?? ""
+            userDict["bio"] = user.bio ?? ""
+            userDict["image"] = user.image ?? ""
+            
+            if let userGenres = user.userGenres {
+                userDict["genres"] = userGenres.map { $0.rawValue }
+            } else {
+                userDict["genres"] = []
+            }
+            
+            if let bookclubs = user.bookclubs {
+                userDict["bookclubs"] = bookclubs.map { $0.toDictionary() }
+            } else {
+                userDict["bookclubs"] = []
+            }
+            
+            if let friends = user.friends {
+                userDict["friends"] = friends.map { $0.toDictionary() }
+            } else {
+                userDict["friends"] = []
+            }
+            
+            database.child(user.safeEmail).setValue(userDict)
     }
         
     
