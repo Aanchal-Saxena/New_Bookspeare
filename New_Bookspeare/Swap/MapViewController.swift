@@ -4,53 +4,22 @@
 //
 //  Created by Katyayani Singh on 02/06/24.
 //
-import CoreLocation
-import MapKit
+
 import UIKit
-
+import MapKit
+import CoreLocation
 class MapViewController: UIViewController {
-
-    private let map: MKMapView = {
-       let map = MKMapView()
-        return map
-    }()
+    
+    @IBOutlet weak var mapView: MKMapView!
+    fileprivate let locationManager:CLLocationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(map)
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.startUpdatingLocation()
         
-        
-        LocationManager.shared.getUserLocation { [weak self] location in
-            DispatchQueue.main.async {
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.addMapPin(with: location)
-            }
-        }
-        // Do any additional setup after loading the view.
+        mapView.showsUserLocation = true
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        map.frame = view.bounds
-    }
-    func addMapPin(with location: CLLocation){
-        let pin = MKPointAnnotation()
-        pin.coordinate = location.coordinate
-        map.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.5)), animated: true)
-        map.addAnnotation(pin)
-        LocationManager.shared.resolveLocationName(with: location) { [weak self] locationName in
-            self?.title = locationName
-        }
-        
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
