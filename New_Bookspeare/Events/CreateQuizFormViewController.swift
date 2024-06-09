@@ -66,14 +66,14 @@ class CreateQuizFormViewController: UIViewController{
     @IBAction func editingDidend(_ sender: UITextField) {
         
         if sender == quizNameTextField {
-            quizName = sender.text
+            self.quizName = sender.text
         }
         else if sender == quizdescriptionTextfield {
-            quizDescription = sender.text
+            self.quizDescription = sender.text
         }
         else if sender == numberOfQuesTextField {
             if let text = sender.text, let number = Int(text) {
-                numberOfQuestions = number
+                self.numberOfQuestions = number
                 print("Number of Questions Text Field: \(numberOfQuestions ?? -1)")
             }
             else {

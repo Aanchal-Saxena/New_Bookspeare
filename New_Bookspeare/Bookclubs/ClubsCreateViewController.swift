@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 
 
 class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    var bookclubs = DataController.shared.getBookclubs()
-    var bookclub: BookClub?
+    var exitingBookclubs: [BookClub] = []
+   
     
     @IBOutlet weak var bookclubImage: UIImageView!
     
@@ -31,6 +32,7 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchExistingBookclubs()
         
         
         bookclubImage.isUserInteractionEnabled = true
@@ -50,6 +52,23 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
         updateCreateButtonState()
         
         
+    }
+    
+    func fetchExistingBookclubs()
+    {
+        let email = UserDefaults.standard.value(forKey: "email")
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] result in
+            switch result {
+            case .success(let bc):
+                self?.exitingBookclubs.append(contentsOf: bc)
+                
+                 // Ensure the main bookclubs array is also updated
+            case .failure(let error):
+                print("Failed to fetch book clubs: \(error)")
+            }
+            
+        }
     }
     
     @IBAction func textEditingEnded(_ sender: Any) {
@@ -136,29 +155,47 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func createButtonTapped(_ sender: UIButton) {
         let name = nameTextField.text ?? ""
-        let description = descriptionTextField.text ?? ""
-        let genre = genreTextField.text ?? ""
-        let genreEnum = Genre(rawValue: genre) ?? .Fiction
-        //let image = UIImage(named: "one")
-        let bookclub = BookClub(name: name, image: "one", genre: [genreEnum] ,description: description, members: 1)
-        
-        bookclubs.append(bookclub)
-        
-        guard let email = UserDefaults.standard.value(forKey: "email") else {
-                        return  }
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        DataController.shared.updateBookClubs(forEmail: safeEmail, bookClubs: bookclubs) { success in
-                    if success {
-                        print("Book club updated successfully")
-                        // Handle success (e.g., navigate back, show success message, etc.)
-                    } else {
-                        print("Failed to update book club")
-                        // Handle failure (e.g., show error message)
-                    }
+            let description = descriptionTextField.text ?? ""
+            let genre = genreTextField.text ?? ""
+            let genreEnum = Genre(rawValue: genre) ?? .Fiction
+            let bookclub = BookClub(name: name, image: "one", genre: [genreEnum], description: description, members: 1)
+            
+            exitingBookclubs.append(bookclub)
+            
+            guard let email = UserDefaults.standard.value(forKey: "email") else {
+                return
+            }
+            let safeEmail = DataController.safeEmail(email: email as! String)
+            
+            let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs")
+            
+            let bookclubDicts = exitingBookclubs.map { $0.toDictionary() }
+            
+            bookclubRef.setValue(bookclubDicts) { error, _ in
+                if let error = error {
+                    print("Failed to update book clubs: \(error.localizedDescription)")
+                } else {
+                    print("Book clubs updated successfully.")
                 }
-
-        
-    }
+            }
+        }
     
     
 }
+
+
+
+
+
+
+
+
+//DataController.shared.updateBookClubs(forEmail: safeEmail, bookClubs: bookclubs) { success in
+//            if success {
+//                print("Book club updated successfully")
+//                // Handle success (e.g., navigate back, show success message, etc.)
+//            } else {
+//                print("Failed to update book club")
+//                // Handle failure (e.g., show error message)
+//            }
+//        }

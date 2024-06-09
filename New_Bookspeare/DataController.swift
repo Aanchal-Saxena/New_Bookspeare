@@ -111,36 +111,6 @@ class DataController {
     
     
     
-    func observeBookClubsChanges() {
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
-            return
-        }
-        let safeEmail = DataController.safeEmail(email: email)
-        
-        // Observe changes to the book clubs data
-        database.child("users").child(safeEmail).child("bookclubs").observe(.value) { [weak self] snapshot in
-            guard let bookClubsDict = snapshot.value as? [String: [String: Any]] else {
-                return
-            }
-            
-            // Parse each book club from the snapshot
-            let bookClubs: [BookClub] = bookClubsDict.compactMap { key, value in
-                // Assuming you have a function to parse BookClub from dictionary
-                return BookClub(name: value["name"] as? String ?? "",
-                                image: value["image"] as? String ?? "",
-                                genre: (value["genre"] as? [String])?.compactMap { Genre(rawValue: $0) },
-                                description: value["description"] as? String,
-                                members: value["members"] as? Int)
-            }
-            
-            // Update bookClubsForSection1 with the fetched data
-            self?.bookClubsForSection1 = bookClubs
-            
-            // Post notification that book clubs data is updated
-            NotificationCenter.default.post(name: DataController.bookClubsUpdatedNotification, object: nil)
-        }
-    }
-
     
     public func updateUser(withEmail safeEmail: String, name: String?, bio: String?, pronouns: String?, completion: @escaping (Bool) -> Void) {
         print("update function called")
@@ -222,7 +192,7 @@ class DataController {
         loadDummySlider()
         loadDummyFilterButton()
         loadDummyUserData()
-        observeBookClubsChanges()
+        
     }
     
     func loadDummyUserData() {
@@ -270,26 +240,23 @@ class DataController {
     }
     
     func loadDummyBookclub() {
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
-                    return
-                }
-                
-                fetchBookClubs(forEmail: email) { [weak self] result in
-                    switch result {
-                    case .success(let bookClubs):
-                        self?.bookClubsForSection1 = bookClubs
-                        print(self!.bookClubsForSection1)
-                        self?.bookclubs = bookClubs  // Ensure the main bookclubs array is also updated
-                    case .failure(let error):
-                        print("Failed to fetch book clubs: \(error)")
-                    }
-        }
+        
+        let bc1 = BookClub(name: "Bookclub 1", image: "one")
+        let bc2 = BookClub(name: "Bookclub 1", image: "two")
+        let bc3 = BookClub(name: "Bookclub 1", image: "three")
+        let bc4 = BookClub(name: "Bookclub 1", image: "four")
+        let bc5 = BookClub(name: "Bookclub 1", image: "five")
+        bookclubs.append(contentsOf: [bc1, bc2, bc3, bc4, bc5])
+        
     }
     
     func loadDummySwap() {
         let swap1 = Swap(bookTitle: "Card 1", image: "one")
+        let swap2 = Swap(bookTitle: "Card 1", image: "one")
+        let swap3 = Swap(bookTitle: "Card 1", image: "one")
+        let swap4 = Swap(bookTitle: "Card 1", image: "one")
         
-        swap.append(swap1)
+        swap.append(contentsOf: [swap1,swap2, swap3, swap4])
     }
     
     func loadDummySlider() {
@@ -299,9 +266,12 @@ class DataController {
     }
     
     func loadDummyEvents() {
-        let event1 = Event(title: "Book Event", images: "1")
+        let event1 = Event(title: "Book Event", images: "one")
+        let event2 = Event(title: "Book Event", images: "two")
+        let event3 = Event(title: "Book Event", images: "three")
+        let event4 = Event(title: "Book Event", images: "four")
         
-        events.append(event1)
+        events.append(contentsOf: [event1, event2, event3, event4])
     }
     
     

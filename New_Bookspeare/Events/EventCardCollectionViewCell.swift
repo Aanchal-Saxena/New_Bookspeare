@@ -52,7 +52,7 @@ class EventCardCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
         //contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
     }
-//    
+//
 //    func setupViews() {
 //        myImage.contentMode = .scaleToFill
 //            addSubview(myImage)
