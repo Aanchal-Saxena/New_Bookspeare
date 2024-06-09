@@ -251,7 +251,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         
         
         
-        buttonCollectionView.dataSource = self
+        buttonCollectionView?.dataSource = self
         chatCollectionView.dataSource = self
         chatCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         exploreView1.isHidden = true

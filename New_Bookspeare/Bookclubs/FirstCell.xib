@@ -10,10 +10,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="First" id="gpa-20-l1A" customClass="FirstCell" customModule="New_Bookspeare" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="257" height="264"/>
+            <rect key="frame" x="0.0" y="0.0" width="395" height="273"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="257" height="264"/>
+                <rect key="frame" x="0.0" y="0.0" width="395" height="273"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zL0-Vg-FtZ">
@@ -42,20 +42,20 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n0N-KF-7CS">
-                        <rect key="frame" x="9" y="8" width="239" height="161"/>
+                        <rect key="frame" x="9" y="8" width="376" height="161"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="PY3-0k-UYb"/>
-            <size key="customSize" width="257" height="264"/>
+            <size key="customSize" width="395" height="273"/>
             <connections>
                 <outlet property="bookclubDescription" destination="CLP-Ex-G8n" id="vzZ-dw-9My"/>
                 <outlet property="bookclubMembers" destination="zL0-Vg-FtZ" id="o3K-ct-gnl"/>
                 <outlet property="bookclubName" destination="dgx-s1-Tgn" id="2QI-pH-0vT"/>
                 <outlet property="imageView" destination="n0N-KF-7CS" id="CaN-wb-v5i"/>
             </connections>
-            <point key="canvasLocation" x="206.87022900763358" y="88.732394366197184"/>
+            <point key="canvasLocation" x="312.21374045801525" y="91.901408450704224"/>
         </collectionViewCell>
     </objects>
     <resources>
