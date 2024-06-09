@@ -11,12 +11,11 @@ import FirebaseStorage
 import FirebaseDatabaseInternal
 
 
-extension Notification.Name {
-    static let bookclubsUpdated = Notification.Name("bookclubsUpdated")
-}
 
 
 class DataController {
+    
+    static let bookClubsUpdatedNotification = Notification.Name("bookClubsUpdated")
     
     private var bookclubs: [BookClub] = []
     private var groupchats: [GroupChat] = []
@@ -110,6 +109,39 @@ class DataController {
         }
     }
     
+    
+    
+    func observeBookClubsChanges() {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        // Observe changes to the book clubs data
+        database.child("users").child(safeEmail).child("bookclubs").observe(.value) { [weak self] snapshot in
+            guard let bookClubsDict = snapshot.value as? [String: [String: Any]] else {
+                return
+            }
+            
+            // Parse each book club from the snapshot
+            let bookClubs: [BookClub] = bookClubsDict.compactMap { key, value in
+                // Assuming you have a function to parse BookClub from dictionary
+                return BookClub(name: value["name"] as? String ?? "",
+                                image: value["image"] as? String ?? "",
+                                genre: (value["genre"] as? [String])?.compactMap { Genre(rawValue: $0) },
+                                description: value["description"] as? String,
+                                members: value["members"] as? Int)
+            }
+            
+            // Update bookClubsForSection1 with the fetched data
+            self?.bookClubsForSection1 = bookClubs
+            
+            // Post notification that book clubs data is updated
+            NotificationCenter.default.post(name: DataController.bookClubsUpdatedNotification, object: nil)
+        }
+    }
+
+    
     public func updateUser(withEmail safeEmail: String, name: String?, bio: String?, pronouns: String?, completion: @escaping (Bool) -> Void) {
         print("update function called")
         var updates: [String: Any] = [:]
@@ -190,6 +222,7 @@ class DataController {
         loadDummySlider()
         loadDummyFilterButton()
         loadDummyUserData()
+        observeBookClubsChanges()
     }
     
     func loadDummyUserData() {
@@ -245,8 +278,8 @@ class DataController {
                     switch result {
                     case .success(let bookClubs):
                         self?.bookClubsForSection1 = bookClubs
+                        print(self!.bookClubsForSection1)
                         self?.bookclubs = bookClubs  // Ensure the main bookclubs array is also updated
-                        NotificationCenter.default.post(name: .bookclubsUpdated, object: nil) // Notify that bookclubs have been updated
                     case .failure(let error):
                         print("Failed to fetch book clubs: \(error)")
                     }
@@ -271,6 +304,9 @@ class DataController {
         events.append(event1)
     }
     
+    
+    func getBookclubsection1() -> [BookClub] { bookClubsForSection1}
+    func getBookclubsection1(with index: Int) -> BookClub { bookClubsForSection1[index] }
     func getQuiz() -> [Quiz] { quiz }
     func getUser() -> [User] { user }
     func getUser(with index: Int) -> User { user[index] }

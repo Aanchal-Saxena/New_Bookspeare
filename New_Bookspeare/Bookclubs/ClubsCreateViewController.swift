@@ -49,8 +49,6 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
         createButton.isEnabled = false
         updateCreateButtonState()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(bookclubsUpdated), name: .bookclubsUpdated, object: nil)
-        
         
     }
     

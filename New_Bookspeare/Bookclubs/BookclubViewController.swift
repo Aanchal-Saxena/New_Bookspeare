@@ -77,7 +77,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         {
             switch section {
             case 0:
-                return DataController.shared.getBookclubs().count
+                return DataController.shared.getBookclubsection1().count
             case 1:
                 return DataController.shared.getBookclubs().count
             case 2:
@@ -118,7 +118,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "First", for: indexPath) as! FirstCell
                 
                 
-                let bc = DataController.shared.getBookclub(with: indexPath.row)
+                let bc = DataController.shared.getBookclubsection1(with: indexPath.row)
                 cell.bookclubName.text = bc.name
                 // Convert integer to string for bookclubMembers
                 cell.bookclubMembers.text = "\(bc.members)"
@@ -240,28 +240,12 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         }
         
     }
- 
-    
-   
-    
-    private func validateAuth()
-    {
-        if FirebaseAuth.Auth.auth().currentUser != nil
-        {
-            let vc = RegisteredViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: false)
-        }
 
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        exploreCollectionView.reloadData()
-        //validateAuth()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(bookClubsUpdated), name: DataController.bookClubsUpdatedNotification, object: nil)
         
         
         buttonCollectionView.dataSource = self
@@ -286,7 +270,10 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             exploreCollectionView.register(HeaderBookclubCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionView")
         }
     
-    
+    @objc func bookClubsUpdated() {
+            exploreCollectionView.reloadData() // Reload collection view when book clubs are updated
+        }
+
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

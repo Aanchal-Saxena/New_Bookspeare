@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     var userEmail: String?
@@ -39,7 +40,13 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImageUrl()
+        fetchUserData()
+        if let profileUrlString = UserDefaults.standard.value(forKey: "profile_picture_url") as? String,
+               let profileUrl = URL(string: profileUrlString) {
+                downloadImage(imageView: profileImage, url: profileUrl)
+            } else {
+                print("Error: Profile picture URL is not a valid string or could not be converted to URL.")
+            }
         Label.text = "BookClubs"
         
         // Edit button setup
@@ -69,6 +76,105 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadView()
+        
+    }
+    
+    func reloadView() {
+        fetchUserData() // Fetch the latest user data
+        
+        if let profileUrlString = UserDefaults.standard.value(forKey: "profile_picture_url") as? String,
+               let profileUrl = URL(string: profileUrlString) {
+                downloadImage(imageView: profileImage, url: profileUrl)
+            } else {
+                print("Error: Profile picture URL is not a valid string or could not be converted to URL.")
+    }
+        
+    }
+    
+    
+    func fetchUserData() {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("No email found in UserDefaults.")
+            return
+        }
+        
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        // Get references to the database paths
+        let bioRef = Database.database().reference().child(safeEmail).child("bio")
+        let nameRef = Database.database().reference().child(safeEmail).child("name")
+        let pronounsRef = Database.database().reference().child(safeEmail).child("pronouns")
+        let imageRef = Database.database().reference().child(safeEmail).child("image")
+        
+        // Fetch data from database
+        bioRef.observeSingleEvent(of: .value) { snapshot in
+            if let bio = snapshot.value as? String {
+                // Bio fetched successfully
+
+                self.updateBioLabel(with: bio)
+                print("Bio: \(bio)")
+            } else {
+                print("Bio not found.")
+            }
+        }
+        
+        nameRef.observeSingleEvent(of: .value) { snapshot in
+            if let name = snapshot.value as? String {
+                // Name fetched successfully
+                self.updateNameLabel(with: name)
+                print("Name: \(name)")
+            } else {
+                print("Name not found.")
+            }
+        }
+        
+        
+        pronounsRef.observeSingleEvent(of: .value) { snapshot in
+            if let pronouns = snapshot.value as? String {
+                // Pronouns fetched successfully
+                print("Pronouns: \(pronouns)")
+            } else {
+                print("Pronouns not found.")
+            }
+        }
+        
+        imageRef.observeSingleEvent(of: .value) { snapshot in
+                if let urlString = snapshot.value as? String, let url = URL(string: urlString) {
+                    // Image URL fetched successfully
+                    self.updateProfileImage(with: url)
+                    print("Image URL: \(url)")
+                } else {
+                    print("Image URL not found.")
+                }
+        }
+    }
+    
+    func updateProfileImage(with url: URL) {
+        DispatchQueue.main.async {
+            self.downloadImage(imageView: self.profileImage, url: url)
+        }
+    }
+    
+    func updateNameLabel(with name: String) {
+        DispatchQueue.main.async {
+            self.nameLabel.text = name
+        }
+    }
+
+    func updateBioLabel(with bio: String) {
+        DispatchQueue.main.async {
+            self.bioLabel.text = bio
+        }
+    }
+    
+    
+
+    func reloadUserData() {
+        fetchUserData() // Fetch the latest user data
+    }
     
     @IBAction func unwindToMyProfileViewController(_ segue: UIStoryboardSegue) {
     
@@ -76,26 +182,26 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
        
     
-    func getImageUrl() {
-            guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
-                print("No email found in UserDefaults.")
-                return
-            }
-            let safeEmail = DataController.safeEmail(email: email)
-            let filename = safeEmail + "_profil_picture.png"
-            let path = "images/\(filename)"
-            
-            StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let url):
-                    print("Image URL fetched: \(url)")
-                    self.downloadImage(imageView: self.profileImage, url: url)
-                case .failure(let error):
-                    print("Failed to get download url: \(error)")
-                }
-            })
-        }
+//    func getImageUrl() {
+//            guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+//                print("No email found in UserDefaults.")
+//                return
+//            }
+//            let safeEmail = DataController.safeEmail(email: email)
+//            let filename = safeEmail + "_profil_picture.png"
+//            let path = "images/\(filename)"
+//            
+//            StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
+//                guard let self = self else { return }
+//                switch result {
+//                case .success(let url):
+//                    print("Image URL fetched: \(url)")
+//                    self.downloadImage(imageView: self.profileImage, url: url)
+//                case .failure(let error):
+//                    print("Failed to get download url: \(error)")
+//                }
+//            })
+//        }
     func downloadImage(imageView: UIImageView, url: URL)
     {
         URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in

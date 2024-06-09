@@ -88,6 +88,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
        
         print("save button tapped")
+        
     
 //        performSegue(withIdentifier: "unwindToMyProfileViewController", sender: self)
     }
@@ -98,6 +99,44 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     
     
     @IBAction func editingDidEnd(_ sender: UITextField) {
+        
+        guard let email = UserDefaults.standard.value(forKey: "email") else {
+                return  }
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        
+        
+        let name = nameTextField.text ?? ""
+        let bio = bioTextField.text ?? ""
+        let pronouns = pronounsTextField.text ?? ""
+        
+        let bioRef = Database.database().reference().child(safeEmail).child("bio")
+        let nameRef = Database.database().reference().child(safeEmail).child("name")
+        let pronounsRef = Database.database().reference().child(safeEmail).child("pronouns")
+        
+        
+        bioRef.setValue(bio) { error, _ in
+                if let error = error {
+                    print("Failed to update bio: \(error.localizedDescription)")
+                } else {
+                    print("Bio updated successfully.")
+                }
+        }
+            
+        nameRef.setValue(name) { error, _ in
+                if let error = error {
+                    print("Failed to update name: \(error.localizedDescription)")
+                } else {
+                    print("Name updated successfully.")
+                }
+        }
+            
+        pronounsRef.setValue(pronouns) { error, _ in
+                if let error = error {
+                    print("Failed to update pronouns: \(error.localizedDescription)")
+                } else {
+                    print("Pronouns updated successfully.")
+                }
+        }
 
         
     }
@@ -171,24 +210,49 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
             makeCircular(imageView: editImageChanged)
             
             
+            guard let email = UserDefaults.standard.value(forKey: "email") else {
+                    return  }
+            let safeEmail = DataController.safeEmail(email: email as! String)
+           
+            
+            
             guard let image = editImageChanged.image,
                   let data = image.pngData() else
             {
                 return
             }
             
-            let email = UserDefaults.standard.value(forKey: "email")
-            let safeEmail = DataController.safeEmail(email: email as! String)
             let fileName = DataController.profilePictureUrl(safeEmail: safeEmail)
             StorageManager.shared.uploadProfilePicure(with: data, filename: fileName, completion: { result in
                 switch result {
                 case .success(let downloadUrl):
                     UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                    let imageRef = Database.database().reference().child(safeEmail).child("image")
+                    
+                    
+                    imageRef.setValue(downloadUrl) { error, _ in
+                            if let error = error {
+                                print("Failed to update bio: \(error.localizedDescription)")
+                            } else {
+                                print("Profile Url updated successfully.")
+                            }
+                    }
                     print(downloadUrl)
                 case .failure(let error):
                     print("Storage manager error: \(error)")
                 }
             })
+            
+//            func downloadImage(imageView: UIImageView, url: URL)
+//            {
+//                 URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in guard let data = data, error == nil else { return }
+//            
+//                DispatchQueue.main.async {
+//                    let image = UIImage(data: data)
+//                    imageView.image = image }
+//            
+//                }).resume()
+//            }
 
                   
         }
@@ -206,6 +270,6 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         imageView.layer.borderColor = UIColor.gray.cgColor
     }
  
-    }
+}
     
 
