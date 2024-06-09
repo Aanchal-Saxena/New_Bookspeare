@@ -10,8 +10,6 @@ import UIKit
 class SwappedViewController: UIViewController {
     
     
-    @IBOutlet weak var segmented: UISegmentedControl!
-    
     // Outlet for cards
     @IBOutlet var cardCollectionView: UICollectionView!
     // Autoslider outlets
