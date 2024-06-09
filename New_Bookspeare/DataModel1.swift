@@ -9,6 +9,20 @@ import Foundation
 import UIKit
 
 
+extension Array {
+    func compactMap<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+        var result: [T] = []
+        for element in self {
+            if let transformed = try transform(element) {
+                result.append(transformed)
+            }
+        }
+        return result
+    }
+}
+
+
+
 struct Friend: Codable {
     var name: String
     var email: String

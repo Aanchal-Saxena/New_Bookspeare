@@ -10,7 +10,12 @@ import FirebaseDatabase
 import FirebaseStorage
 import FirebaseDatabaseInternal
 
+
+
+
 class DataController {
+    
+    static let bookClubsUpdatedNotification = Notification.Name("bookClubsUpdated")
     
     private var bookclubs: [BookClub] = []
     private var groupchats: [GroupChat] = []
@@ -24,6 +29,7 @@ class DataController {
     var user: [User] = []
     var quiz: [Quiz] = []
     var genres: [Genre] = [.Fantasy, .Fiction, .Mystery]
+    var bookClubsForSection1: [BookClub] = []
     
     static let shared = DataController() // singleton
     private let database = Database.database().reference()
@@ -42,6 +48,10 @@ class DataController {
     
     static func profilePictureUrl(safeEmail: String) -> String {
         return "\(safeEmail)_profile_picture.png"
+    }
+    
+    static func bookclubPictureUrl(safeEmail: String) -> String {
+        return "\(safeEmail)_bookclub_picture.png"
     }
     
     static func safeEmail(email: String) -> String {
@@ -98,6 +108,39 @@ class DataController {
             }
         }
     }
+    
+    
+    
+    func observeBookClubsChanges() {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        // Observe changes to the book clubs data
+        database.child("users").child(safeEmail).child("bookclubs").observe(.value) { [weak self] snapshot in
+            guard let bookClubsDict = snapshot.value as? [String: [String: Any]] else {
+                return
+            }
+            
+            // Parse each book club from the snapshot
+            let bookClubs: [BookClub] = bookClubsDict.compactMap { key, value in
+                // Assuming you have a function to parse BookClub from dictionary
+                return BookClub(name: value["name"] as? String ?? "",
+                                image: value["image"] as? String ?? "",
+                                genre: (value["genre"] as? [String])?.compactMap { Genre(rawValue: $0) },
+                                description: value["description"] as? String,
+                                members: value["members"] as? Int)
+            }
+            
+            // Update bookClubsForSection1 with the fetched data
+            self?.bookClubsForSection1 = bookClubs
+            
+            // Post notification that book clubs data is updated
+            NotificationCenter.default.post(name: DataController.bookClubsUpdatedNotification, object: nil)
+        }
+    }
+
     
     public func updateUser(withEmail safeEmail: String, name: String?, bio: String?, pronouns: String?, completion: @escaping (Bool) -> Void) {
         print("update function called")
@@ -179,6 +222,7 @@ class DataController {
         loadDummySlider()
         loadDummyFilterButton()
         loadDummyUserData()
+        observeBookClubsChanges()
     }
     
     func loadDummyUserData() {
@@ -226,9 +270,20 @@ class DataController {
     }
     
     func loadDummyBookclub() {
-        let bc1 = BookClub(name: "Detectives club", image: "1", genre: genres, description: "A community for book lovers", members: 100)
-        
-        bookclubs.append(bc1)
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+                    return
+                }
+                
+                fetchBookClubs(forEmail: email) { [weak self] result in
+                    switch result {
+                    case .success(let bookClubs):
+                        self?.bookClubsForSection1 = bookClubs
+                        print(self!.bookClubsForSection1)
+                        self?.bookclubs = bookClubs  // Ensure the main bookclubs array is also updated
+                    case .failure(let error):
+                        print("Failed to fetch book clubs: \(error)")
+                    }
+        }
     }
     
     func loadDummySwap() {
@@ -249,6 +304,9 @@ class DataController {
         events.append(event1)
     }
     
+    
+    func getBookclubsection1() -> [BookClub] { bookClubsForSection1}
+    func getBookclubsection1(with index: Int) -> BookClub { bookClubsForSection1[index] }
     func getQuiz() -> [Quiz] { quiz }
     func getUser() -> [User] { user }
     func getUser(with index: Int) -> User { user[index] }
