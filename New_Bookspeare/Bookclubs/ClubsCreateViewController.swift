@@ -10,7 +10,7 @@ import FirebaseDatabase
 
 
 
-class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
     var exitingBookclubs: [BookClub] = []
    

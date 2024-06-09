@@ -111,6 +111,96 @@ class DataController {
     
     
     
+
+    public func updateSwappedBooks(forEmail email: String, swappedBooks: [Swap], completion: @escaping (Bool) -> Void) {
+        let safeEmail = DataController.safeEmail(email: email)
+        let swappedBooksDict = swappedBooks.map { $0.toDictionary() }
+        
+        database.child(safeEmail).child("swappedBooks").setValue(swappedBooksDict) { error, _ in
+            if let error = error {
+                print("Failed to update swapped books: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
+
+
+    public func fetchSwappedBooks(forEmail email: String, completion: @escaping (Result<[Swap], Error>) -> Void) {
+        let safeEmail = DataController.safeEmail(email: email)
+        database.child(safeEmail).child("swappedBooks").observeSingleEvent(of: .value) { snapshot in
+            guard let swappedBooksArray = snapshot.value as? [[String: Any]] else {
+                completion(.failure(DatabaseError.failedToFetch))
+                return
+            }
+            
+            let swappedBooks: [Swap] = swappedBooksArray.compactMap { dict in
+                guard
+                    let bookTitle = dict["bookTitle"] as? String,
+                    let description = dict["description"] as? String,
+                    let locationDict = dict["location"] as? [String: Double],
+                    let latitude = locationDict["latitude"],
+                    let longitude = locationDict["longitude"],
+                    let image = dict["image"] as? String
+                else {
+                    return nil
+                }
+                
+                let location = Location(latitude: latitude, longitude: longitude)
+                return Swap(bookTitle: bookTitle, description: description, location: location, image: image)
+            }
+            
+            completion(.success(swappedBooks))
+        }
+    }
+    
+    public func updateEvents(forEmail email: String, events: [Event], completion: @escaping (Bool) -> Void) {
+        let safeEmail = DataController.safeEmail(email: email)
+        let eventsDict = events.map { $0.toDictionary() }
+        
+        database.child(safeEmail).child("events").setValue(eventsDict) { error, _ in
+            if let error = error {
+                print("Failed to update events: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
+
+   
+    public func fetchEvents(forEmail email: String, completion: @escaping (Result<[Event], Error>) -> Void) {
+        let safeEmail = DataController.safeEmail(email: email)
+        database.child("users").child(safeEmail).child("events").observeSingleEvent(of: .value) { snapshot in
+            guard let eventsArray = snapshot.value as? [[String: Any]] else {
+                completion(.failure(DatabaseError.failedToFetch))
+                return
+            }
+            
+            let events: [Event] = eventsArray.compactMap { dict in
+                guard
+                    let title = dict["title"] as? String,
+                    let images = dict["images"] as? String,
+                    let description = dict["description"] as? String,
+                    let address = dict["address"] as? String,
+                    let registeredMembers = dict["registeredMembers"] as? Int
+                else {
+                    return nil
+                }
+                
+                return Event(title: title, images: images, description: description, registeredMembers: registeredMembers, address: address)
+            }
+            
+            completion(.success(events))
+        }
+    }
+
+
+
+    
+    
+    
     
     public func updateUser(withEmail safeEmail: String, name: String?, bio: String?, pronouns: String?, completion: @escaping (Bool) -> Void) {
         print("update function called")
@@ -165,6 +255,11 @@ class DataController {
             userDict["friends"] = friends.map { $0.toDictionary() }
         } else {
             userDict["friends"] = []
+        }
+        if let swappedBooks = user.swappedBooks {
+                userDict["swappedBooks"] = swappedBooks.map { $0.toDictionary() }
+        } else {
+                userDict["swappedBooks"] = []
         }
         
         database.child(user.safeEmail).setValue(userDict)
@@ -251,10 +346,15 @@ class DataController {
     }
     
     func loadDummySwap() {
-        let swap1 = Swap(bookTitle: "Card 1", image: "one")
-        let swap2 = Swap(bookTitle: "Card 1", image: "one")
-        let swap3 = Swap(bookTitle: "Card 1", image: "one")
-        let swap4 = Swap(bookTitle: "Card 1", image: "one")
+        let location1 = Location(latitude: 40.7128, longitude: -74.0060) // New York
+        let location2 = Location(latitude: 34.0522, longitude: -118.2437) // Los Angeles
+        let location3 = Location(latitude: 51.5074, longitude: -0.1278) // London
+        let location4 = Location(latitude: 48.8566, longitude: 2.3522) // Paris
+
+        let swap1 = Swap(bookTitle: "Card 1", description: "Description for card 1", location: location1, image: "one")
+        let swap2 = Swap(bookTitle: "Card 2", description: "Description for card 2", location: location2, image: "two")
+        let swap3 = Swap(bookTitle: "Card 3", description: "Description for card 3", location: location3, image: "three")
+        let swap4 = Swap(bookTitle: "Card 4", description: "Description for card 4", location: location4, image: "four")
         
         swap.append(contentsOf: [swap1,swap2, swap3, swap4])
     }
@@ -266,10 +366,10 @@ class DataController {
     }
     
     func loadDummyEvents() {
-        let event1 = Event(title: "Book Event", images: "one")
-        let event2 = Event(title: "Book Event", images: "two")
-        let event3 = Event(title: "Book Event", images: "three")
-        let event4 = Event(title: "Book Event", images: "four")
+        let event1 = Event(title: "Book Event 1", images: "one", description: "A thrilling book event in New York", registeredMembers: 100, address: "123 Main St, New York, NY")
+        let event2 = Event(title: "Book Event 2", images: "two", description: "A thrilling book event in Los Angeles", registeredMembers: 150, address: "456 Elm St, Los Angeles, CA")
+        let event3 = Event(title: "Book Event 3", images: "three", description: "A thrilling book event in London", registeredMembers: 200, address: "789 King St, London, UK")
+        let event4 = Event(title: "Book Event 4", images: "four", description: "A thrilling book event in Paris", registeredMembers: 250, address: "1011 Rue de Paris, Paris, France")
         
         events.append(contentsOf: [event1, event2, event3, event4])
     }

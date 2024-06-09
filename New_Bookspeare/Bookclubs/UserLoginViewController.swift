@@ -12,7 +12,7 @@ import AuthenticationServices
 import CryptoKit
 import FirebaseFirestore
 
-class UserLoginViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+class UserLoginViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding , UITextFieldDelegate{
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         self.view.window!
     }

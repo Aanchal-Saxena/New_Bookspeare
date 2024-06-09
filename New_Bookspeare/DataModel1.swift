@@ -84,6 +84,7 @@ struct User: Codable {
     var userGenres: [Genre]?
     var bio: String?
     var friends: [Friend]?
+    var swappedBooks: [Swap]?
     
     var safeEmail: String {
         var safeEmail = email.replacingOccurrences(of: ".", with: "-")
@@ -106,18 +107,71 @@ struct User: Codable {
             "bio": bio ?? "",
             "bookclubs": bookclubs?.map { $0.toDictionary() } ?? [],
             "userGenres": userGenres?.map { $0.rawValue } ?? [],
-            "friends": friends?.map { $0.toDictionary() } ?? []
+            "friends": friends?.map { $0.toDictionary() } ?? [],
+            "swappedBooks": swappedBooks?.map { $0.toDictionary() } ?? []
         ]
     }
 }
 
+struct Location: Codable {
+    var latitude: Double
+    var longitude: Double
+    
+    func toDictionary() -> [String: Double] {
+        return [
+            "latitude": latitude,
+            "longitude": longitude
+        ]
+    }
+}
+
+class Swap: Codable {
+    var bookTitle: String
+    var description: String
+    var location: Location
+    var image: String
+    
+    init(bookTitle: String, description: String, location: Location, image: String) {
+        self.bookTitle = bookTitle
+        self.description = description
+        self.location = location
+        self.image = image
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "bookTitle": bookTitle,
+            "description": description,
+            "location": location.toDictionary(),
+            "image": image
+        ]
+    }
+}
+
+
 class Event: Codable {
     let title: String
     let images: String
+    var description: String
+    var registeredMembers: Int
+    var address: String
     
-    init(title: String, images: String) {
+    init(title: String, images: String, description: String, registeredMembers: Int, address: String) {
         self.title = title
         self.images = images
+        self.description = description
+        self.registeredMembers = registeredMembers
+        self.address = address
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "title": title,
+            "images": images,
+            "description": description,
+            "address": address,
+            "registeredMembers": registeredMembers
+        ]
     }
 }
 
@@ -188,15 +242,7 @@ struct Message: Identifiable, Codable {
     var timestamp: Date
 }
 
-class Swap: Codable {
-    var bookTitle: String
-    var image: String
-    
-    init(bookTitle: String, image: String) {
-        self.bookTitle = bookTitle
-        self.image = image
-    }
-}
+
 
 class Giveaway: Codable {
     var user: String

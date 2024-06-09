@@ -22,7 +22,7 @@ extension UITextField {
     }
 }
 
-class RegisteredViewController: UIViewController {
+class RegisteredViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var nameTextField: UITextField!
     

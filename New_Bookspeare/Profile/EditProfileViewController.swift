@@ -11,7 +11,7 @@ import FirebaseAuth
 
 
 
-class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
     
     
