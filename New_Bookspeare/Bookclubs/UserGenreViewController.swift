@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class UserGenreViewController: UIViewController {
     
@@ -61,11 +62,33 @@ class UserGenreViewController: UIViewController {
         
         sender.backgroundColor = UIColor(red: 245/255, green: 241/255, blue: 224/255, alpha: 1.0)
         sender.titleLabel?.textColor = .black
+        
+        selectedGenre.append(sender.titleLabel?.text ?? "")
+        
+        guard let email = UserDefaults.standard.value(forKey: "email") else { return  }
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        
+        let genreRef = Database.database().reference().child(safeEmail).child("userGenres")
+        genreRef.setValue(selectedGenre) { error, _ in
+                if let error = error {
+                    print("Failed to update bio: \(error.localizedDescription)")
+                } else {
+                    print("Bio updated successfully.")
+                }
+        }
         selectedGenre.append(sender.titleLabel?.text ?? "")
         print(selectedGenre)
-        self.performSegue(withIdentifier: "showTabbar", sender: nil)
         
     }
+    
+    
+    
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "showTabbar", sender: nil)
+    }
+    
+    
     
     func buttonProperties(button: UIButton)
     {

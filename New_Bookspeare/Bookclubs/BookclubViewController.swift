@@ -9,6 +9,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
@@ -20,14 +21,6 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         self.tabBarItem.image = UIImage(systemName: "person.3.fill")
     }
     
-    
-    
-    @IBOutlet var buttonCollectionView: UICollectionView!
-    
-    
-    @IBOutlet var cardCollectionView: UICollectionView!
-    
-    @IBOutlet var exploreView: UIView!
     
     @IBOutlet var exploreView1: UIView!
     
@@ -41,17 +34,27 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
     @IBOutlet var chatCollectionView: UICollectionView!
     
+    var bookclubsSection1 : [BookClub] = []
     
+
     
-    
-//    
-//    func cellSelected(indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let SeeAllViewController = storyboard.instantiateViewController(withIdentifier: "SearchEventsViewController") as! SearchEventsViewController
-//        SeeAllViewController.number = indexPath.row
-//        navigationController?.pushViewController(SeeAllViewController, animated: true)
-//    }
-    
+    func fetchExistingBookclubs()
+    {
+        let email = UserDefaults.standard.value(forKey: "email")
+        let safeEmail = DataController.safeEmail(email: email as! String)
+        DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] result in
+            switch result {
+            case .success(let bc):
+                self?.bookclubsSection1.append(contentsOf: bc)
+                self?.exploreCollectionView.reloadData() 
+                
+                 // Ensure the main bookclubs array is also updated
+            case .failure(let error):
+                print("Failed to fetch book clubs: \(error)")
+            }
+            
+        }
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == exploreCollectionView
@@ -77,7 +80,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         {
             switch section {
             case 0:
-                return DataController.shared.getBookclubsection1().count
+                return bookclubsSection1.count
             case 1:
                 return DataController.shared.getBookclubs().count
             case 2:
@@ -97,16 +100,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         
     }
     
-    private func configure(cell: FirstCell, with bookclub: BookClub) {
-            cell.bookclubName.text = bookclub.name
-        cell.bookclubMembers.text = "\(String(describing: bookclub.members))"
-            cell.bookclubDescription.text = bookclub.description
-            if !bookclub.image.isEmpty {
-                cell.imageView.image = UIImage(named: bookclub.image)
-            }
-            cell.layer.cornerRadius = 10
-    }
-
+    
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -118,10 +112,10 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "First", for: indexPath) as! FirstCell
                 
                 
-                let bc = DataController.shared.getBookclubsection1(with: indexPath.row)
+                let bc = bookclubsSection1[indexPath.row]
                 cell.bookclubName.text = bc.name
                 // Convert integer to string for bookclubMembers
-                cell.bookclubMembers.text = "\(bc.members)"
+                cell.bookclubMembers.text = "\(String(describing: bc.members))"
                 cell.bookclubDescription.text = bc.description
                 if !bc.image.isEmpty {
                     // Fetch image from resources or URL based on imageName
@@ -142,7 +136,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 let bc = DataController.shared.getBookclub(with: indexPath.row)
                 cell.bookclubName.text = bc.name
                 // Convert integer to string for bookclubMembers
-                cell.bookclubMembers.text = "\(bc.members)"
+                cell.bookclubMembers.text = "\(String(describing: bc.members))"
                 cell.bookclubDescription.text = bc.description
                 if !bc.image.isEmpty {
                     // Fetch image from resources or URL based on imageName
@@ -160,7 +154,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 let bc = DataController.shared.getBookclub(with: indexPath.row)
                 cell.bookclubName.text = bc.name
                 // Convert integer to string for bookclubMembers
-                cell.bookclubMembers.text = "\(bc.members)"
+                cell.bookclubMembers.text = "\(String(describing: bc.members))"
                 cell.bookclubDescription.text = bc.description
                 if !bc.image.isEmpty {
                     // Fetch image from resources or URL based on imageName
@@ -245,10 +239,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(bookClubsUpdated), name: DataController.bookClubsUpdatedNotification, object: nil)
-        
-        
-        buttonCollectionView?.dataSource = self
+        fetchExistingBookclubs()
         chatCollectionView.dataSource = self
         chatCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         exploreView1.isHidden = true
@@ -261,17 +252,11 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             let thirdNib = UINib(nibName: "ThirdCell", bundle: nil)
             exploreCollectionView.register(thirdNib, forCellWithReuseIdentifier: "Third")
             let cardNib = UINib(nibName: "BookclubCardCollectionViewCell", bundle: nil)
-            cardCollectionView.register(cardNib, forCellWithReuseIdentifier: "cardCell")
             let chatNib = UINib(nibName: "BookchatCardCollectionViewCell", bundle: nil)
-            cardCollectionView.register(chatNib, forCellWithReuseIdentifier: "chatCell")
             exploreCollectionView.setCollectionViewLayout(generateLayout(), animated: true)
             chatCollectionView.setCollectionViewLayout(generateChatLayout(), animated: true)
             exploreCollectionView.dataSource = self
             exploreCollectionView.register(HeaderBookclubCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionView")
-        }
-    
-    @objc func bookClubsUpdated() {
-            exploreCollectionView.reloadData() // Reload collection view when book clubs are updated
         }
 
     

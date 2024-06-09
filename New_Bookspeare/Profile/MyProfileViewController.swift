@@ -65,13 +65,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         //Collection View for Profile View Controller
         collectionView.register(UINib(nibName: "PCardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PcardCell")
         // Collection view layer setup
-        collectionView.layer.cornerRadius = 10
-        collectionView.layer.masksToBounds = true
-        collectionView.layer.shadowColor = UIColor.black.cgColor
-        collectionView.layer.shadowOpacity = 0.3
-        collectionView.layer.shadowOffset = CGSize(width: 3, height: 2)
-        collectionView.layer.shadowRadius = 2
-        // Collection view delegate and data source setup
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -233,25 +226,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         // Apply corner radius to the image view
         cell.cardName.layer.cornerRadius = 10
         cell.cardName.layer.masksToBounds = true
-        
-        // Apply background color, border, and shadow to the cell's contentView
-        cell.contentView.backgroundColor = .white
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.masksToBounds = false
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor(red: 1.0, green: 0.5647, blue: 0.5216, alpha: 1.0).cgColor
-        cell.contentView.layer.shadowColor = UIColor.black.cgColor
-        cell.contentView.layer.shadowOpacity = 1.0
-        cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cell.contentView.layer.shadowRadius = 4
-        cell.contentView.layer.shadowPath = UIBezierPath(roundedRect: cell.contentView.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-        cell.layer.cornerRadius = 10
-        cell.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cell.layer.shadowRadius = 4
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+       
         return cell
     }
     
