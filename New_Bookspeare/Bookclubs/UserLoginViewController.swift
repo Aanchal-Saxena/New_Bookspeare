@@ -18,7 +18,9 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
     }
     
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
     
     @IBOutlet var emailInput: UITextField!
     @IBOutlet var passInput: UITextField!
@@ -33,6 +35,10 @@ class UserLoginViewController: UIViewController, ASAuthorizationControllerDelega
         
     let appleButton=ASAuthorizationAppleIDButton(type: .continue, style: .black)
         override func viewDidLoad() {
+            
+            self.inputViewController?.dismissKeyboard()
+            self.passInput.delegate = self
+            self.emailInput.delegate = self
             emailInput.useUnderline()
             passInput.useUnderline()
             super.viewDidLoad()

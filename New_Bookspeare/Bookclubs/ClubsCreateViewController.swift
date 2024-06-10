@@ -13,6 +13,10 @@ import FirebaseDatabase
 class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
     var exitingBookclubs: [BookClub] = []
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
    
     
     @IBOutlet weak var bookclubImage: UIImageView!
@@ -33,7 +37,10 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchExistingBookclubs()
-        
+        self.inputViewController?.dismissKeyboard()
+        self.nameTextField.delegate = self
+        self.descriptionTextField.delegate = self
+        self.genreTextField.delegate = self
         
         bookclubImage.isUserInteractionEnabled = true
         

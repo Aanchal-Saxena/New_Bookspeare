@@ -11,6 +11,11 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     
     var existingSwaps: [Swap] = []
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
+    
     @IBOutlet weak var swapImage: UIImageView!
     
     
@@ -29,6 +34,11 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         swapImage.isUserInteractionEnabled = true
+        
+        self.inputViewController?.dismissKeyboard()
+        self.swapBookName.delegate = self
+        self.swapBookDescription.delegate = self
+        self.swapGenre.delegate = self
         
         // Add tap gesture recognizers
         let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))

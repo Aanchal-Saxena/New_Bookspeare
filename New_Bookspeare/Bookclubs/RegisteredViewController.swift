@@ -24,6 +24,11 @@ extension UITextField {
 
 class RegisteredViewController: UIViewController, UITextFieldDelegate {
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
+    
     @IBOutlet var nameTextField: UITextField!
     
     
@@ -41,6 +46,13 @@ class RegisteredViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        self.inputViewController?.dismissKeyboard()
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         nameTextField.useUnderline()
         emailTextField.useUnderline()
         passwordTextField.useUnderline()
@@ -51,10 +63,6 @@ class RegisteredViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
-    // Dismiss keyboard when touching outside of text fields
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.view.endEditing(true)
-        }
 
     @IBAction func privacyPolicyButtonTapped(_ sender: UIButton) {
         privacyPolicyButton.isSelected.toggle()

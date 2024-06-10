@@ -37,6 +37,13 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     var bookclubsSection1 : [BookClub] = []
     
 
+
+    
+    
+    
+    
+    
+    
     
     func fetchExistingBookclubs()
     {
@@ -126,9 +133,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
 
               
                 
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+                                       }
                 return cell
                 
             case 1:
@@ -145,9 +152,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 
                 cell.layer.cornerRadius = 10
                 
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+                                       }
                 return cell
             case 2:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Third", for: indexPath) as! ThirdCell
@@ -162,19 +169,11 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 }
                 cell.layer.cornerRadius = 10
                 
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+                                       }
                 return cell
-                //            switch indexPath.row {
-                //            case 0:
-                //                cell.button.addTarget(self, action: #selector(openFview), for: .touchUpInside)
-                //            case 1:
-                //                cell.button.addTarget(self, action: #selector(openSview), for: .touchUpInside)
-                //            default:
-                //                print("Failed")
-                //            }
-                //            return cell
+             
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "First", for: indexPath)
                 return cell
@@ -193,9 +192,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 // Fetch image from resources or URL based on imageName
                 cell.myImage.image = UIImage(named: gc.profile)
             }
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+                                       }
             return cell
         }
         else

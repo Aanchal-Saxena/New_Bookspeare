@@ -7,7 +7,11 @@
 
 import UIKit
 
-class CreateQuizFormViewController: UIViewController{
+class CreateQuizFormViewController: UIViewController, UITextFieldDelegate{
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
     
     var quiz: Quiz?
     

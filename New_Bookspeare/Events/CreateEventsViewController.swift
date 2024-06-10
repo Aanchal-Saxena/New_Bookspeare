@@ -11,6 +11,10 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
     
     var existingEvents: [Event] = []
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
+    
     
     @IBOutlet weak var eventImage: UIImageView!
     
@@ -29,6 +33,11 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         eventImage.isUserInteractionEnabled = true
+        
+        self.inputViewController?.dismissKeyboard()
+        self.eventName.delegate = self
+        self.eventDescription.delegate = self
+        self.eventAddress.delegate = self
         
         // Add tap gesture recognizers
         let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
