@@ -42,6 +42,7 @@ struct Friend: Codable {
 }
 
 struct BookClub: Codable {
+    var uuid : UUID = UUID()
     var name: String
     var image: String
     var genre: [Genre]?
@@ -56,6 +57,14 @@ struct BookClub: Codable {
             "description": description ?? "",
             "members": members ?? 1
         ]
+    }
+    
+    init(name: String, image: String, description: String? = nil, members: Int? = nil) {
+        self.name = name
+        self.image = image
+        self.genre = nil
+        self.description = description
+        self.members = members
     }
 }
 

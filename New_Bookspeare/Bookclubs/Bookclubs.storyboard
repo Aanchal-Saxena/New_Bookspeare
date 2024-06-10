@@ -102,7 +102,7 @@
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="290" height="256"/>
                                                 <connections>
-                                                    <segue destination="aIu-Qv-MuB" kind="show" id="dau-wm-YTp"/>
+                                                    <segue destination="aIu-Qv-MuB" kind="show" identifier="showDetail" destinationCreationSelector="bookclubDetail:sender:" id="dau-wm-YTp"/>
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Second" id="OBH-Ro-0q4" customClass="SecondCell" customModule="New_Bookspeare" customModuleProvider="target">
@@ -113,7 +113,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </collectionViewCellContentView>
                                                 <connections>
-                                                    <segue destination="aIu-Qv-MuB" kind="showDetail" id="C8d-Tc-pT4"/>
+                                                    <segue destination="aIu-Qv-MuB" kind="show" identifier="showDetail" destinationCreationSelector="booclubDetail2:sender:" id="C8d-Tc-pT4"/>
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Third" id="5sY-pC-1rx" customClass="ThirdCell" customModule="New_Bookspeare" customModuleProvider="target">
@@ -1140,7 +1140,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dau-wm-YTp"/>
+        <segue reference="C8d-Tc-pT4"/>
         <segue reference="it0-Q2-URV"/>
     </inferredMetricsTieBreakers>
     <resources>

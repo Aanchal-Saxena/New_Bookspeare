@@ -40,6 +40,17 @@ class BookclubDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let bookclub = bookclub {
+                    bookclubName.text = bookclub.name
+                    bookclubDescription.text = bookclub.description
+                    bookclubImage.image = UIImage(named: bookclub.image ?? "six")
+                    // Set other properties if necessary
+                } else {
+                    // Handle the case where bookclub is nil
+                    bookclubName.text = "No bookclub available"
+                    bookclubDescription.text = "Description not available"
+                    bookclubImage.image = UIImage(named: "six")
+                }
 
         // Do any additional setup after loading the view.
     }

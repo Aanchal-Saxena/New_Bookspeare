@@ -60,39 +60,41 @@ class DataController {
         return safeEmail
     }
     
-    public func fetchBookClubs(forEmail email: String, completion: @escaping (Result<[BookClub], Error>) -> Void) {
+    public func fetchBookClubs(forEmail email: String, completion: @escaping (BookClub) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
-        database.child("users").child(safeEmail).child("bookclubs").observeSingleEvent(of: .value) { snapshot in
-            guard let bookClubsArray = snapshot.value as? [[String: Any]] else {
-                completion(.failure(DatabaseError.failedToFetch))
+        database.child("abhi-gmail-com").child("bookclubs").child("0").observeSingleEvent(of: .value) { snapshot in
+            guard let dict = snapshot.value as? [String: Any] else {
                 return
             }
             
-            let bookClubs: [BookClub] = bookClubsArray.compactMap { dict in
-                guard
-                    let name = dict["name"] as? String,
-                    let image = dict["image"] as? String,
-                    let genreRaw = dict["genre"] as? [String],
-                    !genreRaw.isEmpty
-                else {
-                    return nil
-                }
-                
-                let genres: [Genre] = genreRaw.compactMap { Genre(rawValue: $0) }
-                
-                guard
-                    !genres.isEmpty,
-                    let description = dict["description"] as? String,
-                    let members = dict["members"] as? Int
-                else {
-                    return nil
-                }
-                
-                return BookClub(name: name, image: image, genre: genres, description: description, members: members)
+            //            let bookClubs: [BookClub] = bookClubsArray.compactMap { dict in
+            guard
+                let name = dict["name"] as? String,
+                let image = dict["image"] as? String,
+                let description = dict["description"] as? String,
+                let members = dict["members"] as? Int else {
+                return
             }
+            //                else {
+            //                    return nil
+            //                }
+            //
+            //                let genres: [Genre] = genreRaw.compactMap { Genre(rawValue: $0) }
+            //
+            //                guard
+            //                    !genres.isEmpty,
+            //                    let description = dict["description"] as? String,
+            //                    let members = dict["members"] as? Int
+            //                else {
+            //                    return nil
+            //                }
             
-            completion(.success(bookClubs))
+            var book = BookClub(name: name, image: image, description: description, members: members)
+            
+            
+            completion(book)
         }
+        
     }
     
     public func updateBookClubs(forEmail email: String, bookClubs: [BookClub], completion: @escaping (Bool) -> Void) {

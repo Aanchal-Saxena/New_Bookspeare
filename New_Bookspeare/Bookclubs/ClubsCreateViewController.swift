@@ -36,7 +36,7 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchExistingBookclubs()
+        //fetchExistingBookclubs()
         self.inputViewController?.dismissKeyboard()
         self.nameTextField.delegate = self
         self.descriptionTextField.delegate = self
@@ -61,22 +61,22 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    func fetchExistingBookclubs()
-    {
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] result in
-            switch result {
-            case .success(let bc):
-                self?.exitingBookclubs.append(contentsOf: bc)
-                
-                 // Ensure the main bookclubs array is also updated
-            case .failure(let error):
-                print("Failed to fetch book clubs: \(error)")
-            }
-            
-        }
-    }
+//    func fetchExistingBookclubs()
+//    {
+//        let email = UserDefaults.standard.value(forKey: "email")
+//        let safeEmail = DataController.safeEmail(email: email as! String)
+//        DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] result in
+//            switch result {
+//            case .success(let bc):
+//                self?.exitingBookclubs.append(contentsOf: bc)
+//                
+//                 // Ensure the main bookclubs array is also updated
+//            case .failure(let error):
+//                print("Failed to fetch book clubs: \(error)")
+//            }
+//            
+//        }
+//    }
     
     @IBAction func textEditingEnded(_ sender: Any) {
         updateCreateButtonState()
@@ -165,7 +165,7 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
             let description = descriptionTextField.text ?? ""
             let genre = genreTextField.text ?? ""
             let genreEnum = Genre(rawValue: genre) ?? .Fiction
-            let bookclub = BookClub(name: name, image: "one", genre: [genreEnum], description: description, members: 1)
+            let bookclub = BookClub(name: name, image: "one", description: description, members: 1)
             
             exitingBookclubs.append(bookclub)
             
@@ -174,7 +174,7 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
             }
             let safeEmail = DataController.safeEmail(email: email as! String)
             
-            let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs")
+        let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs").child()
             
             let bookclubDicts = exitingBookclubs.map { $0.toDictionary() }
             

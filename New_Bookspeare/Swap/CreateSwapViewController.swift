@@ -34,7 +34,7 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         swapImage.isUserInteractionEnabled = true
-        
+        fetchExistingEvents()
         self.inputViewController?.dismissKeyboard()
         self.swapBookName.delegate = self
         self.swapBookDescription.delegate = self
@@ -147,6 +147,15 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
         let description = swapBookDescription.text ?? ""
         let genre = swapGenre.text ?? ""
         let swap = Swap(bookTitle: name, description: description, location: location1, image: "one")
+        existingSwaps.append(swap)
+        
+        DataController.shared.updateSwappedBooks(forEmail: safeEmail, swappedBooks: existingSwaps) { success in
+            if success {
+                print("Swap books updated successfully.")
+            } else {
+                print("Failed to update events.")
+            }
+        }
 
     }
     
