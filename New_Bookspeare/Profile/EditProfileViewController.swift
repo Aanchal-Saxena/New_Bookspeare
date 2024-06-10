@@ -11,10 +11,12 @@ import FirebaseAuth
 
 
 
-class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class EditProfileViewController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+                self.view.endEditing(true)
+            }
     
     
     

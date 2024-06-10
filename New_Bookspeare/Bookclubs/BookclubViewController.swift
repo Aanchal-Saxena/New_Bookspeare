@@ -37,21 +37,56 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     var bookclubsSection1 : [BookClub] = []
     
 
+
+    
+    
+    @IBSegueAction func bookclubDetail(_ coder: NSCoder, sender: Any?) -> BookclubDetailViewController? {
+        if let cell = sender as? UICollectionViewCell,
+           let indexPath = exploreCollectionView.indexPath(for: cell)
+        {
+            let bookclub = DataController.shared.getBookclub(with: indexPath.row)
+            return BookclubDetailViewController(coder: coder, bookclub: bookclub)
+        }
+        else
+        {
+            return BookclubDetailViewController(coder: coder, bookclub: nil)
+        }
+    
+    }
+    
+    
+    @IBSegueAction func booclubDetail2(_ coder: NSCoder, sender: Any?) -> BookclubDetailViewController? {
+        if let cell = sender as? SecondCell,
+           let indexPath = exploreCollectionView.indexPath(for: cell)
+        {
+            let bookclub = DataController.shared.getBookclub(with: indexPath.row)
+            return BookclubDetailViewController(coder: coder, bookclub: bookclub)
+        }
+        else
+        {
+            return BookclubDetailViewController(coder: coder, bookclub: nil)
+        }
+    }
+    
+    
+    
+    
     
     func fetchExistingBookclubs()
     {
         let email = UserDefaults.standard.value(forKey: "email")
         let safeEmail = DataController.safeEmail(email: email as! String)
         DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] result in
-            switch result {
-            case .success(let bc):
-                self?.bookclubsSection1.append(contentsOf: bc)
-                self?.exploreCollectionView.reloadData() 
-                
-                 // Ensure the main bookclubs array is also updated
-            case .failure(let error):
-                print("Failed to fetch book clubs: \(error)")
-            }
+//            switch result {
+//            case .success(let bc):
+//                self?.bookclubsSection1.append(contentsOf: bc)
+//
+//            case .failure(let error):
+//                print("Failed to fetch book clubs: \(error)")
+//            }
+            self?.bookclubsSection1.append(result)
+            self?.exploreCollectionView.reloadData()
+            print(result)
             
         }
     }
@@ -80,6 +115,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         {
             switch section {
             case 0:
+                print(bookclubsSection1.count)
                 return bookclubsSection1.count
             case 1:
                 return DataController.shared.getBookclubs().count
@@ -113,6 +149,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 
                 
                 let bc = bookclubsSection1[indexPath.row]
+                print(bc)
                 cell.bookclubName.text = bc.name
                 // Convert integer to string for bookclubMembers
                 cell.bookclubMembers.text = "\(String(describing: bc.members))"
@@ -126,9 +163,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
 
               
                 
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+            cell.tapAction = { [weak self] in
+                self?.performSegue(withIdentifier: "showDetail", sender: indexPath)
+        }
                 return cell
                 
             case 1:
@@ -145,9 +182,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 
                 cell.layer.cornerRadius = 10
                 
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetail", sender: indexPath)
+                                    }
                 return cell
             case 2:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Third", for: indexPath) as! ThirdCell
@@ -162,19 +199,11 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 }
                 cell.layer.cornerRadius = 10
                 
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+                                       }
                 return cell
-                //            switch indexPath.row {
-                //            case 0:
-                //                cell.button.addTarget(self, action: #selector(openFview), for: .touchUpInside)
-                //            case 1:
-                //                cell.button.addTarget(self, action: #selector(openSview), for: .touchUpInside)
-                //            default:
-                //                print("Failed")
-                //            }
-                //            return cell
+             
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "First", for: indexPath)
                 return cell
@@ -193,9 +222,9 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 // Fetch image from resources or URL based on imageName
                 cell.myImage.image = UIImage(named: gc.profile)
             }
-                //            cell.tapAction = { [weak self] in
-                //                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
-                //                       }
+                            cell.tapAction = { [weak self] in
+                                           self?.performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+                                       }
             return cell
         }
         else
@@ -258,6 +287,10 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             exploreCollectionView.dataSource = self
             exploreCollectionView.register(HeaderBookclubCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionView")
         }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchExistingBookclubs()
+    }
 
     
     

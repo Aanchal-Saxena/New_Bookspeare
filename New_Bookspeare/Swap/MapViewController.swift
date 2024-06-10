@@ -1,15 +1,17 @@
 //
 //  MapViewController.swift
-//  New_Bookspeare
+//  Swap
 //
-//  Created by Sahil Raj on 10/06/24.
+//  Created by Katyayani Singh on 02/06/24.
 //
-
+import CoreLocation
+import MapKit
 import UIKit
 import MapKit
 import CoreLocation
 class MapViewController: UIViewController {
 
+<<<<<<< HEAD
     @IBOutlet weak var mapView: MKMapView!
     
     fileprivate let locationManager: CLLocationManager = CLLocationManager()
@@ -23,10 +25,41 @@ class MapViewController: UIViewController {
         
         mapView.showsUserLocation = true
 
+=======
+    private let map: MKMapView = {
+       let map = MKMapView()
+        return map
+    }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(map)
+        
+        
+        LocationManager.shared.getUserLocation { [weak self] location in
+            DispatchQueue.main.async {
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.addMapPin(with: location)
+            }
+        }
+>>>>>>> main
         // Do any additional setup after loading the view.
     }
-    
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        map.frame = view.bounds
+    }
+    func addMapPin(with location: CLLocation){
+        let pin = MKPointAnnotation()
+        pin.coordinate = location.coordinate
+        map.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.5)), animated: true)
+        map.addAnnotation(pin)
+        LocationManager.shared.resolveLocationName(with: location) { [weak self] locationName in
+            self?.title = locationName
+        }
+        
+    }
     /*
     // MARK: - Navigation
 
