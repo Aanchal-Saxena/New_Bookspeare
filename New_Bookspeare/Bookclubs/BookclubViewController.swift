@@ -39,57 +39,31 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
 
 
     
+   
     
-    @IBSegueAction func bookclubDetail(_ coder: NSCoder, sender: Any?) -> BookclubDetailViewController? {
-        if let cell = sender as? UICollectionViewCell,
-           let indexPath = exploreCollectionView.indexPath(for: cell)
-        {
-            let bookclub = DataController.shared.getBookclub(with: indexPath.row)
-            return BookclubDetailViewController(coder: coder, bookclub: bookclub)
+    
+    
+    
+    
+    func fetchExistingBookclubs() {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("Failed to get user email.")
+            return
         }
-        else
-        {
-            return BookclubDetailViewController(coder: coder, bookclub: nil)
-        }
-    
-    }
-    
-    
-    @IBSegueAction func booclubDetail2(_ coder: NSCoder, sender: Any?) -> BookclubDetailViewController? {
-        if let cell = sender as? SecondCell,
-           let indexPath = exploreCollectionView.indexPath(for: cell)
-        {
-            let bookclub = DataController.shared.getBookclub(with: indexPath.row)
-            return BookclubDetailViewController(coder: coder, bookclub: bookclub)
-        }
-        else
-        {
-            return BookclubDetailViewController(coder: coder, bookclub: nil)
+        
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] bookClubs in
+            guard let self = self else { return }
+            self.bookclubsSection1.append(contentsOf: bookClubs)
+            print("Appended \(bookClubs.count) book clubs.")
+            self.exploreCollectionView.reloadData()
+            print("Reloaded collection view.")
+            print("Fetched book clubs: \(bookClubs)")
         }
     }
-    
-    
-    
-    
-    
-    func fetchExistingBookclubs()
-    {
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        DataController.shared.fetchBookClubs(forEmail: safeEmail) { [weak self] result in
-//            switch result {
-//            case .success(let bc):
-//                self?.bookclubsSection1.append(contentsOf: bc)
-//
-//            case .failure(let error):
-//                print("Failed to fetch book clubs: \(error)")
-//            }
-            self?.bookclubsSection1.append(result)
-            self?.exploreCollectionView.reloadData()
-            print(result)
-            
-        }
-    }
+
+
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == exploreCollectionView
@@ -135,6 +109,18 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            guard let indexPath = sender as? IndexPath else { return }
+            let bookClub = DataController.shared.getBookclub(with: indexPath.row)
+            
+            if let destinationVC = segue.destination as? BookclubDetailViewController {
+                destinationVC.bookclub = bookClub
+            }
+        }
+    }
+
     
     
     

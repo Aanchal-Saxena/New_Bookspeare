@@ -21,7 +21,7 @@ class EventsViewController: UIViewController {
     
     @IBOutlet var cardCollectionView: UICollectionView!
 
-        
+    var eventsFetched: [Event] = []
     
     var filterButton: [EventFilter] =
     [
@@ -37,9 +37,36 @@ class EventsViewController: UIViewController {
     
     
     
+    func fetchExistingEvents() {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("Failed to get user email.")
+            return
+        }
+        
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        DataController.shared.fetchEvents(forEmail: safeEmail) { [weak self] events in
+            guard let self = self else { return }
+            if events.isEmpty {
+                print("No events found.")
+            } else {
+                print("Fetched \(events.count) events.")
+                for event in events {
+                    print(event.toDictionary()) // Print event details
+                }
+                self.eventsFetched.append(contentsOf: events)
+                // Reload UI or update collection view, etc.
+            }
+        }
+    }
+
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchExistingEvents()
         self.navigationItem.titleView?.isHidden = true
         buttonCollectionView.dataSource = self
         buttonCollectionView.delegate = self
@@ -62,7 +89,7 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         if collectionView == buttonCollectionView {
             return filterButton.count
         } else {
-            return DataController.shared.getEvents().count
+            return eventsFetched.count
         }
     }
     
@@ -79,7 +106,7 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCardCell", for: indexPath) as! EventCardCollectionViewCell
             
-            let event = DataController.shared.getEvent(with: indexPath.row)
+            let event = eventsFetched[indexPath.row]
             cell.eventTitle.text = event.title
                        cell.participantsLabel.text = "20+ Registered" // Set a default value or fetch from your data source
                        cell.typeLabel.text = "Virtual" // Set a default value or fetch from your data source

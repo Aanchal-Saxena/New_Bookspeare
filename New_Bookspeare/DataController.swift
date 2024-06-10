@@ -60,43 +60,79 @@ class DataController {
         return safeEmail
     }
     
-    public func fetchBookClubs(forEmail email: String, completion: @escaping (BookClub) -> Void) {
+    public func fetchBookClubs(forEmail email: String, completion: @escaping ([BookClub]) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
-        database.child("abhi-gmail-com").child("bookclubs").child("0").observeSingleEvent(of: .value) { snapshot in
-            guard let dict = snapshot.value as? [String: Any] else {
-                return
-            }
-            
-            //            let bookClubs: [BookClub] = bookClubsArray.compactMap { dict in
-            guard
-                let name = dict["name"] as? String,
-                let image = dict["image"] as? String,
-                let description = dict["description"] as? String,
-                let members = dict["members"] as? Int else {
-                return
-            }
-            //                else {
-            //                    return nil
-            //                }
-            //
-            //                let genres: [Genre] = genreRaw.compactMap { Genre(rawValue: $0) }
-            //
-            //                guard
-            //                    !genres.isEmpty,
-            //                    let description = dict["description"] as? String,
-            //                    let members = dict["members"] as? Int
-            //                else {
-            //                    return nil
-            //                }
-            
-            var book = BookClub(name: name, image: image, description: description, members: members)
-            
-            
-            completion(book)
-        }
         
+        database.child(safeEmail).child("bookclubs").observeSingleEvent(of: .value) { snapshot in
+            guard let bookClubsDict = snapshot.value as? [String: [String: Any]] else {
+                print("No book clubs found or failed to cast snapshot value.")
+                completion([])
+                return
+            }
+            
+            var bookClubs: [BookClub] = []
+            
+            for (idString, dict) in bookClubsDict {
+                guard
+                    let name = dict["name"] as? String,
+                    let image = dict["image"] as? String,
+                    let description = dict["description"] as? String,
+                    let members = dict["members"] as? Int,
+                    let id = UUID(uuidString: idString)
+                else {
+                    print("Failed to parse book club data for id: \(idString)")
+                    continue
+                }
+                
+                let bookClub = BookClub(id: id, name: name, image: image, description: description, members: members)
+                bookClubs.append(bookClub)
+            }
+            
+            print("Fetched \(bookClubs.count) book clubs.")
+            completion(bookClubs)
+        }
     }
     
+    
+    public func fetchSwaps(forEmail email: String, completion: @escaping ([Swap]) -> Void) {
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        database.child(safeEmail).child("swaps").observeSingleEvent(of: .value) { snapshot in
+            guard let swapsDict = snapshot.value as? [String: [String: Any]] else {
+                print("No swaps found or failed to cast snapshot value.")
+                completion([])
+                return
+            }
+            
+            var swaps: [Swap] = []
+            
+            for (idString, dict) in swapsDict {
+                guard
+                    let bookTitle = dict["bookTitle"] as? String,
+                    let description = dict["description"] as? String,
+                    let locationDict = dict["location"] as? [String: Double],
+                    let latitude = locationDict["latitude"],
+                    let longitude = locationDict["longitude"],
+                    let image = dict["image"] as? String,
+                    let id = UUID(uuidString: idString)
+                else {
+                    print("Failed to parse swap data for id: \(idString)")
+                    continue
+                }
+                
+                let location = Location(latitude: latitude, longitude: longitude)
+                let swap = Swap(id: id, bookTitle: bookTitle, description: description, location: location, image: image)
+                swaps.append(swap)
+            }
+            
+            print("Fetched \(swaps.count) swaps.")
+            completion(swaps)
+        }
+    }
+
+
+
+
     public func updateBookClubs(forEmail email: String, bookClubs: [BookClub], completion: @escaping (Bool) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
         let bookClubsDict = bookClubs.map { $0.toDictionary() }
@@ -114,87 +150,67 @@ class DataController {
     
     
 
-    public func updateSwappedBooks(forEmail email: String, swappedBooks: [Swap], completion: @escaping (Bool) -> Void) {
+    public func updateSwap(swap: Swap, forEmail email: String, completion: @escaping (Error?) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
-        let swappedBooksDict = swappedBooks.map { $0.toDictionary() }
         
-        database.child(safeEmail).child("swappedBooks").setValue(swappedBooksDict) { error, _ in
-            if let error = error {
-                print("Failed to update swapped books: \(error.localizedDescription)")
-                completion(false)
-            } else {
-                completion(true)
-            }
+        // Reference to the user's swaps in the database
+        let swapRef = Database.database().reference().child(safeEmail).child("swaps").child(swap.id.uuidString)
+        
+        // Save the swap to the database
+        swapRef.setValue(swap.toDictionary()) { error, _ in
+            completion(error)
         }
     }
 
 
-    public func fetchSwappedBooks(forEmail email: String, completion: @escaping (Result<[Swap], Error>) -> Void) {
-        let safeEmail = DataController.safeEmail(email: email)
-        database.child(safeEmail).child("swappedBooks").observeSingleEvent(of: .value) { snapshot in
-            guard let swappedBooksArray = snapshot.value as? [[String: Any]] else {
-                completion(.failure(DatabaseError.failedToFetch))
-                return
-            }
-            
-            let swappedBooks: [Swap] = swappedBooksArray.compactMap { dict in
-                guard
-                    let bookTitle = dict["bookTitle"] as? String,
-                    let description = dict["description"] as? String,
-                    let locationDict = dict["location"] as? [String: Double],
-                    let latitude = locationDict["latitude"],
-                    let longitude = locationDict["longitude"],
-                    let image = dict["image"] as? String
-                else {
-                    return nil
-                }
-                
-                let location = Location(latitude: latitude, longitude: longitude)
-                return Swap(bookTitle: bookTitle, description: description, location: location, image: image)
-            }
-            
-            completion(.success(swappedBooks))
-        }
-    }
+
+
     
-    public func updateEvents(forEmail email: String, events: [Event], completion: @escaping (Bool) -> Void) {
+    public func updateEvent(event: Event, forEmail email: String, completion: @escaping (Error?) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
-        let eventsDict = events.map { $0.toDictionary() }
         
-        database.child(safeEmail).child("events").setValue(eventsDict) { error, _ in
-            if let error = error {
-                print("Failed to update events: \(error.localizedDescription)")
-                completion(false)
-            } else {
-                completion(true)
-            }
+        // Reference to the user's events in the database
+        let eventRef = Database.database().reference().child(safeEmail).child("events").child(event.id.uuidString)
+        
+        // Save the event to the database
+        eventRef.setValue(event.toDictionary()) { error, _ in
+            completion(error)
         }
     }
+
 
    
-    public func fetchEvents(forEmail email: String, completion: @escaping (Result<[Event], Error>) -> Void) {
+    public func fetchEvents(forEmail email: String, completion: @escaping ([Event]) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
-        database.child("users").child(safeEmail).child("events").observeSingleEvent(of: .value) { snapshot in
-            guard let eventsArray = snapshot.value as? [[String: Any]] else {
-                completion(.failure(DatabaseError.failedToFetch))
+        
+        database.child(safeEmail).child("events").observeSingleEvent(of: .value) { snapshot in
+            guard let eventsDict = snapshot.value as? [String: [String: Any]] else {
+                print("No events found or failed to cast snapshot value.")
+                completion([])
                 return
             }
             
-            let events: [Event] = eventsArray.compactMap { dict in
+            var events: [Event] = []
+            
+            for (idString, dict) in eventsDict {
                 guard
                     let title = dict["title"] as? String,
                     let images = dict["images"] as? String,
                     let description = dict["description"] as? String,
+                    let registeredMembers = dict["registeredMembers"] as? Int,
                     let address = dict["address"] as? String,
-                    let registeredMembers = dict["registeredMembers"] as? Int
+                    let id = UUID(uuidString: idString)
                 else {
-                    return nil
+                    // Skip event if any required field is missing
+                    continue
                 }
                 
-                return Event(title: title, images: images, description: description, registeredMembers: registeredMembers, address: address)
+                let event = Event(id: id, title: title, images: images, description: description, registeredMembers: registeredMembers, address: address)
+                events.append(event)
             }
             
-            completion(.success(events))
+            print("Fetched \(events.count) events.")
+            completion(events)
         }
     }
 
@@ -337,13 +353,23 @@ class DataController {
     }
     
     func loadDummyBookclub() {
-        
-        let bc1 = BookClub(name: "Bookclub 1", image: "one")
-        let bc2 = BookClub(name: "Bookclub 1", image: "two")
-        let bc3 = BookClub(name: "Bookclub 1", image: "three")
-        let bc4 = BookClub(name: "Bookclub 1", image: "four")
-        let bc5 = BookClub(name: "Bookclub 1", image: "five")
+       
+        // Create dummy data
+        let bc1 = BookClub(id: UUID(), name: "Bookclub 1", image: "one", description: "Description for Bookclub 1", members: 10, admin: "Admin 1")
+        let bc2 = BookClub(id: UUID(), name: "Bookclub 2", image: "two", description: "Description for Bookclub 2", members: 20, admin: "Admin 2")
+        let bc3 = BookClub(id: UUID(), name: "Bookclub 3", image: "three", description: "Description for Bookclub 3", members: 30, admin: "Admin 3")
+        let bc4 = BookClub(id: UUID(), name: "Bookclub 4", image: "four", description: "Description for Bookclub 4", members: 40, admin: "Admin 4")
+        let bc5 = BookClub(id: UUID(), name: "Bookclub 5", image: "five", description: "Description for Bookclub 5", members: 50, admin: "Admin 5") 
+
+        // Append dummy data to the bookclubs array
+       
         bookclubs.append(contentsOf: [bc1, bc2, bc3, bc4, bc5])
+
+        // Print bookclubs to verify the data
+        for bc in bookclubs {
+            print(bc.toDictionary())
+        }
+
         
     }
     

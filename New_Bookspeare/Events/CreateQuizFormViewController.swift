@@ -24,83 +24,97 @@ class CreateQuizFormViewController: UIViewController, UITextFieldDelegate{
     
     
     
-    @IBOutlet weak var numberOfQuesTextField: UITextField!
+    @IBOutlet weak var quesNumberStepper: UIStepper!
+    
+    @IBOutlet weak var stepperLabel: UILabel!
+    
+    
+    
     
     
     var quizName: String?
        var quizDescription: String?
-       var numberOfQuestions: Int?
+    var numberOfQuestions: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        quesNumberStepper.minimumValue = 1 // Set minimum value for the stepper
+                // Set initial value for the stepper label
+        stepperLabel.text = "\(Int(quesNumberStepper.value))"
        
 
         // Do any additional setup after loading the view.
     }
     
+    
+    
+    
+    @IBAction func steppedValueChanged(_ sender: UIStepper) {
+        
+        // Update the stepper label with the selected value
+                stepperLabel.text = "\(Int(sender.value))"
+                // Update the numberOfQuestions variable
+                numberOfQuestions = Int(sender.value)
+    }
+    
+    
     @IBAction func createButtonTapped(_ sender: UIButton) {
         
         print("Create button tapped")
-                print("Quiz Name: \(quizName ?? "nil")")
-                print("Quiz Description: \(quizDescription ?? "nil")")
-                print("Number of Questions: \(numberOfQuestions ?? -1)")
+               print("Quiz Name: \(quizName ?? "nil")")
+               print("Quiz Description: \(quizDescription ?? "nil")")
+               print("Number of Questions: \(numberOfQuestions)")
+               
+               guard let name = quizNameTextField.text, !name.isEmpty,
+                     let description = quizdescriptionTextfield.text, !description.isEmpty else {
+                   // Show an alert if any of the fields are not properly filled
+                   let alert = UIAlertController(title: "Incomplete", message: "Please fill all fields.", preferredStyle: .alert)
+                   alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                   present(alert, animated: true, completion: nil)
+                   return
+               }
+               
+               // Assuming QuizQuestion and QuizAnswer are placeholders
+               let sampleQuestion = QuizQuestion(question: "Sample Question", correctAnswer: "Sample Answer", incorrectAnswers: ["Option 1", "Option 2", "Option 3"], category: "Sample Category")
+               let sampleAnswer = QuizAnswer(text: "Sample Answer", isCorrect: true)
+               
+               if let image = quizImage.image {
+                   quiz = Quiz(numberOfQuestion: numberOfQuestions, answers: [sampleAnswer], ques: sampleQuestion, description: description, quizImage: image)
+               }
+        self.quizName = name
+               
+               // Perform any additional actions after creating the quiz
+               if let quiz = quiz {
+                   print("Quiz created with name: \(name), description: \(description), number of questions: \(numberOfQuestions)")
+                   // You can now use the 'quiz' object as needed
+               }
+        performSegue(withIdentifier: "showQuizQues", sender: nil)
         
-        guard let name = quizName, let description = quizDescription, let numberOfQues = numberOfQuestions else {
-                    // Show an alert if any of the fields are not properly filled
-        let alert = UIAlertController(title: "Incomplete", message: "Please fill all fields.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-        return
-                }
-                
-                // Assuming QuizQuestion and QuizAnswer are placeholders
-        let sampleQuestion = QuizQuestion(question: "Sample Question", correctAnswer: "Sample Answer", incorrectAnswers: ["Option 1", "Option 2", "Option 3"], category: "Sample Category")
-        let sampleAnswer = QuizAnswer(text: "Sample Answer", isCorrect: true)
-                
-        if let image = quizImage.image {
-            quiz = Quiz(numberOfQuestion: numberOfQues, answers: [sampleAnswer], ques: sampleQuestion, description: description, quizImage: image)
-        }
-                
-                // Perform any additional actions after creating the quiz
-        print("Quiz created with name: \(name), description: \(description), number of questions: \(numberOfQues)")
-    
-            
-    }
+        
+           }
     
     @IBAction func editingDidend(_ sender: UITextField) {
         
         if sender == quizNameTextField {
-            self.quizName = sender.text
-        }
-        else if sender == quizdescriptionTextfield {
-            self.quizDescription = sender.text
-        }
-        else if sender == numberOfQuesTextField {
-            if let text = sender.text, let number = Int(text) {
-                self.numberOfQuestions = number
-                print("Number of Questions Text Field: \(numberOfQuestions ?? -1)")
+                    self.quizName = sender.text
+                } else if sender == quizdescriptionTextfield {
+                    self.quizDescription = sender.text
+                }
             }
-            else {
-                // Show an alert if the number of questions is not a valid integer
-                let alert = UIAlertController(title: "Invalid Input", message: "Please enter a valid number for the number of questions.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
-  
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+            
+          
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showQuizQues" {
+            // Ensure the destination view controller is of the correct type
+            guard let destinationVC = segue.destination as? CreateQuizQuestionViewController else {
+                return
+            }
+            // Pass the quiz object to the destination view controller
+            destinationVC.quiz = quiz
+            destinationVC.quizName = quizName
+        }
     }
-    */
+
+    
 
 }

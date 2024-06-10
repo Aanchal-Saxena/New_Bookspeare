@@ -10,6 +10,10 @@ import UIKit
 class CreateQuizQuestionViewController: UIViewController {
     
     
+    
+    @IBOutlet weak var quizNameLabel: UILabel!
+    
+    
     @IBOutlet weak var quesTextField: UITextField!
     
     
@@ -30,12 +34,31 @@ class CreateQuizQuestionViewController: UIViewController {
     
     @IBOutlet weak var nextButton: UIButton!
     
+    var quiz: Quiz?
+    var quizName: String?
+    
+    
     var numberOfQuestions = 3
     var userQuiz : [QuizQuestion] = []
     var currentQuestionIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let quiz = quiz
+        {
+            numberOfQuestions = quiz.numberOfQuestion
+            
+        }
+        if let quizName = quizName
+        {
+            quizNameLabel.text = quizName
+        }
+        
+        
+        
+        
+        
+        
         quesNumberLabel.text = "1 out of \(numberOfQuestions)"
 
         // Do any additional setup after loading the view.

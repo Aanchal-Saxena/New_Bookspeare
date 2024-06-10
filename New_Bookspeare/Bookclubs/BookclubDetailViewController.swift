@@ -11,15 +11,7 @@ class BookclubDetailViewController: UIViewController {
     
     var bookclub: BookClub?
     
-    init?(coder: NSCoder, bookclub: BookClub?)
-    {
-        self.bookclub = bookclub
-        super.init(coder: coder)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+   
     
     
     @IBOutlet weak var bookclubImage: UIImageView!
@@ -40,20 +32,25 @@ class BookclubDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let bookclub = bookclub {
-                    bookclubName.text = bookclub.name
-                    bookclubDescription.text = bookclub.description
-                    bookclubImage.image = UIImage(named: bookclub.image ?? "six")
-                    // Set other properties if necessary
-                } else {
-                    // Handle the case where bookclub is nil
-                    bookclubName.text = "No bookclub available"
-                    bookclubDescription.text = "Description not available"
-                    bookclubImage.image = UIImage(named: "six")
-                }
-
-        // Do any additional setup after loading the view.
-    }
+        // Update UI with bookClub details
+               if let bookClub = bookclub {
+                   bookclubName.text = bookClub.name
+                   bookclubDescription.text = bookClub.description
+                   members.text = "\(String(describing: bookClub.members))"
+                   
+                   if !bookClub.image.isEmpty {
+                       bookclubImage.image = UIImage(named: bookClub.image)
+                   } else {
+                       bookclubImage.image = UIImage(named: "defaultImage") // Provide a default image name
+                   }
+               } else {
+                   // Handle the case where bookClub is nil
+                   bookclubName.text = "No book club available"
+                   bookclubDescription.text = "Description not available"
+                   bookclubImage.image = UIImage(named: "defaultImage") // Provide a default image name
+               }
+           }
+    
     
 
 
