@@ -76,6 +76,8 @@
 		D0DCE5532C0FAAB200B6660E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5522C0FAAB200B6660E /* Main.storyboard */; };
 		D0DCE5572C0FAB6C00B6660E /* Bookclubs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */; };
 		D0DCE5612C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */; };
+		D0EACD582C166B8E00AE03C7 /* ChallengesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EACD562C166B8E00AE03C7 /* ChallengesCollectionViewCell.swift */; };
+		D0EACD592C166B8E00AE03C7 /* ChallengesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EACD572C166B8E00AE03C7 /* ChallengesCollectionViewCell.xib */; };
 		D0EC23CF2C10392700E14309 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC23CE2C10392700E14309 /* DataController.swift */; };
 		D0FF07272C0FC9CE00A68E29 /* FirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */; };
 		D0FF07282C0FC9CE00A68E29 /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */; };
@@ -153,6 +155,8 @@
 		D0DCE5522C0FAAB200B6660E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D0DCE5562C0FAB6C00B6660E /* Bookclubs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bookclubs.storyboard; sourceTree = "<group>"; };
 		D0DCE5602C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBookclubCollectionReusableView.swift; sourceTree = "<group>"; };
+		D0EACD562C166B8E00AE03C7 /* ChallengesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0EACD572C166B8E00AE03C7 /* ChallengesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengesCollectionViewCell.xib; sourceTree = "<group>"; };
 		D0EC23CE2C10392700E14309 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D0FF07252C0FC9CE00A68E29 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
 		D0FF07262C0FC9CE00A68E29 /* FirstCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCell.xib; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				D09E2E0D2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift */,
 				D09E2E132C0FBA6F00620EFE /* EventCardCollectionViewCell.swift */,
 				D09E2E0E2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib */,
+				D0EACD562C166B8E00AE03C7 /* ChallengesCollectionViewCell.swift */,
+				D0EACD572C166B8E00AE03C7 /* ChallengesCollectionViewCell.xib */,
 				D09E2E102C0FBA6F00620EFE /* Games.storyboard */,
 				D09E2E162C0FBA6F00620EFE /* QuizQuestionsViewController.swift */,
 				D09E2E152C0FBA6F00620EFE /* QuizScoreViewController.swift */,
@@ -398,6 +404,7 @@
 				D0DCE53F2C0FA36B00B6660E /* BookclubCardCollectionViewCell.xib in Resources */,
 				D09E2E1B2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib in Resources */,
 				D0DCE4762C0F494800B6660E /* Assets.xcassets in Resources */,
+				D0EACD592C166B8E00AE03C7 /* ChallengesCollectionViewCell.xib in Resources */,
 				D09E2E5B2C0FC10F00620EFE /* PCardCollectionViewCell.xib in Resources */,
 				D09E2E3D2C0FBF4900620EFE /* CardCollectionViewCell.xib in Resources */,
 				D0DCE4792C0F494800B6660E /* Base in Resources */,
@@ -465,6 +472,7 @@
 				D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */,
 				D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */,
 				D09E2E532C0FC10F00620EFE /* BcListCollectionViewCell.swift in Sources */,
+				D0EACD582C166B8E00AE03C7 /* ChallengesCollectionViewCell.swift in Sources */,
 				D0DCE46F2C0F494600B6660E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

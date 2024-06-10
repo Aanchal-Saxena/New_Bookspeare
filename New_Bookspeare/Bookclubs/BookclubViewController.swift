@@ -272,10 +272,10 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
                 headerView.button.setTitle("See All", for: .normal)
                 headerView.button.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
             case 1:
-                headerView.headerLabel.text = "Section 2"
+                headerView.headerLabel.text = "Joined Clubs"
                 headerView.button.setTitle("See All", for: .normal)
             case 2:
-                headerView.headerLabel.text = "Section 3"
+                headerView.headerLabel.text = "Recommended Clubs"
                 headerView.button.setTitle("See All", for: .normal)
             default:
                 headerView.headerLabel.text = "Default Header"
@@ -346,7 +346,7 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
     }
     
     func generateSection1() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90), heightDimension: .absolute(300))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)

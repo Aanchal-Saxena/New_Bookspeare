@@ -62,7 +62,7 @@ class DataController {
     
     public func fetchBookClubs(forEmail email: String, completion: @escaping (Result<[BookClub], Error>) -> Void) {
         let safeEmail = DataController.safeEmail(email: email)
-        database.child("users").child(safeEmail).child("bookclubs").observeSingleEvent(of: .value) { snapshot in
+        database.child(safeEmail).child("bookclubs").observeSingleEvent(of: .value) { snapshot in
             guard let bookClubsArray = snapshot.value as? [[String: Any]] else {
                 completion(.failure(DatabaseError.failedToFetch))
                 return
@@ -261,8 +261,10 @@ class DataController {
     
     func loadDummySlider() {
         let s1 = SwapSlider(image: "swap")
+        let s2 = SwapSlider(image: "exchange")
+        let s3 = SwapSlider(image: "go")
         
-        swapSlider.append(s1)
+        swapSlider.append(contentsOf: [s1,s2,s3])
     }
     
     func loadDummyEvents() {

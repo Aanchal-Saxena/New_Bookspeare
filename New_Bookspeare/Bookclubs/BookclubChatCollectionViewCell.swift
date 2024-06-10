@@ -56,7 +56,7 @@ class BookclubChatCollectionViewCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: 3, height: 3)
         self.layer.shadowRadius = 4
         self.layer.masksToBounds = false
-        //contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
+        
     }
 
     
