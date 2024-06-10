@@ -174,7 +174,7 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
             }
             let safeEmail = DataController.safeEmail(email: email as! String)
             
-        let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs").child()
+        let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs").child("child")
             
             let bookclubDicts = exitingBookclubs.map { $0.toDictionary() }
             
