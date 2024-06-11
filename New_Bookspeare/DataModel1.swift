@@ -292,17 +292,21 @@ class SwapSlider: Codable {
 
 class Quiz {
     var numberOfQuestion: Int
-    var answers: [QuizAnswer]
-    var ques: QuizQuestion
+    var questions: [QuizQuestion]
     var description: String
     var quizImage: UIImage
+    var name: String
     
-    init(numberOfQuestion: Int, answers: [QuizAnswer], ques: QuizQuestion, description: String, quizImage: UIImage) {
+    init(numberOfQuestion: Int, questions: [QuizQuestion], description: String, quizImage: UIImage, name: String) {
         self.numberOfQuestion = numberOfQuestion
-        self.answers = answers
-        self.ques = ques
+        self.questions = questions
         self.description = description
         self.quizImage = quizImage
+        self.name = name
+    }
+    
+    func addQuestion(_ question: QuizQuestion) {
+        self.questions.append(question)
     }
 }
 

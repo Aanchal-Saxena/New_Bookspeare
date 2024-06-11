@@ -9,7 +9,7 @@ import UIKit
 
 class CreateQuizQuestionViewController: UIViewController {
     
-    
+   
     
     @IBOutlet weak var quizNameLabel: UILabel!
     
@@ -41,16 +41,19 @@ class CreateQuizQuestionViewController: UIViewController {
     var numberOfQuestions = 3
     var userQuiz : [QuizQuestion] = []
     var currentQuestionIndex = 0
+    var myQuiz: Quiz = Quiz(numberOfQuestion: 1, questions: [], description: "", quizImage: UIImage(named: "one")!, name: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if let quiz = quiz
         {
+            self.myQuiz.numberOfQuestion = quiz.numberOfQuestion
             numberOfQuestions = quiz.numberOfQuestion
             
         }
         if let quizName = quizName
         {
+            self.myQuiz.name = quizName
             quizNameLabel.text = quizName
         }
         
@@ -94,6 +97,10 @@ class CreateQuizQuestionViewController: UIViewController {
                 
                 // Add the new question to the userQuiz array
                 userQuiz.append(newQuestion)
+        self.myQuiz.addQuestion(newQuestion)
+        
+        
+        
                 
                 // Increment the question index
                 currentQuestionIndex += 1
@@ -101,14 +108,17 @@ class CreateQuizQuestionViewController: UIViewController {
                 // Check if we have reached the required number of questions
                 if currentQuestionIndex >= numberOfQuestions {
                     print("Quiz creation completed with questions: \(userQuiz)")
+                    DataController.shared.appendQuiz(myQuiz: myQuiz)
                     
-                    for (index, question) in userQuiz.enumerated() {
-                        print("Question \(index + 1): \(question.question)")
-                        print("Correct Answer: \(question.correctAnswer)")
-                        print("Incorrect Answers: \(question.incorrectAnswers)")
-                        print("Category: \(question.category)")
-                        print("----------")
-                    }
+                    DataController.shared.printAllQuizzes()
+                    
+//                    for (index, question) in userQuiz.enumerated() {
+//                        print("Question \(index + 1): \(question.question)")
+//                        print("Correct Answer: \(question.correctAnswer)")
+//                        print("Incorrect Answers: \(question.incorrectAnswers)")
+//                        print("Category: \(question.category)")
+//                        print("----------")
+//                    }
                     let alert = UIAlertController(title: "Congratulations", message: "You have created your quiz!", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                                     // Optionally, you could navigate to another view controller or reset everything
