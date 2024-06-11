@@ -437,4 +437,29 @@ class DataController {
     func appendBookclub(club: BookClub) {
         bookclubs.append(club)
     }
+    
+    func appendQuiz(myQuiz: Quiz){
+        quiz.append(myQuiz)
+    }
+    
+    
+    func printAllQuizzes() {
+        let quizzes = DataController.shared.getQuiz()
+        
+        for (quizIndex, quiz) in quizzes.enumerated() {
+            print("Quiz \(quizIndex + 1): \(quiz.name)")
+            print("Description: \(quiz.description)")
+            print("Number of Questions: \(quiz.numberOfQuestion)")
+            print("Quiz Image: \(quiz.quizImage)") // This will print the memory address of the UIImage. You might want to handle it differently.
+            
+            for (questionIndex, question) in quiz.questions.enumerated() {
+                print("  Question \(questionIndex + 1): \(question.question)")
+                print("    Correct Answer: \(question.correctAnswer)")
+                print("    Incorrect Answers: \(question.incorrectAnswers.joined(separator: ", "))")
+                print("    Category: \(question.category)")
+            }
+            
+            print("----------")
+        }
+    }
 }

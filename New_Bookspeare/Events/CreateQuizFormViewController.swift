@@ -79,7 +79,7 @@ class CreateQuizFormViewController: UIViewController, UITextFieldDelegate{
                let sampleAnswer = QuizAnswer(text: "Sample Answer", isCorrect: true)
                
                if let image = quizImage.image {
-                   quiz = Quiz(numberOfQuestion: numberOfQuestions, answers: [sampleAnswer], ques: sampleQuestion, description: description, quizImage: image)
+                   quiz = Quiz(numberOfQuestion: numberOfQuestions, questions: [sampleQuestion], description: description, quizImage: image, name: name)
                }
         self.quizName = name
                
