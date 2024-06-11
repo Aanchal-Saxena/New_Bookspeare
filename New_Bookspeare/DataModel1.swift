@@ -69,19 +69,6 @@ struct BookClub: Codable {
     }
 }
 
-class Address: Codable {
-    var line1: String
-    var countryCode: Int
-    var city: String
-    var state: String
-    
-    init(line1: String, countryCode: Int, city: String, state: String) {
-        self.line1 = line1
-        self.countryCode = countryCode
-        self.city = city
-        self.state = state
-    }
-}
 
 struct User: Codable {
     var id: UUID
@@ -226,27 +213,8 @@ struct Message: Identifiable, Codable {
 
 
 
-class Giveaway: Codable {
-    var user: String
-    var userLocation: String?
-    var address: Address
-    var requests: Int
-    var image: String
-    var description: String
-    var genre: [String]
-    var isSwapped: Bool
-    
-    init(user: String, userLocation: String?, address: Address, requests: Int, image: String, description: String, genre: [String], isSwapped: Bool) {
-        self.user = user
-        self.userLocation = userLocation
-        self.address = address
-        self.requests = requests
-        self.image = image
-        self.description = description
-        self.genre = genre
-        self.isSwapped = isSwapped
-    }
-}
+
+
 
 class SwapSlider: Codable {
     var image: String
@@ -316,18 +284,56 @@ enum Genre: String, Codable {
     case ScienceFiction = "ScienceFiction"
 }
 
-class CurrentUser {
-    var email: String
-    var username: String
+class Bookshelf: Codable
+{
+    var name: String
+    var description: String
+    var books: [Book]?
+    var image: String
     
-    var safeEmail: String {
-        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
-        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
-        return safeEmail
+    init(name: String, description: String, books: [Book]? = nil, image: String) {
+        self.name = name
+        self.description = description
+        self.books = books
+        self.image = image
     }
+    
+    
+    func toDictionary() -> [String: Any] {
+            var dictionary: [String: Any] = [
+                "name": name,
+                "description": description,
+            ]
+            
+            if let books = books {
+                dictionary["books"] = books.map { $0.toDictionary() }
+            } else {
+                dictionary["books"] = nil
+            }
+            
+            return dictionary
+        }
+}
 
-    init(email: String, username: String) {
-        self.email = email
-        self.username = username
+class Book: Codable {
+    var title: String
+    var author: String
+    var image: String
+    var hooked: String
+    
+    init(title: String, author: String, image: String, hooked: String) {
+        self.title = title
+        self.author = author
+        self.image = image
+        self.hooked = hooked
     }
+    
+    func toDictionary() -> [String: Any] {
+            return [
+                "title": title,
+                "author": author,
+                "imageUrl": image,
+                "hooked": hooked
+            ]
+        }
 }

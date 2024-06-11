@@ -125,3 +125,6 @@ class SearchFriendsViewController: UIViewController {
 //            print("Failed to update user details.")
 //        }
 //    }
+
+
+

@@ -115,6 +115,10 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     
+    @IBAction func unwindToEventsViewController(_ segue: UIStoryboardSegue) {
+    
+        }
+    
 
     @IBAction func createButtonTapped(_ sender: UIButton) {
         

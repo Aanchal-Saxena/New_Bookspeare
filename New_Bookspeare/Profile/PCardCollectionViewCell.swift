@@ -10,10 +10,20 @@ import UIKit
 class PCardCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var cardName: UIImageView!
+    @IBOutlet weak var cardImage: UIImageView!
+    
+    
+    @IBOutlet weak var booksLabel: UILabel!
+    
+    
+    
     
     
     @IBOutlet weak var cardLabel: UILabel!
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
                 setupCell()

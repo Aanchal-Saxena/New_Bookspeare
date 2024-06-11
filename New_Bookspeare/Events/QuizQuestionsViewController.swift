@@ -181,11 +181,14 @@ class QuizQuestionsViewController: UIViewController {
        func showScore() {
            
            let alertController = UIAlertController(title: "Quiz Finished", message: "Your score is \(score)/\(questions.count)", preferredStyle: .alert)
-           let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-           alertController.addAction(okAction)
+           let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                   self?.performSegue(withIdentifier: "unwindToStartQuizVC", sender: nil)
+               }
+               
+               alertController.addAction(okAction)
            present(alertController, animated: true, completion: nil)
            
-           //performSegue(withIdentifier: "results", sender: score)
+           
        }
 
        @objc func answerBoxTapped(_ sender: UITapGestureRecognizer) {

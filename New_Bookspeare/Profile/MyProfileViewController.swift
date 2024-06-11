@@ -72,6 +72,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImage.contentMode = .scaleToFill
         reloadView()
         
     }
@@ -214,19 +215,20 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataController.shared.getBookclubs().count
+        return DataController.shared.getBookshelf().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PcardCell", for: indexPath) as! PCardCollectionViewCell
-        let bc = DataController.shared.getBookclub(with: indexPath.row)
+        let bc = DataController.shared.getBookshelf(with: indexPath.row)
         let imageName = bc.image
         cell.cardLabel?.text = bc.name
-        cell.cardName?.image = UIImage(named: imageName)
+        cell.booksLabel?.text = "\(String(describing: bc.books?.count)) Books"
+        cell.cardImage?.image = UIImage(named: imageName)
         
         // Apply corner radius to the image view
-        cell.cardName.layer.cornerRadius = 10
-        cell.cardName.layer.masksToBounds = true
+        cell.cardImage.layer.cornerRadius = 10
+        cell.cardImage.layer.masksToBounds = true
        
         return cell
     }

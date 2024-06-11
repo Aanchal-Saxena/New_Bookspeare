@@ -142,13 +142,11 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
+   
     }
+    
+    
+    @IBAction func unwindToSwapViewController(_ segue: UIStoryboardSegue) {
+    
+        }
 }

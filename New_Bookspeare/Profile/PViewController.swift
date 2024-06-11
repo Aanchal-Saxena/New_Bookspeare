@@ -53,11 +53,11 @@ super.viewDidLoad()
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! PCardCollectionViewCell
             let (_, imageName) = cardData[indexPath.item]
             cell.cardLabel?.text = cardTitles[indexPath.item]
-            cell.cardName?.image = UIImage(named: imageName)
+            cell.cardImage?.image = UIImage(named: imageName)
             
             // Apply corner radius to the image view
-            cell.cardName.layer.cornerRadius = 10
-            cell.cardName.layer.masksToBounds = true
+            cell.cardImage.layer.cornerRadius = 10
+            cell.cardImage.layer.masksToBounds = true
             // Adjust spacing between two cells
             let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             layout.minimumInteritemSpacing = 10
