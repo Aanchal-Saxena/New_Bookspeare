@@ -207,6 +207,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             editImageChanged.image = pickedImage
+            editImageChanged.contentMode = .scaleToFill
             makeCircular(imageView: editImageChanged)
             
             
@@ -268,6 +269,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.gray.cgColor
+ 
     }
  
 }

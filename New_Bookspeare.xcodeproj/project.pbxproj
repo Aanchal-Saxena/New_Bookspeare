@@ -86,6 +86,9 @@
 		D0FF07332C0FCB0500A68E29 /* SecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF07322C0FCB0500A68E29 /* SecondCell.xib */; };
 		D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF07312C0FCB0500A68E29 /* SecondCell.swift */; };
 		E53381F02C10D6D40072DECA /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53381EF2C10D6D40072DECA /* UserProfileViewController.swift */; };
+		E5E5104F2C1786EA00BDC5B9 /* createNewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5104E2C1786EA00BDC5B9 /* createNewListViewController.swift */; };
+		E5E510512C1787D800BDC5B9 /* myNewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E510502C1787D800BDC5B9 /* myNewCollectionViewCell.swift */; };
+		E5E510532C17903000BDC5B9 /* hookedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E510522C17903000BDC5B9 /* hookedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +168,9 @@
 		D0FF07312C0FCB0500A68E29 /* SecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCell.swift; sourceTree = "<group>"; };
 		D0FF07322C0FCB0500A68E29 /* SecondCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondCell.xib; sourceTree = "<group>"; };
 		E53381EF2C10D6D40072DECA /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E5E5104E2C1786EA00BDC5B9 /* createNewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createNewListViewController.swift; sourceTree = "<group>"; };
+		E5E510502C1787D800BDC5B9 /* myNewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myNewCollectionViewCell.swift; sourceTree = "<group>"; };
+		E5E510522C17903000BDC5B9 /* hookedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hookedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,10 @@
 			isa = PBXGroup;
 			children = (
 				D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */,
+				D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */,
+				E5E510522C17903000BDC5B9 /* hookedViewController.swift */,
+				E5E510502C1787D800BDC5B9 /* myNewCollectionViewCell.swift */,
+				E5E5104E2C1786EA00BDC5B9 /* createNewListViewController.swift */,
 				D09E2E632C0FC25E00620EFE /* EditProfileViewController.swift */,
 				D09E2E4E2C0FC10E00620EFE /* PViewController.swift */,
 				D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */,
@@ -225,7 +235,6 @@
 				D09E2E452C0FC10E00620EFE /* myCollectionViewCell.swift */,
 				D09E2E472C0FC10E00620EFE /* PCardCollectionViewCell.swift */,
 				D09E2E4C2C0FC10E00620EFE /* PCardCollectionViewCell.xib */,
-				D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */,
 				D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */,
 				D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */,
 				D04437982C139CBF00B5F7C5 /* SearchFriendsViewController.swift */,
@@ -430,10 +439,12 @@
 				D09E2E2A2C0FBC8700620EFE /* EventsSearchViewController.swift in Sources */,
 				D04437992C139CBF00B5F7C5 /* SearchFriendsViewController.swift in Sources */,
 				D09E2E6E2C0FC54D00620EFE /* UserLoginViewController.swift in Sources */,
+				E5E510532C17903000BDC5B9 /* hookedViewController.swift in Sources */,
 				D09E2E072C0FB81500620EFE /* RegisteredViewController.swift in Sources */,
 				D09E2E5D2C0FC10F00620EFE /* PViewController.swift in Sources */,
 				D09E2E642C0FC25E00620EFE /* EditProfileViewController.swift in Sources */,
 				D09E2E232C0FBA6F00620EFE /* QuizQuestionsViewController.swift in Sources */,
+				E5E5104F2C1786EA00BDC5B9 /* createNewListViewController.swift in Sources */,
 				D09E2E2C2C0FBE1800620EFE /* DetailEventsViewController.swift in Sources */,
 				D09E2E262C0FBB5000620EFE /* EventsViewController.swift in Sources */,
 				D09E2E5C2C0FC10F00620EFE /* FriendsTableViewCell.swift in Sources */,
@@ -468,6 +479,7 @@
 				D09E2E6A2C0FC49300620EFE /* ClubsCreateViewController.swift in Sources */,
 				D0FF07302C0FCAF000A68E29 /* ThirdCell.swift in Sources */,
 				D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */,
+				E5E510512C1787D800BDC5B9 /* myNewCollectionViewCell.swift in Sources */,
 				D0EC23CF2C10392700E14309 /* DataController.swift in Sources */,
 				D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */,
 				D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */,
