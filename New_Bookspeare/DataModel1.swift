@@ -217,40 +217,6 @@ class GroupChat: Codable {
     }
 }
 
-//class DirectChat: Codable {
-//    var users: [Int]
-//    var messages: [String]
-//    var status: Status
-//    var organization: String
-//    
-//    enum Status: String, Codable {
-//        case active = "ACTIVE"
-//        case blocked = "BLOCKED"
-//        case deleted = "DELETED"
-//    }
-//    
-//    init(users: [Int], messages: [String], status: Status, organization: String) {
-//        self.users = users
-//        self.messages = messages
-//        self.status = status
-//        self.organization = organization
-//    }
-//}
-
-
-
-//struct ChatAppApp: App {
-//    
-//    init() {
-//        FirebaseApp.configure()
-//    }
-//    
-//    var body: some Scene {
-//        WindowGroup {
-//            ContentView()
-//        }
-//    }
-//}
 struct Message: Identifiable, Codable {
     var id: String
     var text: String

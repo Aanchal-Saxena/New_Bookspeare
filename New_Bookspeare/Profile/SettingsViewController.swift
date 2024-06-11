@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 struct Section {
     let title: String
@@ -80,8 +81,34 @@ class SettingsViewController: UIViewController , UITableViewDelegate, UITableVie
             },
             SettingsOption(title: "Log out", icon: UIImage(systemName: "arrow.backward.circle"), iconBackgroundColor: customColor) {
                 print("Tapped Log out")
+                let auth = FirebaseAuth.Auth.auth()
+                try? auth.signOut()
+                print(auth.currentUser)
+                if auth.currentUser == nil{
+                    self.navigateToRegisterScreen()
+                }
+                
             }
         ]))
+    }
+    
+    
+    
+    private func navigateToRegisterScreen()
+    {
+        print("naviagtin to register")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let registerVC = storyboard.instantiateViewController(withIdentifier: "RegisterPage")
+       
+            setRootViewController(registerVC)
+        
+    }
+    
+    private func setRootViewController(_ viewController: UIViewController)
+    {
+        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = viewController
+        }
     }
     
  

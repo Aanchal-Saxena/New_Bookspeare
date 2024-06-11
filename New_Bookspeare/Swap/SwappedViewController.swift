@@ -32,14 +32,7 @@ class SwappedViewController: UIViewController {
         // Register custom cell class for the card collection view
         cardCollectionView?.register(UINib(nibName: "CardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cardCell")
         //card collection layer
-        cardCollectionView?.layer.cornerRadius = 10
-            cardCollectionView.layer.masksToBounds = true
-        
-        cardCollectionView.layer.cornerRadius = 10
-        cardCollectionView.layer.shadowColor = UIColor.black.cgColor
-        cardCollectionView.layer.shadowOpacity = 0.5
-        cardCollectionView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cardCollectionView.layer.shadowRadius = 4
+
 
         timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         // Cornerradius and shadow for sliderCollection
@@ -53,6 +46,17 @@ class SwappedViewController: UIViewController {
         pageControl.numberOfPages = DataController.shared.getSlider().count
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSwap" {
+            guard let indexPath = sender as? IndexPath else { return }
+            let sw = swapBooks[indexPath.row]
+            
+            if let destinationVC = segue.destination as? SwapDetailViewController {
+                destinationVC.swap = sw
+            }
+        }
+    }
+
     
     
     func fetchExistingSwaps() {
@@ -138,30 +142,16 @@ extension SwappedViewController: UICollectionViewDataSource, UICollectionViewDel
                    cell.cardImages.layer.cornerRadius = 10
                    cell.cardImages.layer.masksToBounds = true
             // Apply background color, border, and shadow to the cell's contentView
-                    cell.contentView.backgroundColor = .white
-                    cell.contentView.layer.cornerRadius = 10
-                    cell.contentView.layer.masksToBounds = false
-            cell.contentView.layer.borderWidth = 1.0
-            cell.contentView.layer.borderColor = UIColor(red: 1.0, green: 0.5647, blue: 0.5216, alpha: 0.5).cgColor
-                    cell.contentView.layer.shadowColor = UIColor.gray.cgColor
-            cell.contentView.layer.shadowOpacity = 1.0
-                    cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
-                    cell.contentView.layer.shadowRadius = 2
-                    cell.contentView.layer.shadowPath = UIBezierPath(roundedRect: cell.contentView.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-            cell.layer.cornerRadius = 10
-                    cell.layer.masksToBounds = false
-                    cell.layer.shadowColor = UIColor.gray.cgColor
-                    cell.layer.shadowOpacity = 0.5
-                    cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-                    cell.layer.shadowRadius = 4
-                    cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+                   
                     
                     // Adjust spacing between two cells
                     let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
                     layout.minimumInteritemSpacing = 10
             
             
-            
+            cell.tapAction = { [weak self] in
+                self?.performSegue(withIdentifier: "showDetail", sender: indexPath)
+        }
             
                        return cell
                    

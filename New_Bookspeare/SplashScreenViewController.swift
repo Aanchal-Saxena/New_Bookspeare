@@ -19,26 +19,23 @@ class SplashScreenViewController: UIViewController {
 
     private func checkAuthenticationStatus()
     {
-        if Auth.auth().currentUser != nil{
-            navigateToMainScreen()
-        }
-        else
-        {
+        if Auth.auth().currentUser == nil{
             navigateToRegisterScreen()
         }
+       
     }
     
     private func navigateToMainScreen()
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let mainVC = storyboard.instantiateViewController(withIdentifier: "mainPage") as? UITabBarController
+        if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainPage") as? UITabBarController
         {
             setRootViewController(mainVC)
         }
     }
     private func navigateToRegisterScreen()
     {
-        let storyboard = UIStoryboard(name: "auth", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let registerVC = storyboard.instantiateViewController(withIdentifier: "RegisterPage") as? RegisteredViewController
         {
             setRootViewController(registerVC)

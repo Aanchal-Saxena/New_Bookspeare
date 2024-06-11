@@ -71,10 +71,9 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
     {
         profileCellView.layer.borderColor = UIColor.gray.cgColor
         profileCellView.layer.borderWidth = 0.1
-        
-        // Set the corner radius
         profileCellView.layer.cornerRadius = 5.0
         profileCellView.clipsToBounds = true
+        
         
         // Set the shadow
         profileCellView.layer.shadowColor = UIColor.black.cgColor
@@ -270,6 +269,7 @@ class EditProfileViewController: UIViewController ,UIImagePickerControllerDelega
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.gray.cgColor
+        imageView.contentMode = .scaleToFill
     }
  
 }

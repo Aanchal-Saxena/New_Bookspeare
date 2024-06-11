@@ -71,6 +71,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         reloadView()
         
     }
