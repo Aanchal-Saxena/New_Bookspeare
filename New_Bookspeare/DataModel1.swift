@@ -42,29 +42,30 @@ struct Friend: Codable {
 }
 
 struct BookClub: Codable {
-    var uuid : UUID = UUID()
+    var id: UUID = UUID()
     var name: String
     var image: String
-    var genre: [Genre]?
     var description: String?
     var members: Int?
+    var admin: String?
     
     func toDictionary() -> [String: Any] {
         return [
+            "id": id.uuidString,
             "name": name,
             "image": image,
-            "genre": genre?.map { $0.rawValue } ?? [],
             "description": description ?? "",
-            "members": members ?? 1
+            "members": members ?? 1,
+            "admin": admin ?? ""
         ]
     }
-    
-    init(name: String, image: String, description: String? = nil, members: Int? = nil) {
+    init(id: UUID, name: String, image: String, description: String? = nil, members: Int? = nil, admin: String? = nil) {
+        self.id = id
         self.name = name
         self.image = image
-        self.genre = nil
         self.description = description
         self.members = members
+        self.admin = admin
     }
 }
 
@@ -135,12 +136,14 @@ struct Location: Codable {
 }
 
 class Swap: Codable {
+    var id = UUID()
     var bookTitle: String
     var description: String
     var location: Location
     var image: String
     
-    init(bookTitle: String, description: String, location: Location, image: String) {
+    init(id: UUID = UUID(), bookTitle: String, description: String, location: Location, image: String) {
+        self.id = id
         self.bookTitle = bookTitle
         self.description = description
         self.location = location
@@ -149,6 +152,7 @@ class Swap: Codable {
     
     func toDictionary() -> [String: Any] {
         return [
+            "id": id.uuidString,
             "bookTitle": bookTitle,
             "description": description,
             "location": location.toDictionary(),
@@ -159,13 +163,15 @@ class Swap: Codable {
 
 
 class Event: Codable {
+    var id = UUID()
     let title: String
     let images: String
     var description: String
     var registeredMembers: Int
     var address: String
     
-    init(title: String, images: String, description: String, registeredMembers: Int, address: String) {
+    init(id: UUID = UUID(), title: String, images: String, description: String, registeredMembers: Int, address: String) {
+        self.id = id
         self.title = title
         self.images = images
         self.description = description
@@ -175,6 +181,7 @@ class Event: Codable {
     
     func toDictionary() -> [String: Any] {
         return [
+            "id": id.uuidString,
             "title": title,
             "images": images,
             "description": description,
@@ -300,7 +307,6 @@ class Quiz {
 }
 
 class QuizAnswer {
-    var id = UUID()
     var text: String
     var isCorrect: Bool
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -13,8 +14,8 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-                self.view.endEditing(true)
-            }
+        self.view.endEditing(true)
+    }
     
     @IBOutlet weak var swapImage: UIImageView!
     
@@ -30,11 +31,11 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var createButton: UIButton!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         swapImage.isUserInteractionEnabled = true
-        fetchExistingEvents()
+
         self.inputViewController?.dismissKeyboard()
         self.swapBookName.delegate = self
         self.swapBookDescription.delegate = self
@@ -54,7 +55,7 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
         createButton.isEnabled = false
         updateCreateButtonState()
         
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -90,7 +91,7 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             swapImage.image = pickedImage
-
+            
         }
         dismiss(animated: true, completion: nil)
     }
@@ -100,22 +101,6 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     
-    func fetchExistingEvents()
-    {
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        DataController.shared.fetchSwappedBooks(forEmail: safeEmail) { [weak self] result in
-            switch result {
-            case .success(let bc):
-                self?.existingSwaps.append(contentsOf: bc)
-                
-                 // Ensure the main bookclubs array is also updated
-            case .failure(let error):
-                print("Failed to fetch book clubs: \(error)")
-            }
-            
-        }
-    }
     
     
     func updateCreateButtonState()
@@ -137,29 +122,33 @@ class CreateSwapViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func createButtonTapped(_ sender: UIButton) {
         
-        guard let email = UserDefaults.standard.value(forKey: "email") else {
+        let location1 = Location(latitude: 40.7128, longitude: -74.0060) // New York
+        
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("Failed to get user email.")
             return
         }
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        let location1 = Location(latitude: 40.7128, longitude: -74.0060) // New York
         
         let name = swapBookName.text ?? ""
         let description = swapBookDescription.text ?? ""
         let genre = swapGenre.text ?? ""
-        let swap = Swap(bookTitle: name, description: description, location: location1, image: "one")
-        existingSwaps.append(swap)
+        let swap = Swap(id: UUID(), bookTitle: name, description: description, location: location1, image: "one")
         
-        DataController.shared.updateSwappedBooks(forEmail: safeEmail, swappedBooks: existingSwaps) { success in
-            if success {
-                print("Swap books updated successfully.")
+        DataController.shared.updateSwap(swap: swap, forEmail: email) { error in
+            if let error = error {
+                print("Failed to update swap: \(error.localizedDescription)")
             } else {
-                print("Failed to update events.")
+                print("Swap updated successfully.")
             }
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
-    
-    
-
-
 }

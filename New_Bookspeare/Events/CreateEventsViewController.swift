@@ -63,23 +63,7 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
             createButton.isEnabled = !nameText.isEmpty && !descriptionText.isEmpty
         }
     
-    func fetchExistingBookclubs()
-    {
-        let email = UserDefaults.standard.value(forKey: "email")
-        let safeEmail = DataController.safeEmail(email: email as! String)
-        DataController.shared.fetchEvents(forEmail: safeEmail) { [weak self] result in
-            switch result {
-            case .success(let bc):
-                self?.existingEvents.append(contentsOf: bc)
-                
-                 // Ensure the main bookclubs array is also updated
-            case .failure(let error):
-                print("Failed to fetch book clubs: \(error)")
-            }
-            
-        }
-    }
-    
+   
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         if sender.view == eventImage{
@@ -134,28 +118,23 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
 
     @IBAction func createButtonTapped(_ sender: UIButton) {
         
-        // Create a new event
-                let name = eventName.text ?? ""
-                let description = eventDescription.text ?? ""
-                let address = eventAddress.text ?? ""
-                let event = Event(title: name, images: "one", description: description, registeredMembers: 0, address: address)
-                
-                // Add the new event to the existing events array
-                existingEvents.append(event)
+        let name = eventName.text ?? ""
+        let description = eventDescription.text ?? ""
+        let address = eventAddress.text ?? ""
+        let event = Event(id: UUID(), title: name, images: "one", description: description, registeredMembers: 0, address: address)
         
-        guard let email = UserDefaults.standard.value(forKey: "email") else {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("Failed to get user email.")
             return
         }
-        let safeEmail = DataController.safeEmail(email: email as! String)
-                
-                // Update events in the database
-                DataController.shared.updateEvents(forEmail: safeEmail, events: existingEvents) { success in
-                    if success {
-                        print("Events updated successfully.")
-                    } else {
-                        print("Failed to update events.")
-                    }
-                }
+        
+        DataController.shared.updateEvent(event: event, forEmail: email) { error in
+            if let error = error {
+                print("Failed to update event: \(error.localizedDescription)")
+            } else {
+                print("Event updated successfully.")
+            }
+        }
     }
     
 }

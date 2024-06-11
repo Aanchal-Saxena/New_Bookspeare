@@ -9,7 +9,7 @@ import UIKit
 
 class SwappedViewController: UIViewController {
     
-    
+    var swapBooks: [Swap] = []
     // Outlet for cards
     @IBOutlet var cardCollectionView: UICollectionView!
     // Autoslider outlets
@@ -28,6 +28,7 @@ class SwappedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchExistingSwaps()
         // Register custom cell class for the card collection view
         cardCollectionView?.register(UINib(nibName: "CardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cardCell")
         //card collection layer
@@ -47,15 +48,42 @@ class SwappedViewController: UIViewController {
             sliderCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20), // Adjust the leading constraint as needed
             sliderCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20), // Adjust the trailing constraint as needed
         ])
-        sliderCollection.layer.cornerRadius = 10
-//        sliderCollection.layer.masksToBounds = false // Allow shadow to be visible
-//        sliderCollection.layer.shadowColor = UIColor.black.cgColor
-//        sliderCollection.layer.shadowOpacity = 0.5
-//        sliderCollection.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-//        sliderCollection.layer.shadowRadius = 4
+
         sliderCollection.layer.shadowPath = UIBezierPath(roundedRect: sliderCollection.bounds, cornerRadius: 4).cgPath
         pageControl.numberOfPages = DataController.shared.getSlider().count
     }
+    
+    
+    
+    func fetchExistingSwaps() {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("Failed to get user email.")
+            return
+        }
+        
+        let safeEmail = DataController.safeEmail(email: email)
+        
+        DataController.shared.fetchSwaps(forEmail: safeEmail) { [weak self] swaps in
+            guard let self = self else { return }
+            if swaps.isEmpty {
+                print("No swap books found.")
+            } else {
+                print("Fetched \(swaps.count) swap books.")
+                for swap in swaps {
+                    print(swap.toDictionary()) // Print swap details
+                }
+                self.swapBooks.append(contentsOf: swaps)
+                self.cardCollectionView.reloadData()
+                print("Reloaded collection view.")
+            }
+        }
+    }
+
+    
+    
+    
+    
+    
             
     @objc func slideToNext() {
         if currentcellIndex < DataController.shared.getSlider().count - 1 {
@@ -88,9 +116,8 @@ extension SwappedViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == sliderCollection {
-            return DataController.shared.getSlider().count
-        } else {
-            return DataController.shared.getSwapBooks().count
+            return DataController.shared.getSlider().count        } else {
+            return swapBooks.count
         }
     }
     
@@ -103,7 +130,7 @@ extension SwappedViewController: UICollectionViewDataSource, UICollectionViewDel
             return cell
         } else {
             let cell = cardCollectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCollectionViewCell
-            let sw = DataController.shared.getSwapBook(with: indexPath.row)
+            let sw = swapBooks[indexPath.row]
             let imageName = sw.image
             cell.cardLabels?.text = sw.bookTitle
             cell.cardImages?.image = UIImage(named: imageName)

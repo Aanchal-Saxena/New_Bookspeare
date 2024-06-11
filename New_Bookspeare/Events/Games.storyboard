@@ -315,7 +315,7 @@
             <objects>
                 <viewController id="tD9-DE-qGT" customClass="CreateQuizQuestionViewController" customModule="New_Bookspeare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Shc-zu-x8j">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-x8-7aj">
@@ -476,6 +476,7 @@
                             <constraint firstItem="r1X-Kl-9JE" firstAttribute="bottom" secondItem="OTR-gr-6yL" secondAttribute="bottom" constant="18" id="RkG-ov-sGJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="z3Z-S9-rd9"/>
                     <connections>
                         <outlet property="correctOption1" destination="CoS-M6-pWf" id="0So-k4-ed2"/>
                         <outlet property="incorrectOption2" destination="OXe-dR-oa4" id="1dW-fM-RrF"/>
@@ -484,11 +485,12 @@
                         <outlet property="nextButton" destination="OTR-gr-6yL" id="bqa-ai-gTs"/>
                         <outlet property="quesNumberLabel" destination="UPa-gk-tPk" id="WPl-79-3Qp"/>
                         <outlet property="quesTextField" destination="OJo-Bc-e45" id="jdb-9P-FvX"/>
+                        <outlet property="quizNameLabel" destination="Ze0-zH-6V3" id="GVq-N7-BgM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypu-cs-ykw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1693.8931297709923" y="9.8591549295774659"/>
+            <point key="canvasLocation" x="2427" y="4"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="atj-Hf-Hww">
@@ -571,37 +573,44 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwO-ju-eC9">
-                                <rect key="frame" x="20" y="713" width="340" height="41"/>
+                                <rect key="frame" x="20" y="761" width="340" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Create " cornerStyle="capsule"/>
                                 <connections>
                                     <action selector="createButtonTapped:" destination="BRT-3S-aFO" eventType="touchUpInside" id="9Ic-oU-RhL"/>
+                                    <segue destination="tD9-DE-qGT" kind="show" identifier="showQuizQues" id="k78-Lp-yVx"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-zO-wTg">
-                                <rect key="frame" x="20" y="651" width="359" height="34"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="abB-GL-Ls5">
+                                <rect key="frame" x="266" y="671" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="editingDidend:" destination="BRT-3S-aFO" eventType="editingDidEnd" id="H1h-IR-HRb"/>
+                                    <action selector="steppedValueChanged:" destination="BRT-3S-aFO" eventType="valueChanged" id="VXP-zr-tGQ"/>
                                 </connections>
-                            </textField>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaZ-3U-pWj">
+                                <rect key="frame" x="25" y="682" width="161" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c1B-Iq-Cam"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="numberOfQuesTextField" destination="vW5-zO-wTg" id="7nf-GG-Fg9"/>
+                        <outlet property="quesNumberStepper" destination="abB-GL-Ls5" id="hQd-iI-evY"/>
                         <outlet property="quizImage" destination="5rs-py-b8g" id="a7u-w4-yVQ"/>
                         <outlet property="quizNameTextField" destination="dZB-Yv-ssk" id="i1B-bS-N8Y"/>
                         <outlet property="quizdescriptionTextfield" destination="0cA-Z5-hjb" id="CNq-xe-AXS"/>
+                        <outlet property="stepperLabel" destination="CaZ-3U-pWj" id="uf3-0T-YhJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pcy-gz-I6B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="4"/>
+            <point key="canvasLocation" x="1644" y="10"/>
         </scene>
     </scenes>
     <resources>
@@ -609,7 +618,7 @@
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
-            <color red="0.94099998474121094" green="0.58799999952316284" blue="0.54100000858306885" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

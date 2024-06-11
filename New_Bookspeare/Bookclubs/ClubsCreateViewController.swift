@@ -163,22 +163,24 @@ class ClubsCreateViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func createButtonTapped(_ sender: UIButton) {
         let name = nameTextField.text ?? ""
             let description = descriptionTextField.text ?? ""
-            let genre = genreTextField.text ?? ""
-            let genreEnum = Genre(rawValue: genre) ?? .Fiction
-            let bookclub = BookClub(name: name, image: "one", description: description, members: 1)
             
-            exitingBookclubs.append(bookclub)
+            // Create a new BookClub instance
+        let bookclub = BookClub(id: UUID(), name: name, image: "10", description: description, members: 1)
             
-            guard let email = UserDefaults.standard.value(forKey: "email") else {
+            // Get the user's email
+            guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+                print("Failed to get user email.")
                 return
             }
-            let safeEmail = DataController.safeEmail(email: email as! String)
             
-        let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs").child("child")
+            // Create a safe email key
+            let safeEmail = DataController.safeEmail(email: email)
             
-            let bookclubDicts = exitingBookclubs.map { $0.toDictionary() }
+            // Reference to the user's book clubs in the database
+            let bookclubRef = Database.database().reference().child(safeEmail).child("bookclubs").child(bookclub.id.uuidString)
             
-            bookclubRef.setValue(bookclubDicts) { error, _ in
+            // Save the book club to the database
+            bookclubRef.setValue(bookclub.toDictionary()) { error, _ in
                 if let error = error {
                     print("Failed to update book clubs: \(error.localizedDescription)")
                 } else {
