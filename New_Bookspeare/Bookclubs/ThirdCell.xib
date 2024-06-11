@@ -16,8 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="255" height="262"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khp-qe-v73">
-                        <rect key="frame" x="42" y="226" width="33" height="17.666666666666657"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khp-qe-v73">
+                        <rect key="frame" x="42" y="226" width="203" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                         <rect key="frame" x="12" y="227" width="21" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DtR-zG-Asi">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DtR-zG-Asi">
                         <rect key="frame" x="5" y="5" width="245" height="142.33333333333334"/>
                     </imageView>
                 </subviews>
@@ -66,7 +66,7 @@
                 <outlet property="bookclubName" destination="scX-oY-jzF" id="XbJ-wH-j62"/>
                 <outlet property="imageView" destination="DtR-zG-Asi" id="oZC-rv-4CM"/>
             </connections>
-            <point key="canvasLocation" x="144.27480916030532" y="94.366197183098592"/>
+            <point key="canvasLocation" x="142.74809160305344" y="94.366197183098592"/>
         </collectionViewCell>
     </objects>
     <resources>
