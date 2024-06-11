@@ -7,6 +7,7 @@
 
 import UIKit
 
+    
 class EventsViewController: UIViewController {
     
     required init?(coder: NSCoder)
@@ -16,6 +17,7 @@ class EventsViewController: UIViewController {
         self.tabBarItem.image = UIImage(systemName: "calendar.badge.clock")
     }
     
+    @IBOutlet weak var quizView: UIView!
     
     @IBOutlet var buttonCollectionView: UICollectionView!
     
@@ -73,6 +75,13 @@ class EventsViewController: UIViewController {
         cardCollectionView.dataSource = self
         cardCollectionView.delegate = self
 //        cardCollectionView.layer.masksToBounds = false
+        
+        
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
+                quizView.addGestureRecognizer(tapGestureRecognizer)
+                quizView.isUserInteractionEnabled = true
            
 //           // Register cells with NIB files if they are created with XIB
 //           let buttonNib = UINib(nibName: "ButtonCollectionViewCell", bundle: nil)
@@ -81,7 +90,24 @@ class EventsViewController: UIViewController {
            let cardNib = UINib(nibName: "EventCardCollectionViewCell", bundle: nil)
            cardCollectionView.register(cardNib, forCellWithReuseIdentifier: "eventCardCell")
        }
+    
+    
+    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
+           // Handle the tap
+           print("View was tapped!")
+           if let tappedView = sender.view {
+               tappedView.backgroundColor = tappedView.backgroundColor == .blue ? .green : .blue
+           }
+       }
    }
+
+
+
+
+
+
+
+
 
 extension EventsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     

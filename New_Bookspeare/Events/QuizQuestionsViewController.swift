@@ -133,6 +133,7 @@ class QuizQuestionsViewController: UIViewController {
            if currentQuestionIndex == questions.count - 1
            {
                nextButton.setTitle("Done", for: .normal)
+               
            }
            questionLabel.text = currentQuestion.question
            answers = generateAnswers(from: currentQuestion)
