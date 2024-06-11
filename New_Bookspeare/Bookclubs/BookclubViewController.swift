@@ -288,14 +288,14 @@ class BookclubViewController: UIViewController , UICollectionViewDataSource {
             case 0:
                 headerView.headerLabel.text = "Your Clubs"
                 headerView.headerLabel.font = UIFont.boldSystemFont(ofSize: 20)
-                headerView.button.setTitle("See All", for: .normal)
+               // headerView.button.setTitle("See All", for: .normal)
                 headerView.button.addTarget(self, action: #selector(headerButtonTapped), for: .touchUpInside)
             case 1:
                 headerView.headerLabel.text = "Section 2"
-                headerView.button.setTitle("See All", for: .normal)
+              //  headerView.button.setTitle("See All", for: .normal)
             case 2:
                 headerView.headerLabel.text = "Section 3"
-                headerView.button.setTitle("See All", for: .normal)
+               // headerView.button.setTitle("See All", for: .normal)
             default:
                 headerView.headerLabel.text = "Default Header"
             }

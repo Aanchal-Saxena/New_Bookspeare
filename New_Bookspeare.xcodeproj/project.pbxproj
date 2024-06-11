@@ -10,6 +10,8 @@
 		905AA6FD2C166ABD003D2F42 /* CreateEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA6FC2C166ABD003D2F42 /* CreateEventsViewController.swift */; };
 		905AA6FF2C166AF4003D2F42 /* CreateSwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA6FE2C166AF4003D2F42 /* CreateSwapViewController.swift */; };
 		905AA7012C1678EB003D2F42 /* BookclubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA7002C1678EB003D2F42 /* BookclubDetailViewController.swift */; };
+		905AA7042C18170F003D2F42 /* ChallengesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA7022C18170F003D2F42 /* ChallengesCollectionViewCell.swift */; };
+		905AA7052C18170F003D2F42 /* ChallengesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 905AA7032C18170F003D2F42 /* ChallengesCollectionViewCell.xib */; };
 		D01D69232C125FFF0082EFFD /* CreateQuizFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D69222C125FFF0082EFFD /* CreateQuizFormViewController.swift */; };
 		D0244ABB2C14546400C8D87E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D0244ABA2C14546400C8D87E /* FirebaseDatabase */; };
 		D04437952C12D26D00B5F7C5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04437942C12D26D00B5F7C5 /* StorageManager.swift */; };
@@ -93,6 +95,8 @@
 		905AA6FC2C166ABD003D2F42 /* CreateEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventsViewController.swift; sourceTree = "<group>"; };
 		905AA6FE2C166AF4003D2F42 /* CreateSwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSwapViewController.swift; sourceTree = "<group>"; };
 		905AA7002C1678EB003D2F42 /* BookclubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookclubDetailViewController.swift; sourceTree = "<group>"; };
+		905AA7022C18170F003D2F42 /* ChallengesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesCollectionViewCell.swift; sourceTree = "<group>"; };
+		905AA7032C18170F003D2F42 /* ChallengesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengesCollectionViewCell.xib; sourceTree = "<group>"; };
 		D01D69222C125FFF0082EFFD /* CreateQuizFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizFormViewController.swift; sourceTree = "<group>"; };
 		D04437942C12D26D00B5F7C5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D04437962C13120600B5F7C5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				D09E2E0B2C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift */,
 				D09E2E112C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib */,
 				D09E2E092C0FBA4700620EFE /* Events.storyboard */,
+				905AA7022C18170F003D2F42 /* ChallengesCollectionViewCell.swift */,
+				905AA7032C18170F003D2F42 /* ChallengesCollectionViewCell.xib */,
 				D09E2E252C0FBB5000620EFE /* EventsViewController.swift */,
 				D09E2E292C0FBC8700620EFE /* EventsSearchViewController.swift */,
 				D09E2E2B2C0FBE1800620EFE /* DetailEventsViewController.swift */,
@@ -407,6 +413,7 @@
 				D0DCE53F2C0FA36B00B6660E /* BookclubCardCollectionViewCell.xib in Resources */,
 				D09E2E1B2C0FBA6F00620EFE /* EventCardCollectionViewCell.xib in Resources */,
 				D0DCE4762C0F494800B6660E /* Assets.xcassets in Resources */,
+				905AA7052C18170F003D2F42 /* ChallengesCollectionViewCell.xib in Resources */,
 				D09E2E5B2C0FC10F00620EFE /* PCardCollectionViewCell.xib in Resources */,
 				D09E2E3D2C0FBF4900620EFE /* CardCollectionViewCell.xib in Resources */,
 				D0DCE4792C0F494800B6660E /* Base in Resources */,
@@ -476,6 +483,7 @@
 				D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */,
 				905AA6FF2C166AF4003D2F42 /* CreateSwapViewController.swift in Sources */,
 				D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */,
+				905AA7042C18170F003D2F42 /* ChallengesCollectionViewCell.swift in Sources */,
 				D09E2E532C0FC10F00620EFE /* BcListCollectionViewCell.swift in Sources */,
 				D0DCE46F2C0F494600B6660E /* SceneDelegate.swift in Sources */,
 			);
