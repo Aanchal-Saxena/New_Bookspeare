@@ -74,6 +74,24 @@ class EventsViewController: UIViewController {
         buttonCollectionView.delegate = self
         cardCollectionView.dataSource = self
         cardCollectionView.delegate = self
+        
+        
+        
+        
+       
+            // Apply corner radius, border, and shadow to the cell's contentView
+            quizView.backgroundColor = .white
+            quizView.layer.cornerRadius = 10
+            quizView.layer.masksToBounds = true
+            quizView.layer.borderWidth = 0.5
+            quizView.layer.borderColor = UIColor(red: 1.0, green: 0.5647, blue: 0.5216, alpha: 0.5).cgColor //coralpink
+//            self.layer.shadowColor = UIColor.black.cgColor
+//            self.layer.shadowOpacity = 0.5
+//            self.layer.shadowOffset = CGSize(width: 3, height: 3)
+//            self.layer.shadowRadius = 4
+//            self.layer.masksToBounds = false
+            //contentView.layer.shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
+        
 //        cardCollectionView.layer.masksToBounds = false
         
         
@@ -115,7 +133,7 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         if collectionView == buttonCollectionView {
             return filterButton.count
         } else {
-            return eventsFetched.count
+            return DataController.shared.getEvents().count
         }
     }
     
@@ -132,7 +150,7 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCardCell", for: indexPath) as! EventCardCollectionViewCell
             
-            let event = eventsFetched[indexPath.row]
+            let event = DataController.shared.getEvent(with: indexPath.row)
             cell.eventTitle.text = event.title
                        cell.participantsLabel.text = "20+ Registered" // Set a default value or fetch from your data source
                        cell.typeLabel.text = "Virtual" // Set a default value or fetch from your data source

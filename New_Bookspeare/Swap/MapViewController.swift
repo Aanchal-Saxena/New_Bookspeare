@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
                 guard let strongSelf = self else {
                     return
                 }
+                print("HI")
                 strongSelf.addMapPin(with: location)
             }
         }

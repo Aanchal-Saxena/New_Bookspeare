@@ -389,15 +389,17 @@ class DataController {
     
     func loadDummySlider() {
         let s1 = SwapSlider(image: "swap")
+        let s2 = SwapSlider(image: "exchange")
+        let s3 = SwapSlider(image: "go")
         
-        swapSlider.append(s1)
+        swapSlider.append(contentsOf: [s1,s2,s3])
     }
     
     func loadDummyEvents() {
-        let event1 = Event(title: "Potterheads", images: "one", description: "A thrilling book event in New York", registeredMembers: 100, address: "123 Main St, New York, NY")
-        let event2 = Event(title: "Bookish Dreams", images: "two", description: "A thrilling book event in Los Angeles", registeredMembers: 150, address: "456 Elm St, Los Angeles, CA")
-        let event3 = Event(title: "Mxtx", images: "three", description: "A thrilling book event in London", registeredMembers: 200, address: "789 King St, London, UK")
-        let event4 = Event(title: "Rina Kenters", images: "four", description: "A thrilling book event in Paris", registeredMembers: 250, address: "1011 Rue de Paris, Paris, France")
+        let event1 = Event(title: "Potterheads", images: "10", description: "A thrilling book event in New York", registeredMembers: 100, address: "123 Main St, New York, NY")
+        let event2 = Event(title: "Bookish Dreams", images: "11", description: "A thrilling book event in Los Angeles", registeredMembers: 150, address: "456 Elm St, Los Angeles, CA")
+        let event3 = Event(title: "Mxtx", images: "13", description: "A thrilling book event in London", registeredMembers: 200, address: "789 King St, London, UK")
+        let event4 = Event(title: "Rina Kenters", images: "14", description: "A thrilling book event in Paris", registeredMembers: 250, address: "1011 Rue de Paris, Paris, France")
         
         events.append(contentsOf: [event1, event2, event3, event4])
     }
