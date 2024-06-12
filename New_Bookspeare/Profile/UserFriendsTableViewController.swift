@@ -8,10 +8,7 @@
 import UIKit
 
 class UserFriendsTableViewController: UITableViewController {
-
     
-   
-
     override func viewDidLoad() {
             super.viewDidLoad()
         }

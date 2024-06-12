@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2sW-OS-YU0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2sW-OS-YU0">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,7 +28,7 @@
         <!--Bookclub View Controller-->
         <scene sceneID="H1s-9v-b5W">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="D0O-Um-9ah" customClass="BookclubViewController" customModule="New_Bookspeare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="D0O-Um-9ah" customClass="BookclubViewController" customModule="New_Bookspeare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Vl-zq-dwz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -905,7 +905,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Create" translatesAutoresizingMaskIntoConstraints="NO" id="L3B-9v-Tfa">
                                 <rect key="frame" x="8" y="157" width="658" height="222"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="L3B-9v-Tfa" secondAttribute="height" multiplier="329:111" id="XY0-HO-KtB"/>
                                     <constraint firstAttribute="height" constant="222" id="aSa-jx-K3Z"/>
                                 </constraints>
                             </imageView>
@@ -987,7 +986,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="369" id="SRf-vP-YMM"/>
                                     <constraint firstAttribute="height" constant="41" id="cq5-Fo-VYi"/>
-                                    <constraint firstAttribute="width" secondItem="cbe-S5-1sB" secondAttribute="height" multiplier="9:1" id="jKV-1D-dce"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Create " cornerStyle="capsule"/>
@@ -1000,16 +998,12 @@
                         <viewLayoutGuide key="safeArea" id="EoZ-f1-hST"/>
                         <color key="backgroundColor" red="0.99607843159999998" green="0.98823529480000005" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="L3B-9v-Tfa" firstAttribute="leading" secondItem="cbe-S5-1sB" secondAttribute="leading" id="BJ2-T4-vl8"/>
                             <constraint firstItem="cbe-S5-1sB" firstAttribute="top" secondItem="m1D-oT-f5c" secondAttribute="bottom" constant="82" id="KjZ-y6-o17"/>
                             <constraint firstItem="cbe-S5-1sB" firstAttribute="top" secondItem="m1D-oT-f5c" secondAttribute="bottom" constant="82" id="NHO-va-vcg"/>
                             <constraint firstItem="GgA-Pu-bRl" firstAttribute="leading" secondItem="EoZ-f1-hST" secondAttribute="leading" constant="20" id="Och-BA-Ogl"/>
-                            <constraint firstItem="L3B-9v-Tfa" firstAttribute="leading" secondItem="EoZ-f1-hST" secondAttribute="leading" constant="8" id="QVC-vL-Ys1"/>
                             <constraint firstItem="GgA-Pu-bRl" firstAttribute="top" secondItem="EoZ-f1-hST" secondAttribute="top" constant="67" id="R8S-Ci-fUM"/>
                             <constraint firstItem="L3B-9v-Tfa" firstAttribute="top" secondItem="jek-Sz-kTu" secondAttribute="top" constant="157" id="RLU-vU-e2S"/>
-                            <constraint firstAttribute="trailing" secondItem="L3B-9v-Tfa" secondAttribute="trailing" constant="8" id="SdS-zD-5np"/>
-                            <constraint firstItem="EoZ-f1-hST" firstAttribute="trailing" secondItem="cbe-S5-1sB" secondAttribute="trailing" constant="8" id="Sdk-Qu-6NT"/>
-                            <constraint firstItem="EoZ-f1-hST" firstAttribute="bottom" secondItem="cbe-S5-1sB" secondAttribute="bottom" constant="48" id="Sk4-2O-828"/>
-                            <constraint firstItem="cbe-S5-1sB" firstAttribute="leading" secondItem="EoZ-f1-hST" secondAttribute="leading" constant="8" id="ZIi-wO-wxz"/>
                             <constraint firstItem="GgA-Pu-bRl" firstAttribute="leading" secondItem="UwG-lU-NDm" secondAttribute="leading" id="cNp-Zf-RhQ"/>
                             <constraint firstItem="m1D-oT-f5c" firstAttribute="top" secondItem="L3B-9v-Tfa" secondAttribute="bottom" constant="3" id="dwI-oT-Cbt"/>
                             <constraint firstItem="m1D-oT-f5c" firstAttribute="top" secondItem="L3B-9v-Tfa" secondAttribute="bottom" constant="3" id="e5U-J5-XEb"/>
@@ -1112,7 +1106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1N6-qY-auh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6475.5725190839694" y="1883.8028169014085"/>
+            <point key="canvasLocation" x="6477" y="1800"/>
         </scene>
         <!--Item-->
         <scene sceneID="OLt-mu-HTJ">

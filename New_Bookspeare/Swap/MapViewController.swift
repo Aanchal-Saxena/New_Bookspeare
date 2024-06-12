@@ -1,57 +1,60 @@
 //
 //  MapViewController.swift
-//  Swap
+//  New_Bookspeare
 //
-//  Created by Katyayani Singh on 02/06/24.
+//  Created by Katyayani Singh on 12/06/24.
 //
-import CoreLocation
-import MapKit
 import UIKit
+import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
-
+    
     private let map: MKMapView = {
-       let map = MKMapView()
+        let map = MKMapView()
         return map
     }()
+    
+    private let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(map)
+        map.frame = view.bounds
         
-        
-        LocationManager.shared.getUserLocation { [weak self] location in
-            DispatchQueue.main.async {
-                guard let strongSelf = self else {
-                    return
-                }
-                print("HI")
-                strongSelf.addMapPin(with: location)
-            }
-        }
-        // Do any additional setup after loading the view.
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         map.frame = view.bounds
     }
-    func addMapPin(with location: CLLocation){
+    
+    func addMapPin(with location: CLLocation) {
         let pin = MKPointAnnotation()
         pin.coordinate = location.coordinate
-        map.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.5)), animated: true)
+        map.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: true)
         map.addAnnotation(pin)
-        LocationManager.shared.resolveLocationName(with: location) { [weak self] locationName in
-            self?.title = locationName
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            print("No location found")
+            return
         }
         
+        print("Location updated: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        addMapPin(with: location)
+        
+        // Stop updating location once we have received it
+        manager.stopUpdatingLocation()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
     }
-    */
-
 }

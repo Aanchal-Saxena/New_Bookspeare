@@ -9,11 +9,10 @@ import UIKit
 
 class CreateEventsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate , UITextFieldDelegate{
     
-    var existingEvents: [Event] = []
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-                self.view.endEditing(true)
-            }
+        self.view.endEditing(true)
+    }
     
     
     @IBOutlet weak var eventImage: UIImageView!
@@ -28,10 +27,13 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBOutlet weak var createButton: UIButton!
     
-@IBOutlet weak var eventDescription: UITextField!
+    @IBOutlet weak var eventDescription: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         eventImage.isUserInteractionEnabled = true
         
         self.inputViewController?.dismissKeyboard()
@@ -52,18 +54,18 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
         createButton.layer.borderColor = UIColor.black.cgColor
         createButton.isEnabled = false
         updateCreateButtonState()
-
+        
         // Do any additional setup after loading the view.
     }
     
     func updateCreateButtonState() {
-            let nameText = eventName.text ?? ""
-            let descriptionText = eventDescription.text ?? ""
-            let addressText = eventAddress.text ?? ""
-            createButton.isEnabled = !nameText.isEmpty && !descriptionText.isEmpty
-        }
+        let nameText = eventName.text ?? ""
+        let descriptionText = eventDescription.text ?? ""
+        let addressText = eventAddress.text ?? ""
+        createButton.isEnabled = !nameText.isEmpty && !descriptionText.isEmpty
+    }
     
-   
+    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         if sender.view == eventImage{
@@ -96,9 +98,9 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             eventImage.image = pickedImage
-
-
-                  
+            
+            
+            
         }
         dismiss(animated: true, completion: nil)
     }
@@ -120,6 +122,7 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
         }
     
 
+    
     @IBAction func createButtonTapped(_ sender: UIButton) {
         
         let name = eventName.text ?? ""
@@ -140,5 +143,6 @@ class CreateEventsViewController: UIViewController, UIImagePickerControllerDeleg
             }
         }
     }
+    
     
 }

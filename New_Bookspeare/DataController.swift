@@ -366,7 +366,7 @@ class DataController {
         let user1 = User(
             id: UUID(),
             username: "Misty",
-            name: "Aanchal Saxena",
+            name: "Jasmine Agrawal",
             email: "misty@gmail.com",
             pronouns: "they/them",
             bookclubs: bookclubs,

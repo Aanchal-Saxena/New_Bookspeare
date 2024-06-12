@@ -10,6 +10,12 @@
 		905AA6FD2C166ABD003D2F42 /* CreateEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA6FC2C166ABD003D2F42 /* CreateEventsViewController.swift */; };
 		905AA6FF2C166AF4003D2F42 /* CreateSwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA6FE2C166AF4003D2F42 /* CreateSwapViewController.swift */; };
 		905AA7012C1678EB003D2F42 /* BookclubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905AA7002C1678EB003D2F42 /* BookclubDetailViewController.swift */; };
+		90ABB7D72C196841005BB26D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB7D62C196841005BB26D /* MapViewController.swift */; };
+		90ABB7D92C1969E4005BB26D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB7D82C1969E4005BB26D /* LocationManager.swift */; };
+		90ABB7E62C198B53005BB26D /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABB7E52C198B53005BB26D /* CalendarKit */; };
+		90ABB7E92C198B80005BB26D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABB7E82C198B80005BB26D /* FSCalendar */; };
+		90ABB7EB2C198BD6005BB26D /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABB7EA2C198BD6005BB26D /* CalendarKit */; };
+		90ABB7EF2C19940C005BB26D /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB7EE2C19940B005BB26D /* AddEventViewController.swift */; };
 		D01D69232C125FFF0082EFFD /* CreateQuizFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D69222C125FFF0082EFFD /* CreateQuizFormViewController.swift */; };
 		D0244ABB2C14546400C8D87E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D0244ABA2C14546400C8D87E /* FirebaseDatabase */; };
 		D04437952C12D26D00B5F7C5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04437942C12D26D00B5F7C5 /* StorageManager.swift */; };
@@ -37,10 +43,8 @@
 		D09E2E302C0FBEE100620EFE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */; };
 		D09E2E322C0FBF0100620EFE /* Swapped.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E312C0FBF0100620EFE /* Swapped.storyboard */; };
 		D09E2E3A2C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E332C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift */; };
-		D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E342C0FBF4900620EFE /* LocationManager.swift */; };
 		D09E2E3C2C0FBF4900620EFE /* SwapChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E352C0FBF4900620EFE /* SwapChatsViewController.swift */; };
 		D09E2E3D2C0FBF4900620EFE /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09E2E362C0FBF4900620EFE /* CardCollectionViewCell.xib */; };
-		D09E2E3E2C0FBF4900620EFE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E372C0FBF4900620EFE /* MapViewController.swift */; };
 		D09E2E402C0FBF4900620EFE /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E392C0FBF4900620EFE /* CardCollectionViewCell.swift */; };
 		D09E2E422C0FC04F00620EFE /* SwappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E412C0FC04F00620EFE /* SwappedViewController.swift */; };
 		D09E2E522C0FC10F00620EFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */; };
@@ -97,6 +101,9 @@
 		905AA6FC2C166ABD003D2F42 /* CreateEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventsViewController.swift; sourceTree = "<group>"; };
 		905AA6FE2C166AF4003D2F42 /* CreateSwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSwapViewController.swift; sourceTree = "<group>"; };
 		905AA7002C1678EB003D2F42 /* BookclubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookclubDetailViewController.swift; sourceTree = "<group>"; };
+		90ABB7D62C196841005BB26D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		90ABB7D82C1969E4005BB26D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		90ABB7EE2C19940B005BB26D /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		D01D69222C125FFF0082EFFD /* CreateQuizFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizFormViewController.swift; sourceTree = "<group>"; };
 		D04437942C12D26D00B5F7C5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D04437962C13120600B5F7C5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -123,10 +130,8 @@
 		D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D09E2E312C0FBF0100620EFE /* Swapped.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Swapped.storyboard; sourceTree = "<group>"; };
 		D09E2E332C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSliderCollectionViewCell.swift; sourceTree = "<group>"; };
-		D09E2E342C0FBF4900620EFE /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D09E2E352C0FBF4900620EFE /* SwapChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapChatsViewController.swift; sourceTree = "<group>"; };
 		D09E2E362C0FBF4900620EFE /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
-		D09E2E372C0FBF4900620EFE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D09E2E392C0FBF4900620EFE /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		D09E2E412C0FC04F00620EFE /* SwappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwappedViewController.swift; sourceTree = "<group>"; };
 		D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -182,11 +187,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90ABB7E62C198B53005BB26D /* CalendarKit in Frameworks */,
 				D0244ABB2C14546400C8D87E /* FirebaseDatabase in Frameworks */,
 				D08868F92C1451CD00CC4532 /* FirebaseDatabaseSwift in Frameworks */,
 				D0DCE5262C0FA29600B6660E /* FirebaseAuth in Frameworks */,
 				D0DCE52C2C0FA2C600B6660E /* FirebaseStorage in Frameworks */,
+				90ABB7E92C198B80005BB26D /* FSCalendar in Frameworks */,
 				D0DCE5282C0FA29600B6660E /* FirebaseFirestore in Frameworks */,
+				90ABB7EB2C198BD6005BB26D /* CalendarKit in Frameworks */,
 				D0DCE52A2C0FA2C600B6660E /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +215,7 @@
 				D09E2E0B2C0FBA6F00620EFE /* SearchEventCollectionViewCell.swift */,
 				D09E2E112C0FBA6F00620EFE /* SearchEventCollectionViewCell.xib */,
 				D09E2E092C0FBA4700620EFE /* Events.storyboard */,
+				90ABB7EE2C19940B005BB26D /* AddEventViewController.swift */,
 				D09E2E252C0FBB5000620EFE /* EventsViewController.swift */,
 				D09E2E292C0FBC8700620EFE /* EventsSearchViewController.swift */,
 				D09E2E2B2C0FBE1800620EFE /* DetailEventsViewController.swift */,
@@ -222,12 +231,13 @@
 			isa = PBXGroup;
 			children = (
 				D09E2E2F2C0FBEE100620EFE /* Profile.storyboard */,
+				D09E2E612C0FC1BC00620EFE /* MyProfileViewController.swift */,
 				D09E2E632C0FC25E00620EFE /* EditProfileViewController.swift */,
 				D09E2E4E2C0FC10E00620EFE /* PViewController.swift */,
-				D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */,
+				D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */,
+				D09E2E432C0FC10E00620EFE /* SettingsViewController.swift */,
+				D04437982C139CBF00B5F7C5 /* SearchFriendsViewController.swift */,
 				E53381EF2C10D6D40072DECA /* UserProfileViewController.swift */,
-				D09E2E4D2C0FC10E00620EFE /* FriendsTableViewCell.swift */,
-				D09E2E492C0FC10E00620EFE /* FriendsTableViewCell.xib */,
 				D09E2E652C0FC2D200620EFE /* BookclubListViewController.swift */,
 				D09E2E502C0FC10E00620EFE /* MyBcListCollectionViewCell.swift */,
 				D09E2E442C0FC10E00620EFE /* BcListCollectionViewCell.swift */,
@@ -240,6 +250,9 @@
 				D09E2E462C0FC10E00620EFE /* SettingTableViewCell.swift */,
 				D04437982C139CBF00B5F7C5 /* SearchFriendsViewController.swift */,
 				D0F131032C18E138004A93F8 /* CreateShelfFormViewController.swift */,
+				D09E2E672C0FC36600620EFE /* UserFriendsTableViewController.swift */,
+				D09E2E4D2C0FC10E00620EFE /* FriendsTableViewCell.swift */,
+				D09E2E492C0FC10E00620EFE /* FriendsTableViewCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -250,10 +263,10 @@
 				D09E2E332C0FBF4900620EFE /* AutoSliderCollectionViewCell.swift */,
 				D09E2E392C0FBF4900620EFE /* CardCollectionViewCell.swift */,
 				D09E2E362C0FBF4900620EFE /* CardCollectionViewCell.xib */,
-				D09E2E342C0FBF4900620EFE /* LocationManager.swift */,
-				D09E2E372C0FBF4900620EFE /* MapViewController.swift */,
 				D09E2E352C0FBF4900620EFE /* SwapChatsViewController.swift */,
 				D09E2E312C0FBF0100620EFE /* Swapped.storyboard */,
+				90ABB7D62C196841005BB26D /* MapViewController.swift */,
+				90ABB7D82C1969E4005BB26D /* LocationManager.swift */,
 				D09E2E412C0FC04F00620EFE /* SwappedViewController.swift */,
 				905AA6FE2C166AF4003D2F42 /* CreateSwapViewController.swift */,
 				D0E050C02C18366D00221DDB /* SwapDetailViewController.swift */,
@@ -360,6 +373,9 @@
 				D0DCE52B2C0FA2C600B6660E /* FirebaseStorage */,
 				D08868F82C1451CD00CC4532 /* FirebaseDatabaseSwift */,
 				D0244ABA2C14546400C8D87E /* FirebaseDatabase */,
+				90ABB7E52C198B53005BB26D /* CalendarKit */,
+				90ABB7E82C198B80005BB26D /* FSCalendar */,
+				90ABB7EA2C198BD6005BB26D /* CalendarKit */,
 			);
 			productName = New_Bookspeare;
 			productReference = D0DCE4692C0F494600B6660E /* New_Bookspeare.app */;
@@ -391,6 +407,8 @@
 			mainGroup = D0DCE4602C0F494600B6660E;
 			packageReferences = (
 				D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				90ABB7E42C198B53005BB26D /* XCRemoteSwiftPackageReference "CalendarKit" */,
+				90ABB7E72C198B80005BB26D /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = D0DCE46A2C0F494600B6660E /* Products */;
 			projectDirPath = "";
@@ -447,6 +465,7 @@
 				D09E2E6E2C0FC54D00620EFE /* UserLoginViewController.swift in Sources */,
 				D09E2E072C0FB81500620EFE /* RegisteredViewController.swift in Sources */,
 				D09E2E5D2C0FC10F00620EFE /* PViewController.swift in Sources */,
+				90ABB7EF2C19940C005BB26D /* AddEventViewController.swift in Sources */,
 				D09E2E642C0FC25E00620EFE /* EditProfileViewController.swift in Sources */,
 				D09E2E232C0FBA6F00620EFE /* QuizQuestionsViewController.swift in Sources */,
 				D09E2E2C2C0FBE1800620EFE /* DetailEventsViewController.swift in Sources */,
@@ -472,6 +491,7 @@
 				D09E2E702C0FC66B00620EFE /* DateOfBirthViewController.swift in Sources */,
 				D0DCE5612C0FB11500B6660E /* HeaderBookclubCollectionReusableView.swift in Sources */,
 				D0DCE5452C0FA36B00B6660E /* BookclubButtonCollectionViewCell.swift in Sources */,
+				90ABB7D72C196841005BB26D /* MapViewController.swift in Sources */,
 				E53381F02C10D6D40072DECA /* UserProfileViewController.swift in Sources */,
 				D09E2E682C0FC36600620EFE /* UserFriendsTableViewController.swift in Sources */,
 				D09E2E1A2C0FBA6F00620EFE /* EventButtonCollectionViewCell.swift in Sources */,
@@ -488,9 +508,9 @@
 				D0FF07302C0FCAF000A68E29 /* ThirdCell.swift in Sources */,
 				D0FF07342C0FCB0500A68E29 /* SecondCell.swift in Sources */,
 				D0EC23CF2C10392700E14309 /* DataController.swift in Sources */,
-				D09E2E3B2C0FBF4900620EFE /* LocationManager.swift in Sources */,
 				905AA6FF2C166AF4003D2F42 /* CreateSwapViewController.swift in Sources */,
 				D09E2E192C0FBA6F00620EFE /* QuizStartViewController.swift in Sources */,
+				90ABB7D92C1969E4005BB26D /* LocationManager.swift in Sources */,
 				D09E2E532C0FC10F00620EFE /* BcListCollectionViewCell.swift in Sources */,
 				D0E050C12C18366D00221DDB /* SwapDetailViewController.swift in Sources */,
 				D0DCE46F2C0F494600B6660E /* SceneDelegate.swift in Sources */,
@@ -637,12 +657,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KH6FV7B5AZ;
+				DEVELOPMENT_TEAM = QY77LXR6M6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = New_Bookspeare/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "allows app to modify calendar";
-				INFOPLIST_KEY_NSContactsUsageDescription = "allows app to see the contacts";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please enable location to continue further!";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Allows user to modify calendar";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Allows app to see contacts";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please enable your location to continue further!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -654,7 +674,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "New-BookspeareeX";
+				PRODUCT_BUNDLE_IDENTIFIER = "New-BookspeareeXX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -669,12 +689,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KH6FV7B5AZ;
+				DEVELOPMENT_TEAM = QY77LXR6M6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = New_Bookspeare/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "allows app to modify calendar";
-				INFOPLIST_KEY_NSContactsUsageDescription = "allows app to see the contacts";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please enable location to continue further!";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Allows user to modify calendar";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Allows app to see contacts";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please enable your location to continue further!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -686,7 +706,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "New-BookspeareeX";
+				PRODUCT_BUNDLE_IDENTIFIER = "New-BookspeareeXX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -718,6 +738,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		90ABB7E42C198B53005BB26D /* XCRemoteSwiftPackageReference "CalendarKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/richardtop/CalendarKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.10;
+			};
+		};
+		90ABB7E72C198B80005BB26D /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 		D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -729,6 +765,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		90ABB7E52C198B53005BB26D /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90ABB7E42C198B53005BB26D /* XCRemoteSwiftPackageReference "CalendarKit" */;
+			productName = CalendarKit;
+		};
+		90ABB7E82C198B80005BB26D /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90ABB7E72C198B80005BB26D /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		90ABB7EA2C198BD6005BB26D /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90ABB7E42C198B53005BB26D /* XCRemoteSwiftPackageReference "CalendarKit" */;
+			productName = CalendarKit;
+		};
 		D0244ABA2C14546400C8D87E /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0DCE5232C0FA22F00B6660E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
