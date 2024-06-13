@@ -22,15 +22,27 @@ class PCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cardLabel: UILabel!
     
     
-    
+    var tapAction: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-                setupCell()
+        setupCell()
+        setupGesture()
             }
+    
+    
+    private func setupGesture() {
+            self.contentView.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            self.contentView.addGestureRecognizer(tapGesture)
+        }
+        
+        @objc private func handleTap() {
+            tapAction?()
+        }
             
            
-                func setupCell() {
+    func setupCell() {
                     // Apply corner radius, border, and shadow to the cell's contentView
                     contentView.backgroundColor = .white
                     contentView.layer.cornerRadius = 10

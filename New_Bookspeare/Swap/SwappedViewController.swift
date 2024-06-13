@@ -177,6 +177,10 @@ extension SwappedViewController: UICollectionViewDataSource, UICollectionViewDel
            // Adjust the section insets as needed
            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
        }
+    
+    @IBAction func unwindToSwap(_ segue: UIStoryboardSegue) {
+    
+        }
    }
 
   

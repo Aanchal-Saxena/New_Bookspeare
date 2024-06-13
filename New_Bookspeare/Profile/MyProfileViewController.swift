@@ -18,7 +18,8 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     
     
-  
+    @IBOutlet weak var numberOfShelf: UILabel!
+    
     
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var editButton: UIButton!
@@ -28,7 +29,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var nameLabel: UILabel!
     
     
-    @IBOutlet weak var Label: UILabel!
+    
 
     
    
@@ -40,6 +41,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfShelf.text = "\(DataController.shared.getBookshelf().count) Shelves"
         fetchUserData()
         if let profileUrlString = UserDefaults.standard.value(forKey: "profile_picture_url") as? String,
                let profileUrl = URL(string: profileUrlString) {
@@ -47,7 +49,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             } else {
                 print("Error: Profile picture URL is not a valid string or could not be converted to URL.")
             }
-        Label.text = "BookClubs"
+       
         
         // Edit button setup
         editButton.layer.cornerRadius = 22
@@ -88,6 +90,22 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
         
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showShelfDetail" {
+            guard let indexPath = sender as? IndexPath else { return }
+            //let bookClub = DataController.shared.getBookclub(with: indexPath.row)
+            let bookshelfBook = DataController.shared.getBookshelf(with: indexPath.row).books
+            
+            if let destinationVC = segue.destination as? BookclubListViewController {
+                destinationVC.booksOfShelf = bookshelfBook ?? [Book(title: "Percy Jackson & The Olympians: The Lightning Thief", author: "Rick Riordan", image: "", hooked: "If my life is going to mean anything, I have to live it myself.")]
+                destinationVC.bookshelfName = DataController.shared.getBookshelf(with: indexPath.row).name
+                destinationVC.shelf = DataController.shared.getBookshelf(with: indexPath.row)
+            }
+        }
+    }
+
     
     
     func fetchUserData() {
@@ -223,12 +241,16 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         let bc = DataController.shared.getBookshelf(with: indexPath.row)
         let imageName = bc.image
         cell.cardLabel?.text = bc.name
-        cell.booksLabel?.text = "\(String(describing: bc.books?.count)) Books"
+        cell.booksLabel?.text = "\(bc.books?.count ?? 0) Books"
         cell.cardImage?.image = UIImage(named: imageName)
         
         // Apply corner radius to the image view
         cell.cardImage.layer.cornerRadius = 10
         cell.cardImage.layer.masksToBounds = true
+        
+        cell.tapAction = { [weak self] in
+            self?.performSegue(withIdentifier: "showShelfDetail", sender: indexPath)
+        }
        
         return cell
     }
@@ -258,16 +280,16 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     //Segmented Control Setup
     
-    @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            Label.text = "6 Clubs"
-        case 1:
-            Label.text = "4 Reading Status Lists"
-        default:
-            break
-        }
-    }
+//    @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
+//        switch sender.selectedSegmentIndex {
+//        case 0:
+//            Label.text = "6 Clubs"
+//        case 1:
+//            Label.text = "4 Reading Status Lists"
+//        default:
+//            break
+//        }
+//    }
 }
     
 

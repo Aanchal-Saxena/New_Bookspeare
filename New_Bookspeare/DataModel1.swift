@@ -298,6 +298,13 @@ class Bookshelf: Codable
         self.image = image
     }
     
+    func addBook(_ book: Book) {
+            if books == nil {
+                books = [Book]()
+            }
+            books?.append(book)
+        }
+    
     
     func toDictionary() -> [String: Any] {
             var dictionary: [String: Any] = [

@@ -315,7 +315,7 @@ class DataController {
     func loadDummyBookshelf()
     {
         let books1 = [
-                    Book(title: "Percy Jackson & The Olympians: The Lightning Thief", author: "Rick Riordan", image: "", hooked: "If my life is going to mean anything, I have to live it myself."),
+                    Book(title: "Percy Jackson & The Olympians: The Lightning Thief", author: "Rick Riordan", image: "one", hooked: "If my life is going to mean anything, I have to live it myself."),
                     Book(title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", image: "", hooked: "It does not do to dwell on dreams and forget to live."),
                     Book(title: "The Hunger Games", author: "Suzanne Collins", image: "", hooked: "May the odds be ever in your favor.")
                 ]
@@ -347,16 +347,16 @@ class DataController {
     
     func loadDummyBooks()
     {
-        let book1 = Book(title: "Percy Jackson & The Olympians: The Lightning Thief", author: "Rick Riordan", image: "", hooked: "If my life is going to mean anything, I have to live it myself.")
-        let book2 = Book(title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", image: "", hooked: "It does not do to dwell on dreams and forget to live.")
+        let book1 = Book(title: "Percy Jackson & The Olympians: The Lightning Thief", author: "Rick Riordan", image: "percy jackson", hooked: "If my life is going to mean anything, I have to live it myself.")
+        let book2 = Book(title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", image: "harry potter", hooked: "It does not do to dwell on dreams and forget to live.")
         let book3 = Book(title: "The Hunger Games", author: "Suzanne Collins", image: "", hooked: "May the odds be ever in your favor.")
-        let book4 = Book(title: "To Kill a Mockingbird", author: "Harper Lee", image: "", hooked: "You never really understand a person until you consider things from his point of view.")
+        let book4 = Book(title: "To Kill a Mockingbird", author: "Harper Lee", image: "mockingbird", hooked: "You never really understand a person until you consider things from his point of view.")
         let book5 = Book(title: "1984", author: "George Orwell", image: "", hooked: "Big Brother is Watching You.")
-        let book6 = Book(title: "The Great Gatsby", author: "F. Scott Fitzgerald", image: "", hooked: "So we beat on, boats against the current, borne back ceaselessly into the past.")
+        let book6 = Book(title: "The Great Gatsby", author: "F. Scott Fitzgerald", image: "great gatsby", hooked: "So we beat on, boats against the current, borne back ceaselessly into the past.")
         let book7 = Book(title: "Pride and Prejudice", author: "Jane Austen", image: "", hooked: "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.")
-        let book8 = Book(title: "The Hobbit", author: "J.R.R. Tolkien", image: "", hooked: "In a hole in the ground there lived a hobbit.")
-        let book9 = Book(title: "Moby-Dick", author: "Herman Melville", image: "", hooked: "Call me Ishmael.")
-        let book10 = Book(title: "Jane Eyre", author: "Charlotte Brontë", image: "", hooked: "I am no bird; and no net ensnares me: I am a free human being with an independent will.")
+        let book8 = Book(title: "The Hobbit", author: "J.R.R. Tolkien", image: "J.R.R.", hooked: "In a hole in the ground there lived a hobbit.")
+        let book9 = Book(title: "Moby-Dick", author: "Herman Melville", image: "moby", hooked: "Call me Ishmael.")
+        let book10 = Book(title: "Jane Eyre", author: "Charlotte Brontë", image: "jane", hooked: "I am no bird; and no net ensnares me: I am a free human being with an independent will.")
         
         books.append(contentsOf: [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10])
                 
@@ -509,6 +509,14 @@ class DataController {
     func appendQuiz(myQuiz: Quiz){
         quiz.append(myQuiz)
     }
+    
+    func addBookToBookshelf(at index: Int, book: Book) {
+            guard index >= 0 && index < bookshelf.count else {
+                print("Index out of range")
+                return
+            }
+            bookshelf[index].addBook(book)
+        }
 
     
     

@@ -15,6 +15,12 @@ class BcListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cardLabel: UILabel!
     
+    
+    @IBOutlet weak var hooked: UILabel!
+    
+    
+    
+    
     override func awakeFromNib() {
            super.awakeFromNib()
            setupCell()
